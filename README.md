@@ -1,7 +1,7 @@
 # Project PacMan
 
 <center> 
-<img src="https://static.fjcdn.com/gifs/Pacman_7a13e6_1160035.gif">
+<img src="https://w7.pngwing.com/pngs/660/760/png-transparent-pac-man-illustration-pac-man-world-3-minecraft-pixel-art-pac-man-angle-text-symmetry.png" width="150" height="150">
 </center>
 
 ## Introdução:
