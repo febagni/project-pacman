@@ -1,6 +1,8 @@
 # Project PacMan
 
-![pac man logo](https://gitlab.com/object-oriented-teens/project-pacman/-/blob/develop/pacmanIcon.png)
+<p style="text-align:center"> 
+<img src="https://w7.pngwing.com/pngs/660/760/png-transparent-pac-man-illustration-pac-man-world-3-minecraft-pixel-art-pac-man-angle-text-symmetry.png" width="150" height="150">
+</p>
 
 ## Introdução:
 Esse repositório contém o trabalho e desenvolvimento do grupo "Object-oriented teens" para a disciplina de MAC-0321 - Laboratório de Programação Orientada a Objetos, ministrada aos alunos de graduação do curso de <a href="https://pcs.usp.br/">Engenharia da Computação</a> da <a href="https://www.poli.usp.br">Escola Politécnica da USP.</a>
