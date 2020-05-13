@@ -32,21 +32,25 @@ public class MapReader {
 		for(String line: array) {
 			size = line.length();
 			if(size != firstSize) 
-				throw new WrongMapFormatException("Algo de errado não deu certo");			
+				throw new WrongMapFormatException("The map format must be rectangular");			
 		}
 		return true;
 	}
 	
 	
-	int heightGetter(){
+	int getHeight(){
 		return array.size();
 	}
 	
-//	int widthGetter() {
-//		if(validMap())
-//			return array.get(0).length();
-//		return -1;
-//	}
+	int getWidth() {
+		try {
+			if(validMap())
+				return array.get(0).length();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	
 	ArrayList<String> inputGetter() {
 		return array;
