@@ -22,7 +22,6 @@ public class Game extends Canvas implements Runnable{
 		height = testMap.getHeight()*MapObject.squareSize;
 		
 		handler.addMap(testMap.build(), testMap.getHeight(), testMap.getWidth());
-		
 		new Window(width, height, "PAC MONSTROOOOOOOO :P", this);
 	}
 
