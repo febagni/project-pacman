@@ -1,9 +1,7 @@
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Floor extends MapObject{
-
-	Floor(int x, int y, MapID id) {
-		super(x, y, id);
-	}
 
 	@Override
 	public MapID getID() {
@@ -13,6 +11,28 @@ public class Floor extends MapObject{
 	@Override
 	public void setID(MapID id) {
 		this.id = id;
+		
+	}
+
+	@Override
+	MapObject cloneMapObject(int x, int y) {
+		Floor floor = new Floor();
+		floor.setX(x);
+		floor.setY(y);
+		floor.setID(MapID.Floor);
+		return floor;
+	}
+
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void render(Graphics g) {
+		g.setColor(Color.gray);
+		g.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
 		
 	}
 	

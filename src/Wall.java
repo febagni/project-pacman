@@ -1,9 +1,7 @@
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Wall extends MapObject {
-
-	Wall(int x, int y, MapID id) {
-		super(x, y, id);
-	}
 
 	@Override
 	public MapID getID() {
@@ -13,6 +11,25 @@ public class Wall extends MapObject {
 	@Override
 	public void setID(MapID id) {
 		this.id = id;
+		
+	}
+
+	@Override
+	MapObject cloneMapObject(int x, int y) {
+		Wall wall = new Wall();
+		wall.setX(x);
+		wall.setY(y);
+		wall.setID(MapID.Wall);
+		return wall;
+	}
+	
+	public void render(Graphics graphic) {
+		graphic.setColor(Color.black);
+		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
+	}
+
+	@Override
+	public void tick() {
 		
 	}
 

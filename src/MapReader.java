@@ -7,7 +7,7 @@ public class MapReader {
 	ArrayList<String> array = new ArrayList<String>();
 	
 	
-	MapReader(String fileName){
+	MapReader(String fileName) {
 		readFile(fileName);	
 	}
 	
@@ -26,7 +26,7 @@ public class MapReader {
 		}
 	}
 	
-	boolean validMap() throws Exception{
+	boolean validMap() throws Exception {
 		int firstSize = array.get(0).length();
 		int size;
 		for(String line: array) {
@@ -38,7 +38,7 @@ public class MapReader {
 	}
 	
 	
-	int getHeight(){
+	int getHeight() {
 		return array.size();
 	}
 	

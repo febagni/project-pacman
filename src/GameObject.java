@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 
 public interface GameObject {
 	
@@ -7,5 +8,7 @@ public interface GameObject {
 	public void setY(int y);
 	public MapID getID();
 	public void setID(MapID id);
+	public void tick();
+	public void render(Graphics g);
 	
 }

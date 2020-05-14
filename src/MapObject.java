@@ -1,4 +1,4 @@
-import java.util.HashMap;
+
 
 public abstract class MapObject implements GameObject {
 	protected int x;
@@ -6,14 +6,16 @@ public abstract class MapObject implements GameObject {
 	char representation;
 	protected MapID id;
 	
+	static final int squareSize = 32;
 	
-	MapObject(int x, int y, MapID id){
-		this.x = x;
-		this.y = y;
-		this.id = id;
-		
-	}
+//	MapObject(int x, int y, MapID id){
+//		this.x = x;
+//		this.y = y;
+//		this.id = id;
+//		
+//	}
 	
+	abstract MapObject cloneMapObject(int x, int y);
 	
 	@Override
 	public int getX() {
