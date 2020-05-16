@@ -23,8 +23,10 @@ public class FloorWithFood extends MapObject {
 	}
 	
 	public void render(Graphics graphic) {
-		graphic.setColor(Color.white);
-		graphic.fillRect(squareSize*x, squareSize*y, squareSize, squareSize);
+//		graphic.setColor(Color.white);
+//		graphic.fillRect(squareSize*x, squareSize*y, squareSize, squareSize);
+		ImageImporter image = new ImageImporter("PacManFloorWithFood.png");
+		image.paintComponent(graphic, x*squareSize, y*squareSize);
 	}
 
 	@Override
