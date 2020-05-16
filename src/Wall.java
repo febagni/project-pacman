@@ -11,7 +11,6 @@ public class Wall extends MapObject {
 	@Override
 	public void setID(MapID id) {
 		this.id = id;
-		
 	}
 
 	@Override
@@ -30,7 +29,7 @@ public class Wall extends MapObject {
 
 	@Override
 	public void tick() {
-		
+		//In construction
 	}
 
 	

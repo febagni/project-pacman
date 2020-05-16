@@ -29,7 +29,6 @@ public class FloorWithFood extends MapObject {
 
 	@Override
 	public void tick() {
-		
+		//In construction
 	}
-
 }

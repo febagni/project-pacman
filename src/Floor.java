@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Floor extends MapObject{
+public class Floor extends MapObject {
 
 	@Override
 	public MapID getID() {
@@ -10,8 +10,7 @@ public class Floor extends MapObject{
 
 	@Override
 	public void setID(MapID id) {
-		this.id = id;
-		
+		this.id = id;	
 	}
 
 	@Override
@@ -25,15 +24,12 @@ public class Floor extends MapObject{
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+		//In construction
 	}
 
 	@Override
 	public void render(Graphics g) {
 		g.setColor(Color.gray);
 		g.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-		
 	}
-	
 }

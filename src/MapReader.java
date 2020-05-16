@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class MapReader {
 	
-	ArrayList<String> array = new ArrayList<String>();
-	
+	ArrayList<String> rawMap = new ArrayList<String>();
 	
 	MapReader(String fileName) {
 		readFile(fileName);	
@@ -17,19 +16,18 @@ public class MapReader {
 			Scanner scanner = new Scanner(file);
 			while(scanner.hasNextLine()) {
 				String data = scanner.nextLine();
-				array.add(data);
+				rawMap.add(data);
 			}
 			scanner.close();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	boolean validMap() throws Exception {
-		int firstSize = array.get(0).length();
+		int firstSize = rawMap.get(0).length();
 		int size;
-		for(String line: array) {
+		for(String line: rawMap) {
 			size = line.length();
 			if(size != firstSize) 
 				throw new WrongMapFormatException("The map format must be rectangular");			
@@ -37,15 +35,14 @@ public class MapReader {
 		return true;
 	}
 	
-	
 	int getHeight() {
-		return array.size();
+		return rawMap.size();
 	}
 	
 	int getWidth() {
 		try {
 			if(validMap())
-				return array.get(0).length();
+				return rawMap.get(0).length();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,8 +50,6 @@ public class MapReader {
 	}
 	
 	ArrayList<String> inputGetter() {
-		return array;
+		return rawMap;
 	}
-	
-	
 }

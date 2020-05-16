@@ -1,19 +1,11 @@
 
 
 public abstract class MapObject implements GameObject {
-	protected int x;
-	protected int y;
-	char representation;
-	protected MapID id;
 	
 	static final int squareSize = 32;
-	
-//	MapObject(int x, int y, MapID id){
-//		this.x = x;
-//		this.y = y;
-//		this.id = id;
-//		
-//	}
+	protected int x;
+	protected int y;
+	protected MapID id;
 	
 	abstract MapObject cloneMapObject(int x, int y);
 	

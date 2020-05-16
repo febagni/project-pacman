@@ -2,15 +2,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MapBuilder {
+
 	final int width;
 	final int height;
 	private MapObject[][] map;
 	private MapReader mapReader;
-	
-
 	HashMap<Character, MapObject> hashRepresentation = new HashMap<>();
 	
-	MapBuilder (String fileName){
+	MapBuilder (String fileName) {
 		mapReader = new MapReader(fileName);
 		width = mapReader.getWidth();
 		height = mapReader.getHeight();
@@ -25,7 +24,7 @@ public class MapBuilder {
 		int i = 0;           
 		for(String line : rawMap) {	
 			for(int j = 0; j < line.length() ; j++) {
-				map[i][j] = hashRepresentation.get(line.charAt(j)).cloneMapObject(i, j);
+				map[i][j] = hashRepresentation.get(line.charAt(j)).cloneMapObject(j, i);
 			}
 			i++;
 		}
