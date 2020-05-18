@@ -35,11 +35,11 @@ public class MapReader {
 		return true;
 	}
 	
-	int getHeight() {
+	int getRows() {
 		return rawMap.size();
 	}
 	
-	int getWidth() {
+	int getColumns() {
 		try {
 			if(validMap())
 				return rawMap.get(0).length();

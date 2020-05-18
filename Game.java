@@ -15,11 +15,10 @@ public class Game extends Canvas implements Runnable {
 	/*Game function that will be called when the game starts*/ 
 	public Game(String mapFileName) {
 		MapBuilder testMap = new MapBuilder(mapFileName);
-		MapReader mr = new MapReader(mapFileName);
 		handler = new Handler();
-		width = mr.getColumns()*MapObject.squareSize;
-		height = mr.getRows()*MapObject.squareSize;
-		//handler.addMap(testMap.build(), mr.getRows(), mr.getColumns());
+		width = testMap.getWidth()*MapObject.squareSize;
+		height = testMap.getHeight()*MapObject.squareSize;
+		handler.addMap(testMap.build(), testMap.getHeight(), testMap.getWidth());
 		new Window(width, height, "PAC MONSTROOOOOOOO :P", this);
 	}
 
@@ -82,8 +81,8 @@ public class Game extends Canvas implements Runnable {
 	private void tick() {
 		handler.tick();
 	}
-//
-//	public static void main(String[] args) {
-//		new Game("map.txt");
-//	}
+
+	public static void main(String[] args) {
+		new Game("map.txt");
+	}
 }

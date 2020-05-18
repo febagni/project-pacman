@@ -1,41 +1,51 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MapBuilder {
 
-	final int width;
-	final int height;
-	private MapObject[][] map;
+	final int columns;
+	final int rows;
 	private MapReader mapReader;
-	HashMap<Character, MapObject> hashRepresentation = new HashMap<>();
+	
+	int pacmanInitialRow;
+	int pacmanInitialColumn;
+	
+	ArrayList<String> rawMap;
 	
 	MapBuilder (String fileName) {
 		mapReader = new MapReader(fileName);
-		width = mapReader.getWidth();
-		height = mapReader.getHeight();
-		hashRepresentation.put('#', new Wall());
-		hashRepresentation.put('.', new FloorWithFood());
-		hashRepresentation.put(' ', new Floor());
+		columns = mapReader.getColumns();
+		rows = mapReader.getRows();
+		rawMap = mapReader.inputGetter();
+		build();
+
 	}
 	
-	MapObject[][] build() {
-		map = new MapObject[height][width];
-		ArrayList<String> rawMap = mapReader.inputGetter();
+	void build() {
 		int i = 0;           
 		for(String line : rawMap) {	
 			for(int j = 0; j < line.length() ; j++) {
-				map[i][j] = hashRepresentation.get(line.charAt(j)).cloneMapObject(j, i);
+				switch(line.charAt(j)) {
+				case '1':
+					pacmanInitialRow = i;
+					pacmanInitialColumn = j;
+					break;
+				
+				}
 			}
 			i++;
 		}
-		return map;
 	}
 	
-	int getHeight() {
-		return mapReader.getHeight();
+	int getPacmanInitialRow() {
+		return pacmanInitialRow;
 	}
 	
-	int getWidth() {
-		return mapReader.getWidth();
+	int getPacmanInitialColumn() {
+		return pacmanInitialColumn;
 	}
+	
+	char charAt(int row, int column) {
+		return rawMap.get(row).charAt(column);
+	}
+	
 }
