@@ -33,28 +33,34 @@ public class PacMan implements KeyListener{
 	BufferedImage pacman;
 	int frame;
 	
-	String mapFileName = "map.txt";
-	MapReader mr = new MapReader(mapFileName);
-	MapBuilder mb = new MapBuilder(mapFileName);
 	
 	protected boolean over;
 	protected String title;
-	protected int width = mr.getColumns()+500;
-	protected int height = mr.getRows()+500;
+	
 	protected int delay = 30;
 	
-	int rows = mr.getRows();
-	int columns = mr.getColumns(); 	
+	int rows; 
+	int columns; 
 	
-	int screenWidth = columns*STEP;
-	int screenHeight = rows*STEP;
-	
+	int width;
+	int height;
+
 	int direction;
 	int currentColumn;
 	int currentRow;
 	
+	MapReader mr;
+	MapBuilder mb;
 	
-	public PacMan() {
+	
+	public PacMan() { 	
+		String mapFileName = "map.txt";
+		mr = new MapReader(mapFileName);
+		mb = new MapBuilder(mapFileName);
+		rows = mr.getRows();
+		columns = mr.getColumns();
+		width = columns*STEP;
+		height = rows*STEP;
 		title = "PacMan monstao";
 		frame = 0;
 		direction = KeyEvent.VK_RIGHT;
@@ -124,6 +130,13 @@ public class PacMan implements KeyListener{
 	}
 	
 	public void draw(Graphics2D g) {
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < columns; j++) {
+				if(mb.charAt(i,j) != '#') {
+					g.fillRect(j*32, i*32, 32, 32);
+				}
+			}
+		}
 		g.drawImage(pacman.getSubimage((frame/2)*30, (direction-37)*30, 28, 28), currentColumn*STEP-14, currentRow*STEP-14, null);
 	}
 	

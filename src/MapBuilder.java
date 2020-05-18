@@ -26,8 +26,8 @@ public class MapBuilder {
 			for(int j = 0; j < line.length() ; j++) {
 				switch(line.charAt(j)) {
 				case '1':
-					pacmanInitialRow = i;
-					pacmanInitialColumn = j;
+					pacmanInitialRow = j;
+					pacmanInitialColumn = i;
 					break;
 				
 				}
