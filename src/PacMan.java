@@ -1,6 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class PacMan implements GameObject{
 
@@ -12,15 +17,21 @@ public class PacMan implements GameObject{
 	protected MapObject[][] map;
 	protected int direction;
 	protected int frame;
+	protected BufferedImage pacmanImage;
+	protected final int animationSlowness = 3;
 	
 	PacMan(){
+		frame = 0;
+		try {
+			pacmanImage = ImageIO.read(new File("sprites/pacman.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.direction = KeyEvent.VK_LEFT;
 	}
 
 	public int getX() {return x;}
 	public int getY() {return y;}
-//	public int getMapX() {return (x/32);}
-//	public int getMapY() {return (y/32);}
 	public MapID getID() {return id;}
 
 	public void setX(int x) {this.x = x;}
@@ -29,44 +40,14 @@ public class PacMan implements GameObject{
 
 	public void setMap(MapObject[][] map) {this.map = map;}
 	
-	void moviment() {
-		
-//		if (map[getMapX()][getMapY()].getID() == MapID.FloorWithFood) {
-//			map[getMapX()][getMapY()].setID(MapID.Floor); 
-//		}
-//		
-////		//colocar o lance do frame depois
-////		frame++;
-////		if (frame>5) {
-////			frame = 0;
-////		}
-//
-//		if (this.direction == KeyEvent.VK_DOWN) {
-//			if (map[getMapX()+1][getMapY()].getID() != MapID.Wall)
-//				setX(getX() + 1);
-//		}
-//		if (this.direction == KeyEvent.VK_LEFT) {
-//			if (map[getMapX()][getMapY()-1].getID() != MapID.Wall)
-//				setY(getY() - 1);
-//		}
-//		if (direction == KeyEvent.VK_UP) {
-//			if (map[getMapX()-1][getMapY()].getID() != MapID.Wall)
-//				setX(getX() - 1);
-//		}
-//		if (direction == KeyEvent.VK_RIGHT) {
-//			if (map[getMapX()][getMapY()+1].getID() != MapID.Wall)
-//				setY(getY() + 1);
-//		}
-//		
+	void movement() {
 		if (map[getX()][getY()].getID() == MapID.FloorWithFood) {
 			map[getX()][getY()].setID(MapID.Floor); 
 		}
-		
-//		//colocar o lance do frame depois
-//		frame++;
-//		if (frame>5) {
-//			frame = 0;
-//		}
+		frame++;
+		if (frame>5*animationSlowness) {
+			frame = 0;
+		}
 		if (direction == KeyEvent.VK_UP) {
 			if (map[getX()-1][getY()].getID() != MapID.Wall) {
 				if (delX%squareSize == 0 && delX !=0) {
@@ -112,14 +93,14 @@ public class PacMan implements GameObject{
 	}
 
 	public void tick() {
-		moviment();
+		movement();
 	}
 
 	public void render(Graphics graphic) {
-		
-		//Colocar a animacao
-		graphic.setColor(Color.yellow);
+		graphic.drawImage(pacmanImage.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
+				, y*squareSize+delY+2, x*squareSize+delX+2, null);
+//		graphic.setColor(Color.yellow);
 //		graphic.fillRect(y, x, 32, 32);
-		graphic.fillRect(y*squareSize+delY+2, x*squareSize+delX+2, squareSize-4, squareSize-4);
+//		graphic.fillRect(y*squareSize+delY+2, x*squareSize+delX+2, squareSize-4, squareSize-4);
 	}
 }

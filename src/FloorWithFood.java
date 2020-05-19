@@ -23,11 +23,11 @@ public class FloorWithFood extends MapObject {
 	}
 	
 	public void render(Graphics graphic) {
-		graphic.setColor(Color.gray);
+		graphic.setColor(Color.black);
 		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
 		if(this.id == MapID.FloorWithFood) {
 			graphic.setColor(Color.white);
-			graphic.fillRect(squareSize*x+8, squareSize*y+8, squareSize-16, squareSize-16);
+			graphic.fillOval(squareSize*x+10, squareSize*y+10, squareSize-20, squareSize-20);
 		}
 		
 //		ImageImporter image;

@@ -23,10 +23,12 @@ public class Wall extends MapObject {
 	}
 	
 	public void render(Graphics graphic) {
-		graphic.setColor(Color.black);
-		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-//		ImageImporter image = new ImageImporter("PacManWall.png");
-//		image.paintComponent(graphic, x*squareSize, y*squareSize);
+		
+		
+//		graphic.setColor(Color.black);
+//		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
+		ImageImporter image = new ImageImporter("PacManWall.png");
+		image.paintComponent(graphic, x*squareSize, y*squareSize);
 	}
 
 	@Override

@@ -12,18 +12,21 @@ public class Game extends Canvas implements Runnable {
 	private int height;
 	private MapHandler mapHandler;
 	PacMan player;
+	Window window;
+	
+	private int testFlag = 0;
 	
 	/*Game function that will be called when the game starts*/ 
 	
 	public Game(String mapFileName) {
 		MapBuilder testMap = new MapBuilder(mapFileName);
-		mapHandler = new MapHandler();
+		mapHandler = new MapHandler(testMap.getHeight(), testMap.getWidth());
 		player = testMap.player;
 		width = testMap.getWidth()*MapObject.squareSize;
 		height = testMap.getHeight()*MapObject.squareSize;
 		mapHandler.addMap(testMap.build(), testMap.getHeight(), testMap.getWidth());
 		
-		new Window(width, height, "PacMan", this);
+		window = new Window(width, height, "Pacman", this);
 	}
 
 	public synchronized void start() {
@@ -55,7 +58,6 @@ public class Game extends Canvas implements Runnable {
             while (delta >= 1) {
                 tick();
                 delta--;
-                //player.moviment();
             }
             if(running) render();
             frames++;
@@ -70,6 +72,7 @@ public class Game extends Canvas implements Runnable {
 	}
 		
 	private void render() {
+		//Use with BufferedImage
 		BufferStrategy bufferStrategy = this.getBufferStrategy();
         if (bufferStrategy == null) {
             this.createBufferStrategy(3);
@@ -77,9 +80,16 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
-        graphics.setColor(Color.blue);
-        graphics.fillRect(0, 0, width, height);
-        mapHandler.render(graphics);
+        //graphics.setColor(Color.blue);
+        //graphics.fillRect(0, 0, width, height);
+        if (testFlag == 0) {
+        	mapHandler.renderMap(graphics);
+        	testFlag = 1;
+        }
+        if(window.panelMoved()) {
+        	mapHandler.renderMap(graphics);
+        }
+        mapHandler.renderChunk(graphics, player.getX(), player.getY());
         //criar um entity handler para mexer com o player e os fantasmas
         player.render(graphics);
         //entre o comentario de cima e esse
