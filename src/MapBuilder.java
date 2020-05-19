@@ -30,16 +30,17 @@ public class MapBuilder {
 			for(int j = 0; j < line.length() ; j++) {
 				map[i][j] = hashRepresentation.get(line.charAt(j)).cloneMapObject(j, i);
 				if (line.charAt(j) == 'C') {
-//					player.setX(i*32);
-//					player.setY(j*32);
-					player.setX(i);
-					player.setY(j);
+					player.setRealX(i*32);
+					player.setRealY(j*32);
 				}
 			}
 			i++;
 		}
 		player.setMap(map);
 		return map;
+	}
+	PacMan getPlayer() {
+		return player;
 	}
 	
 	int getHeight() {

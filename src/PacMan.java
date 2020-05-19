@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -19,8 +18,10 @@ public class PacMan implements GameObject{
 	protected int frame;
 	protected BufferedImage pacmanImage;
 	protected final int animationSlowness = 3;
+	protected int realX, realY;
+	protected int lastDirection;
 	
-	PacMan(){
+	public PacMan(){
 		frame = 0;
 		try {
 			pacmanImage = ImageIO.read(new File("sprites/pacman.png"));
@@ -28,10 +29,14 @@ public class PacMan implements GameObject{
 			e.printStackTrace();
 		}
 		this.direction = KeyEvent.VK_LEFT;
+		lastDirection = direction;
 	}
-
-	public int getX() {return x;}
-	public int getY() {return y;}
+	public void setRealX(int x) {realX = x;}
+	public void setRealY(int y) {realY = y;}
+	public int getRealX() {return realX;}
+	public int getRealY() {return realY;}
+	public int getX() {x = (realX+16)/32; return x;}
+	public int getY() {y = (realY+16)/32; return y;}
 	public MapID getID() {return id;}
 
 	public void setX(int x) {this.x = x;}
@@ -48,48 +53,38 @@ public class PacMan implements GameObject{
 		if (frame>5*animationSlowness) {
 			frame = 0;
 		}
-		if (direction == KeyEvent.VK_UP) {
-			if (map[getX()-1][getY()].getID() != MapID.Wall) {
-				if (delX%squareSize == 0 && delX !=0) {
-					setX(getX() -1);
-					delX = 0;
-				}
-			delX -= step;
-			delY=0;
-			}
-		}
-		if (this.direction == KeyEvent.VK_DOWN) {
-			if (map[getX()+1][getY()].getID() != MapID.Wall) {
-				if (delX%squareSize == 0 && delX!=0) {
-					setX(getX() + 1);
-					delX = 0;
-				}
-			delX += step;
-			delY=0;
-			}
-		}
-		if (this.direction == KeyEvent.VK_LEFT) {
-			if (map[getX()][getY()-1].getID() != MapID.Wall) {
-				if (delY%squareSize == 0 && delY!=0) {
-					setY(getY() - 1);
-					delY = 0;
-				}
-			delY -= step;
-			delX=0;
-			}
-			
-		}
 		
-		if (direction == KeyEvent.VK_RIGHT) {
-			if (map[getX()][getY()+1].getID() != MapID.Wall) {
-				if (delY%squareSize == 0 && delY!=0) {
-					setY(getY() +1);
-					delY = 0;
+		switch (direction) {
+			case KeyEvent.VK_UP:
+				if(realY - getY()*32 != 0 )
+					break;
+				if (map[getX()-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0) {
+					realX -= step;
 				}
-			delY += step;
-			delX=0;
-			}
-		}	
+				break;
+			case KeyEvent.VK_DOWN:
+				if(realY - getY()*32 != 0 )
+					break;
+				if (map[getX()+1][getY()].getID() != MapID.Wall || realX - getX()*32 < 0) {
+					realX += step;
+				}
+				break;
+			case KeyEvent.VK_LEFT:
+				if(realX - getX()*32 != 0 )
+					break;
+				if (map[getX()][getY()-1].getID() != MapID.Wall || realY - getY()*32 > 0) {
+					realY -= step;
+				}
+				break;
+			case KeyEvent.VK_RIGHT:
+				if(realX - getX()*32 != 0 )
+					break;
+				if (map[getX()][getY()+1].getID() != MapID.Wall || realY - getY()*32 < 0) {
+					realY += step;
+				}
+				break;
+		}
+		lastDirection = direction;
 	}
 
 	public void tick() {
@@ -98,9 +93,6 @@ public class PacMan implements GameObject{
 
 	public void render(Graphics graphic) {
 		graphic.drawImage(pacmanImage.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
-				, y*squareSize+delY+2, x*squareSize+delX+2, null);
-//		graphic.setColor(Color.yellow);
-//		graphic.fillRect(y, x, 32, 32);
-//		graphic.fillRect(y*squareSize+delY+2, x*squareSize+delX+2, squareSize-4, squareSize-4);
+				, realY, realX, null);
 	}
 }
