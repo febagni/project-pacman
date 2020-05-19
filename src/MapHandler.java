@@ -1,10 +1,17 @@
 import java.awt.Graphics;
 import java.util.LinkedList;
 
-public class Handler {
+public class MapHandler {
+	
+	PacMan player;
 	
 	LinkedList<GameObject> object = new LinkedList<GameObject>();
 
+	
+	public void setPlayer(PacMan player) {
+		this.player = player;
+	}
+	
     public void tick() {
         for(GameObject tempObject : object) {
             tempObject.tick();
@@ -25,10 +32,10 @@ public class Handler {
         this.object.remove(object);
     }
     
-    public void addMap(MapObject[][] map, int height, int width) {
+    public void addMap(GameObject[][] gameObjects, int height, int width) {
     	for (int i = 0; i < height; i++) {
     		for (int j = 0; j < width; j++) {
-        		this.addObject(map[i][j]);
+        		this.addObject(gameObjects[i][j]);
         	}
     	}
     }

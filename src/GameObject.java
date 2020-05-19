@@ -2,6 +2,8 @@ import java.awt.Graphics;
 
 public interface GameObject {
 	
+	static final int squareSize = 32;
+	static final int step = 1;
 	public int getX();
 	public int getY();
 	public void setX(int x);

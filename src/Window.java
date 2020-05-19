@@ -3,7 +3,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class Window extends Canvas{
+public class Window extends Canvas {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -16,10 +16,11 @@ public class Window extends Canvas{
 		frame.setMinimumSize(new Dimension(width, height));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(true);
+		UserInput controls = new UserInput(game.player);
+		frame.add(controls);
+		setFocusable(true);
 		frame.add(game);
 		frame.setVisible(true);
 		game.start();
 	}
-		
-
 }

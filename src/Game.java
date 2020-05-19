@@ -10,16 +10,20 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private int width;
 	private int height;
-	private Handler handler;
+	private MapHandler mapHandler;
+	PacMan player;
 	
 	/*Game function that will be called when the game starts*/ 
+	
 	public Game(String mapFileName) {
 		MapBuilder testMap = new MapBuilder(mapFileName);
-		handler = new Handler();
+		mapHandler = new MapHandler();
+		player = testMap.player;
 		width = testMap.getWidth()*MapObject.squareSize;
 		height = testMap.getHeight()*MapObject.squareSize;
-		handler.addMap(testMap.build(), testMap.getHeight(), testMap.getWidth());
-		new Window(width, height, "PAC MONSTROOOOOOOO :P", this);
+		mapHandler.addMap(testMap.build(), testMap.getHeight(), testMap.getWidth());
+		
+		new Window(width, height, "PacMan", this);
 	}
 
 	public synchronized void start() {
@@ -35,8 +39,8 @@ public class Game extends Canvas implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
+	} 
+	
 	public void run() {
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
@@ -51,6 +55,7 @@ public class Game extends Canvas implements Runnable {
             while (delta >= 1) {
                 tick();
                 delta--;
+                //player.moviment();
             }
             if(running) render();
             frames++;
@@ -60,9 +65,10 @@ public class Game extends Canvas implements Runnable {
                 frames = 0;
             }
        }
-        stop();
+        
+       stop();
 	}
-	
+		
 	private void render() {
 		BufferStrategy bufferStrategy = this.getBufferStrategy();
         if (bufferStrategy == null) {
@@ -73,15 +79,19 @@ public class Game extends Canvas implements Runnable {
         Graphics graphics = bufferStrategy.getDrawGraphics();
         graphics.setColor(Color.blue);
         graphics.fillRect(0, 0, width, height);
-        handler.render(graphics);
+        mapHandler.render(graphics);
+        //criar um entity handler para mexer com o player e os fantasmas
+        player.render(graphics);
+        //entre o comentario de cima e esse
         graphics.dispose();
         bufferStrategy.show();
 	}
 
 	private void tick() {
-		handler.tick();
+		mapHandler.tick();
+		player.tick();
 	}
-
+	
 	public static void main(String[] args) {
 		new Game("map.txt");
 	}

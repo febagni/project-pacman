@@ -29,9 +29,9 @@ public class Floor extends MapObject {
 
 	@Override
 	public void render(Graphics graphic) {
-//		g.setColor(Color.gray);
-//		g.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-		ImageImporter image = new ImageImporter("PacManFloor.png");
-		image.paintComponent(graphic, x*squareSize, y*squareSize);
+		graphic.setColor(Color.gray);
+		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
+//		ImageImporter image = new ImageImporter("PacManFloor.png");
+//		image.paintComponent(graphic, x*squareSize, y*squareSize);
 	}
 }
