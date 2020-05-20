@@ -42,7 +42,7 @@ public class Ghost implements GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

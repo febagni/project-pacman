@@ -48,6 +48,17 @@ public class PacMan implements GameObject{
 
 	public void setMap(MapObject[][] map) {this.map = map;}
 	
+	private boolean canGo(String direction) {
+		if (direction == "up") return (map[getX()-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0);
+		else if (direction == "down") return (map[getX()+1][getY()].getID() != MapID.Wall || realX - getX()*32 < 0);
+		else if (direction == "left") return (map[getX()][getY()-1].getID() != MapID.Wall || realY - getY()*32 > 0);
+		else if (direction == "right") return (map[getX()][getY()+1].getID() != MapID.Wall || realY - getY()*32 < 0);
+		else return false;
+	}
+	
+	
+	
+	
 	void movement() {
 		if (map[getX()][getY()].getID() == MapID.FloorWithFood) {
 			map[getX()][getY()].setID(MapID.Floor); 
@@ -65,50 +76,58 @@ public class PacMan implements GameObject{
 			case KeyEvent.VK_UP:
 				if(realY - getY()*32 != 0)
 					break;
-				if (map[getX()-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0) {
+				if (canGo("up")) {
 					speedX = -step;
 					speedY = 0;
 				} 
 				else {
 					speedX = 0;
+					if ((!canGo("right") && speedY > 0) || (!canGo("left") && speedY < 0)) speedY = 0;
 				}
+				
 				break;
 			case KeyEvent.VK_DOWN:
 				if(realY - getY()*32 != 0 )
 					break;
-				if (map[getX()+1][getY()].getID() != MapID.Wall || realX - getX()*32 < 0) {
+				if (canGo("down")) {
 					speedX = step;
 					speedY = 0;
 				}
 				else {
 					speedX = 0;
+					if ((!canGo("right") && speedY > 0) || (!canGo("left") && speedY < 0)) speedY = 0;
 				}
+				
 				break;
 			case KeyEvent.VK_LEFT:
 				if(realX - getX()*32 != 0 )
 					break;
-				if (map[getX()][getY()-1].getID() != MapID.Wall || realY - getY()*32 > 0) {
+				if (canGo("left")) {
 					speedY = -step;
 					speedX = 0;
 				}
 				else {
 					speedY = 0;
+					if ((!canGo("down") && speedX > 0) || (!canGo("up") && speedX < 0)) speedX = 0;
 				}
 				break;
 			case KeyEvent.VK_RIGHT:
 				if(realX - getX()*32 != 0 )
 					break;
-				if (map[getX()][getY()+1].getID() != MapID.Wall || realY - getY()*32 < 0) {
+				if (canGo("left")) {
 					speedY = step;
 					speedX = 0;
 				}
 				else {
 					speedY = 0;
+					if ((!canGo("down") && speedX > 0) || (!canGo("up") && speedX < 0)) speedX = 0;
 				}
 				break;
 		}
+				
 		realX += speedX;
 		realY += speedY;
+	
 	}
 
 	public void tick() {
@@ -124,6 +143,6 @@ public class PacMan implements GameObject{
 		else if(speedY > 0) animationDirection = KeyEvent.VK_RIGHT;
 		else if(speedY < 0) animationDirection = KeyEvent.VK_LEFT;
 		graphic.drawImage(pacmanImage.getSubimage((frame/(2*animationSlowness))*30, (animationDirection - 37)*30, 28, 28)
-				, realY, realX, null);
+				, realY+2, realX+2, null);
 	}
 }
