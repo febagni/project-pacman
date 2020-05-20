@@ -1,48 +1,22 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ghost implements GameObject {
-
-	@Override
-	public int getX() {
-		
-		return 0;
+public class Ghost extends Entity {
+	
+	public Ghost (int realX, int realY) {
+		this.realX = realX;
+		this.realY = realY;
 	}
-
-	@Override
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setX(int x) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void setY(int y) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public MapID getID() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setID(MapID id) {
-		// TODO Auto-generated method stub
-	}
-
+	
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void render(Graphics g) {
-		
+	public void render(Graphics graphic) {
+		graphic.setColor(Color.red);
+		graphic.fillOval(realY, realX, squareSize, squareSize);
 	}
 
 }

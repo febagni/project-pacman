@@ -7,10 +7,12 @@ public class MapBuilder {
 	final int height;
 	private MapObject[][] map;
 	private MapReader mapReader;
+	private ArrayList<Ghost> ghosts;
 	HashMap<Character, MapObject> hashRepresentation = new HashMap<>();
 	PacMan player = new PacMan();
 	
 	MapBuilder (String fileName) {
+		ghosts = new ArrayList<Ghost>();
 		mapReader = new MapReader(fileName);
 		width = mapReader.getWidth();
 		height = mapReader.getHeight();
@@ -33,6 +35,8 @@ public class MapBuilder {
 					player.setRealX(i*32);
 					player.setRealY(j*32);
 				} 
+				else if (line.charAt(j) == 'M') {
+					ghosts.add((new Ghost(i*32,j*32)));				}
 			}
 			i++;
 		}
@@ -41,6 +45,10 @@ public class MapBuilder {
 	}
 	PacMan getPlayer() {
 		return player;
+	}
+	
+	public ArrayList<Ghost> getGhosts() {
+		return ghosts;
 	}
 	
 	int getHeight() {

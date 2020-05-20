@@ -11,6 +11,7 @@ public class Game extends Canvas implements Runnable {
 	private int width;
 	private int height;
 	private MapHandler mapHandler;
+	private EntityHandler entityHandler;
 	PacMan player;
 	Window window;
 	
@@ -22,10 +23,10 @@ public class Game extends Canvas implements Runnable {
 		MapBuilder testMap = new MapBuilder(mapFileName);
 		mapHandler = new MapHandler(testMap.getHeight(), testMap.getWidth());
 		player = testMap.getPlayer();
+		entityHandler = new EntityHandler(testMap.getGhosts(), player);
 		width = testMap.getWidth()*MapObject.squareSize;
 		height = testMap.getHeight()*MapObject.squareSize;
 		mapHandler.addMap(testMap.build(), testMap.getHeight(), testMap.getWidth());
-		
 		window = new Window(width, height, "Pacman", this);
 	}
 
@@ -91,7 +92,7 @@ public class Game extends Canvas implements Runnable {
         }
         mapHandler.renderChunk(graphics, player.getX(), player.getY());
         //criar um entity handler para mexer com o player e os fantasmas
-        player.render(graphics);
+        entityHandler.render(graphics);
         //entre o comentario de cima e esse
         graphics.dispose();
         bufferStrategy.show();
@@ -99,7 +100,7 @@ public class Game extends Canvas implements Runnable {
 
 	private void tick() {
 		mapHandler.tick();
-		player.tick();
+		entityHandler.tick();
 	}
 	
 	public static void main(String[] args) {
