@@ -47,3 +47,14 @@ As observações iniciais foram a respeito de juntar o trabalho realizado na out
 O primeiro streamer foi o @AleMarquis, nesse "round" foi feita a adaptação dos códigos da outra branch para a develop e implementada a movimentação do sprite com passos por posição na matriz de objetos feita a partir do arquivo txt contendo o desenho do mapa. Também foi aplicada a tangibilidade, que limita os movimentos do sprite dentro dos corredores do labirinto. Commit relacionado: 3b3b225ae49337b108d3afa0476b20b10f84fc99
 
 O segundo streamer foi o @GabrielKishida, nesse "round" foi feita otimização da movimentação do pacman, mudando a forma como é feita a renderização do mapa, que passou a ser feita por completa na primeira iteração, e com o movimento do pacman em blocos que o circundam, voltamos a utlizar as imagens para as paredes e foi feita também uma movimentação mais suave do sprite em campo (tem a movimentação dentro da matriz e a que o jogador vê). Commit relacionado: 5e80acfebd67c103c07c9a5a7f0ae35aa5039fbe
+
+## 19/05/2020
+
+As observações iniciais foram sobre arrumar a movimentação do sprite, corrigir erro de pixel perfect, melhorar a jogabilidade e adicionar novos objetos no mapa, como o boost e os fantasmas.
+
+O primeiro streamer foi o @guazco, nesse "round" foi ajustada a movimentação do sprite do pacman nas curvas e melhoramos a jogabilidade para o player, como pixel perfect problems e curvas. Commit relacionado: a9a8f9ae1aa35f9a8b2803b43bc10983e40ece87
+
+O segundo streamer foi o @febagni, nesse "round" foram adicionados os boosts, como MapObject, sua leitura e interação; a contagem de pontos e a classe relacionada aos fantasmas, introduzidos como GameObjects. Commit relacionado: b4ecb22feeb467afe1b012192488eb88ac1b54f9
+
+As observações finais: a questão do JFrame foi pesquisada e a origem é possivelmente o uso de KeyListeners, o uso de Key Bindings no lugar resolveria o problema. 
+  
