@@ -20,8 +20,12 @@ public class PacMan implements GameObject{
 	protected final int animationSlowness = 3;
 	protected int realX, realY;
 	protected int speedX, speedY;
+	protected boolean boosted;
+	protected int points;
 	
 	public PacMan(){
+		boosted = false;
+		points = 0;
 		frame = 0;
 		try {
 			pacmanImage = ImageIO.read(new File("sprites/pacman.png"));
@@ -47,6 +51,10 @@ public class PacMan implements GameObject{
 	void movement() {
 		if (map[getX()][getY()].getID() == MapID.FloorWithFood) {
 			map[getX()][getY()].setID(MapID.Floor); 
+			points++;
+		} else if (map[getX()][getY()].getID() == MapID.FloorWithBoost) {
+			map[getX()][getY()].setID(MapID.Floor);
+			boosted = true;
 		}
 		frame++;
 		if (frame>5*animationSlowness) {
@@ -105,6 +113,8 @@ public class PacMan implements GameObject{
 
 	public void tick() {
 		movement();
+		System.out.print("points = " + points + " | ");
+		System.out.println("boosted = " + boosted);
 	}
 
 	public void render(Graphics graphic) {

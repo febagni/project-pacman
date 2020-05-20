@@ -19,7 +19,7 @@ public class MapBuilder {
 		hashRepresentation.put(' ', new Floor());
 		hashRepresentation.put('C', new Floor());
 		hashRepresentation.put('M', new Floor());
-		hashRepresentation.put('@', new Floor());
+		hashRepresentation.put('@', new FloorWithBoost());
 	}
 	
 	GameObject[][] build() {
@@ -32,7 +32,7 @@ public class MapBuilder {
 				if (line.charAt(j) == 'C') {
 					player.setRealX(i*32);
 					player.setRealY(j*32);
-				}
+				} 
 			}
 			i++;
 		}
