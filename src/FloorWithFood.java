@@ -23,10 +23,20 @@ public class FloorWithFood extends MapObject {
 	}
 	
 	public void render(Graphics graphic) {
-//		graphic.setColor(Color.white);
-//		graphic.fillRect(squareSize*x, squareSize*y, squareSize, squareSize);
-		ImageImporter image = new ImageImporter("PacManFloorWithFood.png");
-		image.paintComponent(graphic, x*squareSize, y*squareSize);
+		graphic.setColor(Color.black);
+		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
+		if(this.id == MapID.FloorWithFood) {
+			graphic.setColor(Color.white);
+			graphic.fillOval(squareSize*x+10, squareSize*y+10, squareSize-20, squareSize-20);
+		}
+		
+//		ImageImporter image;
+//		if(this.id == MapID.FloorWithFood)
+//			image= new ImageImporter("PacManFloorWithFood.png");
+//		else
+//			image = new ImageImporter("PacManFloor.png");
+//		image.paintComponent(graphic, x*squareSize, y*squareSize);
+	
 	}
 
 	@Override
