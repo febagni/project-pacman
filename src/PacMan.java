@@ -19,7 +19,7 @@ public class PacMan implements GameObject{
 	protected BufferedImage pacmanImage;
 	protected final int animationSlowness = 3;
 	protected int realX, realY;
-	protected int lastDirection;
+	protected int speedX, speedY;
 	
 	public PacMan(){
 		frame = 0;
@@ -29,7 +29,6 @@ public class PacMan implements GameObject{
 			e.printStackTrace();
 		}
 		this.direction = KeyEvent.VK_LEFT;
-		lastDirection = direction;
 	}
 	public void setRealX(int x) {realX = x;}
 	public void setRealY(int y) {realY = y;}
@@ -56,35 +55,52 @@ public class PacMan implements GameObject{
 		
 		switch (direction) {
 			case KeyEvent.VK_UP:
-				if(realY - getY()*32 != 0 )
+				if(realY - getY()*32 != 0)
 					break;
 				if (map[getX()-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0) {
-					realX -= step;
+					speedX = -step;
+					speedY = 0;
+				} 
+				else {
+					speedX = 0;
 				}
 				break;
 			case KeyEvent.VK_DOWN:
 				if(realY - getY()*32 != 0 )
 					break;
 				if (map[getX()+1][getY()].getID() != MapID.Wall || realX - getX()*32 < 0) {
-					realX += step;
+					speedX = step;
+					speedY = 0;
+				}
+				else {
+					speedX = 0;
 				}
 				break;
 			case KeyEvent.VK_LEFT:
 				if(realX - getX()*32 != 0 )
 					break;
 				if (map[getX()][getY()-1].getID() != MapID.Wall || realY - getY()*32 > 0) {
-					realY -= step;
+					speedY = -step;
+					speedX = 0;
+				}
+				else {
+					speedY = 0;
 				}
 				break;
 			case KeyEvent.VK_RIGHT:
 				if(realX - getX()*32 != 0 )
 					break;
 				if (map[getX()][getY()+1].getID() != MapID.Wall || realY - getY()*32 < 0) {
-					realY += step;
+					speedY = step;
+					speedX = 0;
+				}
+				else {
+					speedY = 0;
 				}
 				break;
 		}
-		lastDirection = direction;
+		realX += speedX;
+		realY += speedY;
 	}
 
 	public void tick() {
@@ -92,7 +108,12 @@ public class PacMan implements GameObject{
 	}
 
 	public void render(Graphics graphic) {
-		graphic.drawImage(pacmanImage.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
+		int animationDirection = KeyEvent.VK_LEFT;
+		if(speedX > 0) animationDirection = KeyEvent.VK_DOWN;
+		else if(speedX < 0) animationDirection = KeyEvent.VK_UP;
+		else if(speedY > 0) animationDirection = KeyEvent.VK_RIGHT;
+		else if(speedY < 0) animationDirection = KeyEvent.VK_LEFT;
+		graphic.drawImage(pacmanImage.getSubimage((frame/(2*animationSlowness))*30, (animationDirection - 37)*30, 28, 28)
 				, realY, realX, null);
 	}
 }
