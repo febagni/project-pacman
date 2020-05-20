@@ -21,7 +21,7 @@ public class Game extends Canvas implements Runnable {
 	public Game(String mapFileName) {
 		MapBuilder testMap = new MapBuilder(mapFileName);
 		mapHandler = new MapHandler(testMap.getHeight(), testMap.getWidth());
-		player = testMap.player;
+		player = testMap.getPlayer();
 		width = testMap.getWidth()*MapObject.squareSize;
 		height = testMap.getHeight()*MapObject.squareSize;
 		mapHandler.addMap(testMap.build(), testMap.getHeight(), testMap.getWidth());
@@ -84,7 +84,7 @@ public class Game extends Canvas implements Runnable {
         //graphics.fillRect(0, 0, width, height);
         if (testFlag == 0) {
         	mapHandler.renderMap(graphics);
-        	testFlag = 1;
+        	testFlag ++;
         }
         if(window.panelMoved()) {
         	mapHandler.renderMap(graphics);

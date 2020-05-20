@@ -24,8 +24,10 @@ public class Controls extends JPanel implements KeyListener{
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e) {}
-	
+	public void keyReleased(KeyEvent e) {
+		
+	}
+		
 }
 
 
