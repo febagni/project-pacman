@@ -90,7 +90,8 @@ public class Game extends Canvas implements Runnable {
         if(window.panelMoved()) {
         	mapHandler.renderMap(graphics);
         }
-//        mapHandler.renderChunk(graphics, player.getX(), player.getY());
+        mapHandler.renderEntityTrace(graphics, player);
+//      mapHandler.renderChunk(graphics, player.getX(), player.getY());
         //criar um entity handler para mexer com o player e os fantasmas
         entityHandler.render(graphics);
         //entre o comentario de cima e esse

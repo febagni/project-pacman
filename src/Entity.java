@@ -14,7 +14,12 @@ public abstract class Entity implements GameObject {
 	protected int realX, realY;
 	protected int speedX, speedY;
 	protected int xLength, yLength;
+	protected int lastX, lastY;
 	
+	public void setLastX(int x) {lastX = x;}
+	public void setLastY(int y) {lastY = y;}
+	public int getLastX() {return lastX;}
+	public int getLastY() {return lastY;}
 	public void setRealX(int x) {realX = x;}
 	public void setRealY(int y) {realY = y;}
 	public int getRealX() {return realX;}
@@ -38,10 +43,11 @@ public abstract class Entity implements GameObject {
 	@Override
 	public void setID(MapID id) {this.id = id;}
 	
+	//A funcao da erro durante um pulo e apontando para uma direcao diferente da do pulo
 	protected boolean canGo(String direction) {
 		if (direction == "up") {
 			if (isOnEdge()) {
-				return (map[yLength-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0);
+				return (map[xLength-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0);
 			}
 			return (map[getX()-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0);
 		}
@@ -53,7 +59,7 @@ public abstract class Entity implements GameObject {
 		}
 		else if (direction == "left"){
 			if (isOnEdge()) {
-				return (map[getX()][xLength -1].getID() != MapID.Wall || realY - getY()*32 > 0);
+				return (map[getX()][yLength -1].getID() != MapID.Wall || realY - getY()*32 > 0);
 			}
 			return (map[getX()][getY()-1].getID() != MapID.Wall || realY - getY()*32 > 0);
 		}
@@ -68,12 +74,12 @@ public abstract class Entity implements GameObject {
 	
 	protected boolean isOnEdge() {
 		if (speedX != 0) {	//está no eixo x
-			if (getX() == yLength -1 || getX() == 0) {
+			if (getX() == xLength -1 || getX() == 0) {
 				return true;
 			} 
 			return false;
 		} else if (speedY != 0 ){
-			if (getY() == xLength -1 || getY() == 0) {
+			if (getY() == yLength -1 || getY() == 0) {
 				return true;
 			} 
 			return false;

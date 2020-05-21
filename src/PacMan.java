@@ -11,6 +11,8 @@ public class PacMan extends Entity {
 	protected int points;
 	
 	public PacMan(){
+		lastX = getX();
+		lastY = getY();
 		boosted = false;
 		points = 0;
 		frame = 0;
@@ -91,21 +93,20 @@ public class PacMan extends Entity {
 		}
 		realX += speedX;
 		realY += speedY;
-		if(getX() <= 0 && speedX < 0) {
+		if(getX() <= 0 && speedX < 0 && !(realX - getX()*32 > 0)) {
 			realX = (xLength-1) *squareSize ;
 		}
-		else if(getX() >= xLength -1 && speedX > 0) {
+		else if(getX() >= xLength -1 && speedX > 0 && !(realX - getX()*32 < 0)) {
 			realX = 0;
 		}
-		if(getY() <= 0 && speedY < 0) {
+		if(getY() <= 0 && speedY < 0 && !(realY - getY()*32 > 0)) {
 			realY = (yLength-1)*squareSize ;
 		}
-		else if(getY() >= yLength - 1 && speedY > 0) {
+		else if(getY() >= yLength - 1 && speedY > 0 && !(realY - getY()*32 < 0)) {
 			realY = 0;
 		}
-
 	}
-
+	
 	public void tick() {
 		movement();
 	}

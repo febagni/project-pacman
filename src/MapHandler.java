@@ -48,6 +48,15 @@ public class MapHandler {
     public void addObject(GameObject object, int i, int j) {
     	map[i][j] = object;
     }
+    
+    public void renderEntityTrace(Graphics graphic, Entity entity) {
+    	renderSquare(graphic, entity.getX(), entity.getY());
+    	if(entity.getX() != entity.getLastX() || entity.getY() != entity.getLastY()) {
+    		renderSquare(graphic, entity.getLastX(), entity.getLastY());
+    		entity.setLastX(entity.getX());
+    		entity.setLastY(entity.getY());
+    	}
+    }
 
     public void addMap(GameObject[][] gameObjects, int height, int width) {
     	for (int i = 0; i < height; i++) {
