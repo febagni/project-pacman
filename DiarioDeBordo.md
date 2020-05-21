@@ -58,3 +58,12 @@ O segundo streamer foi o @febagni, nesse "round" foram adicionados os boosts, co
 
 As observações finais: a questão do JFrame foi pesquisada e a origem é possivelmente o uso de KeyListeners, o uso de Key Bindings no lugar resolveria o problema. 
   
+## 20/05/2020
+
+As observações foram a respeito de fazer o ajuste fino na movimentação do sprite do pacman, correções de bugs e também adicionar os ghosts.
+
+O primeiro streamer foi o @AleMarquis, nesse "round" foi feito um ajuste fino na movimentação do pacman, que estava deslocado em alguns pixels. Também foi corrigido um bug, que o pacman estava atravessando as paredes em algumas ocasiões. Commit relacionado: e4bdc0614dcaff05402f66996782b84317c8613a
+
+O segundo streamer foi o @GabrielKishida, nesse "round" foram adicionados os Ghosts, partes do código foram refatoradas para a criação da classe Entity, que representa os objetos móveis do jogo (inclusive o pacman) e as dependências de tal classe. Commit relacionado: 9e4fa4be7cdea47ce254bde685af9c4b357e4242
+
+Observação final: ainda há de ser feita a correção do JFrame.    
