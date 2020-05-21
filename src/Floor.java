@@ -31,7 +31,7 @@ public class Floor extends MapObject {
 	public void render(Graphics graphic) {
 //		graphic.setColor(Color.gray);
 //		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-		ImageImporter image = new ImageImporter("PacManFloor.png");
+		ImageImporter image = new ImageImporter("sprites/PacManFloor.png");
 		image.paintComponent(graphic, x*squareSize, y*squareSize);
 	}
 }

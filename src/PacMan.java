@@ -35,14 +35,10 @@ public class PacMan extends Entity {
 			frame = 0;
 		}
 		
-//		if (isOnEdge()) {
-//			//mmovimento de teletransporte
-//		} else {
-//			//movimento normal
-//		}
+
 		switch (direction) {
 			case KeyEvent.VK_UP:
-				//Checa se está centralizado no eixo y
+				//Checa se esta centralizado no eixo y
 				if(realY - getY()*32 != 0)
 					break;
 				if (canGo("up")) {
@@ -95,16 +91,16 @@ public class PacMan extends Entity {
 		}
 		realX += speedX;
 		realY += speedY;
-		if(getX() < 1 && speedX < 0) {
-			realX = (xLength + 1)*squareSize ;
+		if(getX() <= 0 && speedX < 0) {
+			realX = (xLength-1) *squareSize ;
 		}
-		else if(getX() >= xLength + 1 && speedX > 0) {
+		else if(getX() >= xLength -1 && speedX > 0) {
 			realX = 0;
 		}
-		if(getY() < 1 && speedY < 0) {
-			realY = (yLength + 1)*squareSize ;
+		if(getY() <= 0 && speedY < 0) {
+			realY = (yLength-1)*squareSize ;
 		}
-		else if(getY() >= yLength + 1 && speedY > 0) {
+		else if(getY() >= yLength - 1 && speedY > 0) {
 			realY = 0;
 		}
 
@@ -112,8 +108,6 @@ public class PacMan extends Entity {
 
 	public void tick() {
 		movement();
-		System.out.print("points = " + points + " | ");
-		System.out.println("boosted = " + boosted);
 	}
 
 	public void render(Graphics graphic) {

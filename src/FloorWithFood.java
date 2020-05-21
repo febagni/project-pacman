@@ -29,13 +29,6 @@ public class FloorWithFood extends MapObject {
 			graphic.setColor(Color.white);
 			graphic.fillOval(squareSize*x+14, squareSize*y+14, squareSize-28, squareSize-28);
 		}
-		
-//		ImageImporter image;
-//		if(this.id == MapID.FloorWithFood)
-//			image= new ImageImporter("PacManFloorWithFood.png");
-//		else
-//			image = new ImageImporter("PacManFloor.png");
-//		image.paintComponent(graphic, x*squareSize, y*squareSize);
 	
 	}
 

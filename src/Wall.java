@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Wall extends MapObject {
@@ -27,7 +26,7 @@ public class Wall extends MapObject {
 		
 //		graphic.setColor(Color.black);
 //		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-		ImageImporter image = new ImageImporter("PacManWall.png");
+		ImageImporter image = new ImageImporter("sprites/PacManWall.png");
 		image.paintComponent(graphic, x*squareSize, y*squareSize);
 	}
 

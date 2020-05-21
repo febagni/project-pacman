@@ -13,7 +13,7 @@ public abstract class Entity implements GameObject {
 	protected final int animationSlowness = 3;
 	protected int realX, realY;
 	protected int speedX, speedY;
-	protected int yLength, xLength;
+	protected int xLength, yLength;
 	
 	public void setRealX(int x) {realX = x;}
 	public void setRealY(int y) {realY = y;}
@@ -21,8 +21,8 @@ public abstract class Entity implements GameObject {
 	public int getRealY() {return realY;}
 	public void setMap(MapObject[][] map) {
 		this.map = map;
-		yLength = map.length;
-		xLength = map[0].length;
+		xLength = map.length;
+		yLength = map[0].length;
 	}
 	
 	@Override
@@ -41,7 +41,7 @@ public abstract class Entity implements GameObject {
 	protected boolean canGo(String direction) {
 		if (direction == "up") {
 			if (isOnEdge()) {
-				return (map[xLength-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0);
+				return (map[yLength-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0);
 			}
 			return (map[getX()-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0);
 		}
@@ -53,7 +53,7 @@ public abstract class Entity implements GameObject {
 		}
 		else if (direction == "left"){
 			if (isOnEdge()) {
-				return (map[getX()][yLength -1].getID() != MapID.Wall || realY - getY()*32 > 0);
+				return (map[getX()][xLength -1].getID() != MapID.Wall || realY - getY()*32 > 0);
 			}
 			return (map[getX()][getY()-1].getID() != MapID.Wall || realY - getY()*32 > 0);
 		}
@@ -68,12 +68,12 @@ public abstract class Entity implements GameObject {
 	
 	protected boolean isOnEdge() {
 		if (speedX != 0) {	//está no eixo x
-			if (getX() == xLength -1 || getX() == 0) {
+			if (getX() == yLength -1 || getX() == 0) {
 				return true;
 			} 
 			return false;
 		} else if (speedY != 0 ){
-			if (getY() == yLength -1 || getY() == 0) {
+			if (getY() == xLength -1 || getY() == 0) {
 				return true;
 			} 
 			return false;
