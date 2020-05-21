@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class PacMan extends Entity{
+public class PacMan extends Entity {
 
 	protected boolean boosted;
 	protected int points;
@@ -35,6 +35,11 @@ public class PacMan extends Entity{
 			frame = 0;
 		}
 		
+//		if (isOnEdge()) {
+//			//mmovimento de teletransporte
+//		} else {
+//			//movimento normal
+//		}
 		switch (direction) {
 			case KeyEvent.VK_UP:
 				if(realY - getY()*32 != 0)
@@ -87,8 +92,10 @@ public class PacMan extends Entity{
 				}
 				break;
 		}
+		
 		realX += speedX;
 		realY += speedY;
+
 	}
 
 	public void tick() {

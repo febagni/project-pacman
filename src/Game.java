@@ -81,8 +81,6 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
-        //graphics.setColor(Color.blue);
-        //graphics.fillRect(0, 0, width, height);
         if (testFlag == 0) {
         	mapHandler.renderMap(graphics);
         	testFlag ++;
