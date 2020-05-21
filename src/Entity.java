@@ -46,10 +46,23 @@ public abstract class Entity implements GameObject {
 			return (map[getX()-1][getY()].getID() != MapID.Wall || realX - getX()*32 > 0);
 		}
 		else if (direction == "down") {
+			if (isOnEdge()) {
+				return (map[0][getY()].getID() != MapID.Wall || realX - getX()*32 < 0);
+			}
 			return (map[getX()+1][getY()].getID() != MapID.Wall || realX - getX()*32 < 0);
 		}
-		else if (direction == "left") return (map[getX()][getY()-1].getID() != MapID.Wall || realY - getY()*32 > 0);
-		else if (direction == "right") return (map[getX()][getY()+1].getID() != MapID.Wall || realY - getY()*32 < 0);
+		else if (direction == "left"){
+			if (isOnEdge()) {
+				return (map[getX()][yLength -1].getID() != MapID.Wall || realY - getY()*32 > 0);
+			}
+			return (map[getX()][getY()-1].getID() != MapID.Wall || realY - getY()*32 > 0);
+		}
+		else if (direction == "right") {
+			if (isOnEdge()) {
+				return (map[getX()][0].getID() != MapID.Wall || realY - getY()*32 < 0);
+			}
+			return (map[getX()][getY()+1].getID() != MapID.Wall || realY - getY()*32 < 0);
+		}
 		else return false;
 	}
 	
@@ -68,6 +81,7 @@ public abstract class Entity implements GameObject {
 		return false;
 		
 	}
+	
 	
 	protected void goUp() {
 		

@@ -42,6 +42,7 @@ public class PacMan extends Entity {
 //		}
 		switch (direction) {
 			case KeyEvent.VK_UP:
+				//Checa se está centralizado no eixo y
 				if(realY - getY()*32 != 0)
 					break;
 				if (canGo("up")) {
@@ -92,9 +93,20 @@ public class PacMan extends Entity {
 				}
 				break;
 		}
-		
 		realX += speedX;
 		realY += speedY;
+		if(getX() < 1 && speedX < 0) {
+			realX = (xLength + 1)*squareSize ;
+		}
+		else if(getX() >= xLength + 1 && speedX > 0) {
+			realX = 0;
+		}
+		if(getY() < 1 && speedY < 0) {
+			realY = (yLength + 1)*squareSize ;
+		}
+		else if(getY() >= yLength + 1 && speedY > 0) {
+			realY = 0;
+		}
 
 	}
 
