@@ -11,8 +11,7 @@ public class PacMan extends Entity {
 	protected int points;
 	
 	public PacMan(){
-		lastX = getX();
-		lastY = getY();
+		
 		boosted = false;
 		points = 0;
 		frame = 0;

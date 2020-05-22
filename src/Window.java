@@ -1,9 +1,6 @@
 import java.awt.Canvas;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.event.ComponentEvent;
-
 import javax.swing.JFrame;
 
 public class Window extends Canvas {
@@ -30,11 +27,12 @@ public class Window extends Canvas {
 		game.start();
 		lastPoint = frame.getLocationOnScreen();
 	}
-	
+	//nao ta funfando
 	public boolean panelMoved() {
 		boolean moved = false;
 		if (lastPoint == frame.getLocationOnScreen()) {
 			moved = true;
+			lastPoint = frame.getLocationOnScreen();
 		}
 		return moved;
 	}

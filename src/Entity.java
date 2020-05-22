@@ -14,12 +14,7 @@ public abstract class Entity implements GameObject {
 	protected int realX, realY;
 	protected int speedX, speedY;
 	protected int xLength, yLength;
-	protected int lastX, lastY;
-	
-	public void setLastX(int x) {lastX = x;}
-	public void setLastY(int y) {lastY = y;}
-	public int getLastX() {return lastX;}
-	public int getLastY() {return lastY;}
+
 	public void setRealX(int x) {realX = x;}
 	public void setRealY(int y) {realY = y;}
 	public int getRealX() {return realX;}
@@ -73,7 +68,7 @@ public abstract class Entity implements GameObject {
 	}
 	
 	protected boolean isOnEdge() {
-		if (speedX != 0) {	//está no eixo x
+		if (speedX != 0) {
 			if (getX() == xLength -1 || getX() == 0) {
 				return true;
 			} 
