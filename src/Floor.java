@@ -11,9 +11,20 @@
  * @date 05/2020
  * 
  */
-import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Floor extends MapObject {
+	
+	public Floor() {
+		try {
+			sprite = ImageIO.read(new File("sprites/PacManFloor.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//Necessario para fabrica abstrata com hashmap
 	@Override
@@ -28,12 +39,5 @@ public class Floor extends MapObject {
 	//Não utilizado ainda
 	@Override
 	public void tick() {
-	}
-
-	//Renderiza o chao
-	@Override
-	public void render(Graphics graphic) {
-		ImageImporter image = new ImageImporter("sprites/PacManFloor.png");
-		image.paintComponent(graphic, x*squareSize, y*squareSize);
 	}
 }

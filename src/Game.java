@@ -109,8 +109,9 @@ public class Game extends Canvas implements Runnable {
         	mapHandler.renderMap(graphics);
         	firstRender = false;
         }      
-        //Renderiza o bloco entorno do pacman
-        mapHandler.renderChunk(graphics, player.getX(), player.getY());
+        //Renderiza o bloco entorno do pacman (nao utilizado pois a renderizacao do mapa inteiro nao compromete o FPS)
+        //mapHandler.renderChunk(graphics, player.getX(), player.getY());
+        mapHandler.renderMap(graphics);
         entityHandler.render(graphics);
         graphics.dispose();
         bufferStrategy.show();

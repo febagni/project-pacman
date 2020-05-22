@@ -1,17 +1,19 @@
-import java.awt.Graphics;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Wall extends MapObject {
-
-	@Override
-	public MapID getID() {
-		return id;
+	
+	public Wall() {
+		try {
+			sprite = ImageIO.read(new File("sprites/PacManWall.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-
-	@Override
-	public void setID(MapID id) {
-		this.id = id;
-	}
-
+	
 	@Override
 	MapObject cloneMapObject(int x, int y) {
 		Wall wall = new Wall();
@@ -21,19 +23,8 @@ public class Wall extends MapObject {
 		return wall;
 	}
 	
-	public void render(Graphics graphic) {
-		
-		
-//		graphic.setColor(Color.black);
-//		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-		ImageImporter image = new ImageImporter("sprites/PacManWall.png");
-		image.paintComponent(graphic, x*squareSize, y*squareSize);
-	}
-
 	@Override
 	public void tick() {
 		//In construction
 	}
-
-	
 }

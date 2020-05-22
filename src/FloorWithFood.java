@@ -36,7 +36,6 @@ public class FloorWithFood extends MapObject {
 			graphic.setColor(Color.white);
 			graphic.fillOval(squareSize*x+14, squareSize*y+14, squareSize-28, squareSize-28);
 		}
-	
 	}
 
 	/*

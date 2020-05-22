@@ -1,7 +1,9 @@
-
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 public abstract class MapObject implements GameObject {
 	
+	protected BufferedImage sprite;
 	static final int squareSize = 32;
 	protected int x;
 	protected int y;
@@ -37,5 +39,10 @@ public abstract class MapObject implements GameObject {
 	@Override
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	@Override
+	public void render(Graphics graphic) {
+		graphic.drawImage(sprite,x*squareSize,y*squareSize,null);
 	}
 }

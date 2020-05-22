@@ -41,5 +41,4 @@ public class FloorWithBoost extends MapObject {
 		floorWithBoost.setID(MapID.FloorWithBoost);
 		return floorWithBoost;
 	}
-
 }
