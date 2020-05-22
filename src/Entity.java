@@ -110,6 +110,64 @@ public abstract class Entity implements GameObject {
 		return false;
 	}
 	
+	boolean hasToStopY() {
+		return (!canGo("right") && speedY > 0) || (!canGo("left") && speedY < 0);
+	}
+	
+	boolean hasToStopX() {
+		return ((!canGo("down") && speedX > 0) || (!canGo("up") && speedX < 0));
+	}
+	
+	void setSpeed(int speedX, int speedY) {
+		this.speedX = speedX;
+		this.speedY = speedY;
+	}
+	
+	void updateMovement() {
+		realX += speedX;
+		realY += speedY;
+		if(getX() <= 0 && speedX < 0 && !(realX - getX()*32 > 0)) {
+			realX = (xLength-1) *squareSize ;
+		}
+		else if(getX() >= xLength -1 && speedX > 0 && !(realX - getX()*32 < 0)) {
+			realX = 0;
+		}
+		if(getY() <= 0 && speedY < 0 && !(realY - getY()*32 > 0)) {
+			realY = (yLength-1)*squareSize ;
+		}
+		else if(getY() >= yLength - 1 && speedY > 0 && !(realY - getY()*32 < 0)) {
+			realY = 0;
+		}
+	}
+	
+	void moveUp() {
+		if(centeredOnY()) return;
+		if (canGo("up")) setSpeed(-step, 0);	
+		else if (hasToStopY()) setSpeed(0, 0);
+		else setSpeed(0, speedY);
+	}
+	
+	void moveDown() {
+		if(centeredOnY()) return;
+		if (canGo("down")) setSpeed(step, 0);
+		else if (hasToStopY()) setSpeed(0, 0);
+		else setSpeed(0, speedY);
+	}
+	
+	void moveLeft() {
+		if(centeredOnX()) return;
+		if (canGo("left")) setSpeed(0, -step);
+		else if (hasToStopX()) setSpeed(0, 0);
+		else setSpeed(speedX, 0);
+	}
+	
+	void moveRight() {
+		if(centeredOnX()) return;
+		if (canGo("right")) setSpeed(0, step);
+		else if (hasToStopX()) setSpeed(0, 0);
+		else setSpeed(speedX, 0);
+	}
+	
 	// funcoes abstratas a serem implementadas pelas subclasses
 	@Override
 	public abstract void tick();

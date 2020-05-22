@@ -51,7 +51,7 @@ public class MapBuilder {
 	 */
 	GameObject[][] build() {
 		map = new MapObject[height][width];
-		ArrayList<String> rawMap = mapReader.inputGetter(); //Mapa recebido em String
+		ArrayList<String> rawMap = mapReader.getInput(); //Mapa recebido em String
 		int i = 0;           
 		for(String line : rawMap) {	
 			for(int j = 0; j < line.length() ; j++) {
