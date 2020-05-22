@@ -93,7 +93,7 @@ public abstract class Entity implements GameObject {
 	 */
 	protected boolean canGo(String direction) {
 		if (direction == "up") {
-			if (isOnEdge()) return ( isNotAWall(xLength-1, getY()) || centeredOnX());	
+			if (isOnEdge()) return ( isNotAWall(xLength-1, getY()) || centeredOnX()); 
 			return (isNotAWall(getX()-1, getY()) || centeredOnX());
 		} else if (direction == "down") {
 			if (isOnEdge()) return (isNotAWall(0, getY()) || centeredOnX());
@@ -110,36 +110,43 @@ public abstract class Entity implements GameObject {
 		return false;
 	}
 	
+	/*
+	 * @brief Verifica se a entidade esta andando no eixo y e tem que parar 
+	 */
 	boolean hasToStopY() {
 		return (!canGo("right") && speedY > 0) || (!canGo("left") && speedY < 0);
 	}
 	
+	/*
+	 * @brief Verifica se a entidade esta andando no eixo x e tem que parar 
+	 */
 	boolean hasToStopX() {
 		return ((!canGo("down") && speedX > 0) || (!canGo("up") && speedX < 0));
 	}
 	
+	/*
+	 * @brief Setter da velocidade da entidade em ambos os eixos  
+	 */
 	void setSpeed(int speedX, int speedY) {
 		this.speedX = speedX;
 		this.speedY = speedY;
 	}
 	
+	/*
+	 * @brief Atualiza posicao do pacman corrigindo se ele sai do mapa 
+	 */
 	void updateMovement() {
 		realX += speedX;
 		realY += speedY;
-		if(getX() <= 0 && speedX < 0 && !(realX - getX()*32 > 0)) {
-			realX = (xLength-1) *squareSize ;
-		}
-		else if(getX() >= xLength -1 && speedX > 0 && !(realX - getX()*32 < 0)) {
-			realX = 0;
-		}
-		if(getY() <= 0 && speedY < 0 && !(realY - getY()*32 > 0)) {
-			realY = (yLength-1)*squareSize ;
-		}
-		else if(getY() >= yLength - 1 && speedY > 0 && !(realY - getY()*32 < 0)) {
-			realY = 0;
-		}
+		if(getX() <= 0 && speedX < 0 && !(centeredOnX())) realX = (xLength - 1)*squareSize;
+		else if(getX() >= xLength - 1 && speedX > 0 && !(centeredOnX())) realX = 0;
+		if(getY() <= 0 && speedY < 0 && !(centeredOnY())) realY = (yLength - 1)*squareSize;
+		else if(getY() >= yLength - 1 && speedY > 0 && !(centeredOnY())) realY = 0;	
 	}
 	
+	/*
+	 * @brief Movimento da entidade para cima 
+	 */
 	void moveUp() {
 		if(centeredOnY()) return;
 		if (canGo("up")) setSpeed(-step, 0);	
@@ -147,6 +154,9 @@ public abstract class Entity implements GameObject {
 		else setSpeed(0, speedY);
 	}
 	
+	/*
+	 * @brief Movimento da entidade para baixo
+	 */
 	void moveDown() {
 		if(centeredOnY()) return;
 		if (canGo("down")) setSpeed(step, 0);
@@ -154,6 +164,9 @@ public abstract class Entity implements GameObject {
 		else setSpeed(0, speedY);
 	}
 	
+	/*
+	 * @brief Movimento da entidade para a esquerda
+	 */
 	void moveLeft() {
 		if(centeredOnX()) return;
 		if (canGo("left")) setSpeed(0, -step);
@@ -161,6 +174,9 @@ public abstract class Entity implements GameObject {
 		else setSpeed(speedX, 0);
 	}
 	
+	/*
+	 * @brief Movimento da entidade para a direita 
+	 */
 	void moveRight() {
 		if(centeredOnX()) return;
 		if (canGo("right")) setSpeed(0, step);

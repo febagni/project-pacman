@@ -37,7 +37,7 @@ public class Game extends Canvas implements Runnable {
 		width = mapBuilder.getWidth()*MapObject.squareSize; //Pega as dimensoes da tela
 		height = mapBuilder.getHeight()*MapObject.squareSize;
 		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
-		window = new Window(width, height, "Pacman", this); //Constroi janela do jogos
+		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 	}
 
 	/*
