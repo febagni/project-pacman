@@ -66,4 +66,31 @@ O primeiro streamer foi o @AleMarquis, nesse "round" foi feito um ajuste fino na
 
 O segundo streamer foi o @GabrielKishida, nesse "round" foram adicionados os Ghosts, partes do código foram refatoradas para a criação da classe Entity, que representa os objetos móveis do jogo (inclusive o pacman) e as dependências de tal classe. Commit relacionado: 9e4fa4be7cdea47ce254bde685af9c4b357e4242
 
-Observação final: ainda há de ser feita a correção do JFrame.    
+Observação final: ainda há de ser feita a correção do JFrame.
+
+## 21/05/2020 e 22/05/2020
+
+A equipe começou a seguir mais a risca o sistema de dojo citado no começo do documento, fazendo sessões de 30 minutos por streamer, assim o número de commits subiu, mas o progresso continuou relativamente o mesmo. Vale ressaltar também que hoje em específico a equipe fez um encontro a tarde e um a noite devido ao feriado e o cancelamento das aulas do dia.
+
+As observações de hoje foram principalmente a respeito de refatorar e comentar o código, com 6 commits relacionados a isso, houve tambem a correções de bugs e melhorias de performance do programa no geral, o que acarretou na simplificação do código de renderização. TambÃ©m adicionamos os sprites e animações dos fantasmas e da cereja, praticamente finalizando a jogabilidade base do pacman.
+
+O primeiro streamer foi o @febagni, nesse "round" foi feita a criação de métodos para atravessar o mapa a sair pela beirada, criando alguns bugs com a sua funcionalidade. Commit relacionado: b02ac650670258e5be175b3acc639c91f4dc0f19
+
+O segundo streamer foi o @guazco, nesse "round" foi feita a correção dos bugs de funcionalidade do código criados no ultimo commit, deixando para o próximo streamer resolver os bugs gráficos relacionados ao render. Commit relacionado: b0634ebe4149c3d1972b5ac8eeab51c538c77b55
+
+O terçeiro streamer foi novamente o @febagni para adicionar os sprites e animações criados para os quatro fantasmas do pacman, além de criar métodos que viriam a corrigir os bugs gráficos de atravessar o mapa pelas bordas do jogo.Commit relacionado: ad58b852b293057893f5fa963dafa66f052bea1f
+
+O quarto streamer foi o @gabrielKishida, nesse "round" foram resolvidos os bugs gráficos com os métodos do streamer anterior, com resultados satisfatórios ao usar um método que renderiza o ultimo lugar que o pacman estava para retirar o sprite que restava na entrada da borda para o outro lado do mapa. Também foi construido o começo da classe FloorWithCherry. Commit relacionado: 67f3a1a59d80eb45480f148b0a026169eb42af9c
+
+O primeiro streamer do período da noite foi o @AleMarquis, refatorando o renderizador dos arredores do jogador para que possa ser utilizado para solucionar todos os bugs gerados com a nova feature até então, também refatorou o código do MapHandler deixando mais enxuto e simples. Além de inserir o sprite da cereja e construir seu render em sua classe. Commit relacionado: 8efb78cd75bc49d492d779886a80324cef89560e
+
+Após ficarmos satisfeitos com os requisitos da primeira etapa do trabalho (que estão no README.md), partimos para a comentar e refatorar o projeto, não falarei passo a passo quem fez o que nesta etapa (nos commits abaixo é possível ver exatamente quem refatorou o quê) e sim farei observações gerais sobre o que fizemos nesse tempo.
+
+Começamos refatorando e comentando as classes um a um, percebemos alguns métodos não optimizados que provavelmente geravam o péssimo desempenho quando renderizamos continuamente o mapa a cada tick, gerando um framerate baixíssimo para o jogo, ao tratar desses métodos percebemos um grande ganho de performance que possibilitou utilizarmos uma estratégia mais bruta para renderizarmos o mapa e manter uma boa taxa de quadros, simplificando os métodos mais complexos que utilizavamos para driblar os problemas de performance como o renderChunk. No final colocamos Briefs e comentários em todos os métodos principais das classes. 
+
+1o Commit relacionado @febagni: 1a6845f17f3d9c385101c48edee90157003e16fc
+2o Commit relacionado @guazco: 650f97adc9a91d602c6ac6ce733baeb47512b910
+3o Commit relacionado @gabrielKishida: ff5ccde13a88831dfb21f4c1c91b0e7c7ac45e90
+4o Commit relacionado @AleMarquis: 9ff85167c47d7cc582cf5571a42b5b006d0ff5c5
+5o Commit relacionado @febagni: adbfd36c7bbe365464efe339480ef219d016d136
+6o Commit relacionado @guazco: 1938db9e7bf6762aef4a314941742f552b0acc11

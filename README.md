@@ -9,7 +9,7 @@ Esse repositório contém o trabalho e desenvolvimento do grupo "Object-oriented
 
 O grupo fará uma versão do PacMan trazida para o contexto atual. A ideia é ir criando novas features, a partir da branch develop e ir fazendo releases para a master, de acordo com algumas datas de entrega.
 
-A documentação do projeto será feita por relatórios em markdown na branch develop. E o desenvolvimento será feito utilizando a técnica do *Dojo* em sessões de vídeochamada com todos os membros do grupo presentes.
+A documentação do projeto está sendo feita por relatórios em um diário de bordo. E o desenvolvimento será feito utilizando a técnica do *Dojo* em sessões de vídeochamada com todos os membros do grupo presentes.
 
 Os integrantes do grupo Object-oriented teens:
 
@@ -87,3 +87,39 @@ Junto com cada fase, além do código no repositório gitlab, vocês devem apres
 https://opengameart.org e https://freesound.org O mesmo vale para sprites, texturas e fontes de texto usadas. Para fontes de texto o Google Fonts é mais do que suficiente.  
   
 - O Wiki do grupo de jogos dos alunos do IME: https://uspgamedev.org/wiki/Referências (aliás, se gostarem da experiência e quiserem mais, vocês podem se juntar ao USPGameDev :-)
+
+## Instruções
+
+### Sobre o mapa
+
+O mapa é feito a partir de um arquivo .txt e a correspondência de seus elementos para os objetos do jogo são:
+
+Caractere    |	Objeto do Jogo	 
+----------|-----------
+'#'|Parede (Wall)
+' '|Chão (Floor)
+'.'|Chão com comida (Floor With Food)
+'@'|Chão com boost (Floor With Boost)
+'%'|Chão com cereja (Floor With Cherry)
+'M'|Posição inicial do(s) fantasma(s) (Ghost)
+'C'|Posição inicial do PacMan
+
+Algumas condições para o funcionamento do jogo: 
+- O mapa deve ser retangular;
+- Deve existir somente UM pacman (por enquanto hue);
+- Os vértices do retângulo que formam o mapa devem ser paredes.
+
+Cada quadrado do mapa corresponde a 32 pixels.
+
+### Como executar o programa?
+
+Dentro do eclipse, é necessário colocar como argumento da main o path do arquivo txt que contém a representação do mapa.
+Para executar o programa, após setar o argumento, basta dar "Run" e se divertir! ;)
+OBS: a função main está dentro de *Game.java*.
+
+## Primeira entrega
+
+A primeira entrega corresponde a Fase 01, ou seja, aos requisitos 01 e 02 supracitados.
+O código da primeira entrega se encontra na branch *main*.
+**Cada um dos arquivos *.java* que compõem o projeto possuem comentários explicando detalhadamente o que foi feito.**
+Dentro do diário de bordo, pode ser encontrado o que foi feito dentro de cada sessão de "Dojo" realizada, explicando detalhada e progressivamente o trabalho feito.
