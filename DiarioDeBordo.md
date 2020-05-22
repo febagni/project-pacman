@@ -88,9 +88,9 @@ Após ficarmos satisfeitos com os requisitos da primeira etapa do trabalho (que 
 
 Começamos refatorando e comentando as classes um a um, percebemos alguns métodos não optimizados que provavelmente geravam o péssimo desempenho quando renderizamos continuamente o mapa a cada tick, gerando um framerate baixíssimo para o jogo, ao tratar desses métodos percebemos um grande ganho de performance que possibilitou utilizarmos uma estratégia mais bruta para renderizarmos o mapa e manter uma boa taxa de quadros, simplificando os métodos mais complexos que utilizavamos para driblar os problemas de performance como o renderChunk. No final colocamos Briefs e comentários em todos os métodos principais das classes. 
 
-1o Commit relacionado @febagni: 1a6845f17f3d9c385101c48edee90157003e16fc
-2o Commit relacionado @guazco: 650f97adc9a91d602c6ac6ce733baeb47512b910
-3o Commit relacionado @gabrielKishida: ff5ccde13a88831dfb21f4c1c91b0e7c7ac45e90
-4o Commit relacionado @AleMarquis: 9ff85167c47d7cc582cf5571a42b5b006d0ff5c5
-5o Commit relacionado @febagni: adbfd36c7bbe365464efe339480ef219d016d136
-6o Commit relacionado @guazco: 1938db9e7bf6762aef4a314941742f552b0acc11
+1o Commit relacionado @febagni: 1a6845f17f3d9c385101c48edee90157003e16fc   
+2o Commit relacionado @guazco: 650f97adc9a91d602c6ac6ce733baeb47512b910   
+3o Commit relacionado @gabrielKishida: ff5ccde13a88831dfb21f4c1c91b0e7c7ac45e90   
+4o Commit relacionado @AleMarquis: 9ff85167c47d7cc582cf5571a42b5b006d0ff5c5   
+5o Commit relacionado @febagni: adbfd36c7bbe365464efe339480ef219d016d136   
+6o Commit relacionado @guazco: 1938db9e7bf6762aef4a314941742f552b0acc11  
