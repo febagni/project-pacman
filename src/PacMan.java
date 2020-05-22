@@ -22,6 +22,7 @@ public class PacMan extends Entity {
 
 	protected boolean boosted;	//verdadeira se o pacman comeu um boost
 	protected int points;	//contador dos pontos
+	protected int lastDirection = KeyEvent.VK_LEFT; //Variavel que contem a ultima direcao que o Pacman estava olhando
 	
 	public PacMan(){
 		boosted = false;	//inicializa como falso
@@ -95,12 +96,14 @@ public class PacMan extends Entity {
 	 * @brief Renderiza o sprite e realiza animacao do pacman
 	 */
 	public void render(Graphics graphic) {
-		int animationDirection = KeyEvent.VK_LEFT;
+		int animationDirection;
 		if(speedX > 0) animationDirection = KeyEvent.VK_DOWN;
 		else if(speedX < 0) animationDirection = KeyEvent.VK_UP;
 		else if(speedY > 0) animationDirection = KeyEvent.VK_RIGHT;
 		else if(speedY < 0) animationDirection = KeyEvent.VK_LEFT;
+		else animationDirection = lastDirection;
 		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (animationDirection - 37)*30, 28, 28)
 				, realY+2, realX+2, null);
+		lastDirection = animationDirection;
 	}
 }

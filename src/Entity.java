@@ -62,18 +62,21 @@ public abstract class Entity implements GameObject {
 	}
 	
 	/*
-	 * @brief Verifica se o sprite esta centralizado no eixo X
+	 * @brief Funcoes booleanas que verificam a posicao relativa do sprite em comparacao com o centro de seu bloco no eixo X
 	 */
-	protected boolean centeredOnX() {
-		return realX - getX()*squareSize != 0;
-	}
+	protected boolean centeredOnX() {return realX - getX()*squareSize == 0;}
+
+	protected boolean higherThanCenterOnX() {return realX - getX()*squareSize > 0;}
 	
+	protected boolean lowerThanCenterOnX() {return realX - getX()*squareSize < 0;}
 	/*
-	 * @brief Verifica se o sprite esta centralizado no eixo Y
+	 * @brief Funcoes booleanas que verificam a posicao relativa do sprite em comparacao com o centro de seu bloco no eixo Y
 	 */
-	protected boolean centeredOnY() {
-		return realY - getY()*squareSize != 0;
-	}
+	protected boolean centeredOnY() {return realY - getY()*squareSize == 0;}
+	
+	protected boolean higherThanCenterOnY() {return realY - getY()*squareSize > 0;}
+	
+	protected boolean lowerThanCenterOnY() {return realY - getY()*squareSize < 0;}
 	
 	/*
 	 * @brief Verifica se o sprite esta na borda do mapa
@@ -93,19 +96,19 @@ public abstract class Entity implements GameObject {
 	 */
 	protected boolean canGo(String direction) {
 		if (direction == "up") {
-			if (isOnEdge()) return ( isNotAWall(xLength-1, getY()) || centeredOnX()); 
-			return (isNotAWall(getX()-1, getY()) || centeredOnX());
+			if (isOnEdge()) return ( isNotAWall(xLength-1, getY()) || !centeredOnX()); 
+			return (isNotAWall(getX()-1, getY()) || !centeredOnX());
 		} else if (direction == "down") {
-			if (isOnEdge()) return (isNotAWall(0, getY()) || centeredOnX());
-			return (isNotAWall(getX()+1, getY()) || centeredOnX());
+			if (isOnEdge()) return (isNotAWall(0, getY()) || !centeredOnX());
+			return (isNotAWall(getX()+1, getY()) || !centeredOnX());
 		}
 		else if (direction == "left"){
-			if (isOnEdge()) return (isNotAWall(getX(), yLength-1) || centeredOnY());
-			return (isNotAWall(getX(), getY()-1) || centeredOnY());
+			if (isOnEdge()) return (isNotAWall(getX(), yLength-1) || !centeredOnY());
+			return (isNotAWall(getX(), getY()-1) || !centeredOnY());
 		}
 		else if (direction == "right") {
-			if (isOnEdge()) return (isNotAWall(getX(), 0) || centeredOnY());
-			return (isNotAWall(getX(), getY()+1) || centeredOnY());
+			if (isOnEdge()) return (isNotAWall(getX(), 0) || !centeredOnY());
+			return (isNotAWall(getX(), getY()+1) || !centeredOnY());
 		}
 		return false;
 	}
@@ -138,17 +141,17 @@ public abstract class Entity implements GameObject {
 	void updateMovement() {
 		realX += speedX;
 		realY += speedY;
-		if(getX() <= 0 && speedX < 0 && !(centeredOnX())) realX = (xLength - 1)*squareSize;
-		else if(getX() >= xLength - 1 && speedX > 0 && !(centeredOnX())) realX = 0;
-		if(getY() <= 0 && speedY < 0 && !(centeredOnY())) realY = (yLength - 1)*squareSize;
-		else if(getY() >= yLength - 1 && speedY > 0 && !(centeredOnY())) realY = 0;	
+		if(getX() <= 0 && speedX < 0 && (lowerThanCenterOnX())) realX = (xLength - 1)*squareSize;
+		else if(getX() >= xLength - 1  && speedX > 0 && (higherThanCenterOnX())) realX = 0;
+		if(getY() <= 0 && speedY < 0 && (lowerThanCenterOnY())) realY = (yLength - 1)*squareSize;
+		else if(getY() >= yLength - 1  && speedY > 0 && (higherThanCenterOnY())) realY = 0;	
 	}
 	
 	/*
 	 * @brief Movimento da entidade para cima 
 	 */
 	void moveUp() {
-		if(centeredOnY()) return;
+		if(!centeredOnY()) return;
 		if (canGo("up")) setSpeed(-step, 0);	
 		else if (hasToStopY()) setSpeed(0, 0);
 		else setSpeed(0, speedY);
@@ -158,7 +161,7 @@ public abstract class Entity implements GameObject {
 	 * @brief Movimento da entidade para baixo
 	 */
 	void moveDown() {
-		if(centeredOnY()) return;
+		if(!centeredOnY()) return;
 		if (canGo("down")) setSpeed(step, 0);
 		else if (hasToStopY()) setSpeed(0, 0);
 		else setSpeed(0, speedY);
@@ -168,7 +171,7 @@ public abstract class Entity implements GameObject {
 	 * @brief Movimento da entidade para a esquerda
 	 */
 	void moveLeft() {
-		if(centeredOnX()) return;
+		if(!centeredOnX()) return;
 		if (canGo("left")) setSpeed(0, -step);
 		else if (hasToStopX()) setSpeed(0, 0);
 		else setSpeed(speedX, 0);
@@ -178,7 +181,7 @@ public abstract class Entity implements GameObject {
 	 * @brief Movimento da entidade para a direita 
 	 */
 	void moveRight() {
-		if(centeredOnX()) return;
+		if(!centeredOnX()) return;
 		if (canGo("right")) setSpeed(0, step);
 		else if (hasToStopX()) setSpeed(0, 0);
 		else setSpeed(speedX, 0);
