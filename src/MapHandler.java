@@ -40,14 +40,14 @@ public class MapHandler {
     public void renderChunk(Graphics g, int i, int j) {
     	for(int m = -1; m < 2; m++) {
     		for (int n = -1; n < 2; n++) {
-    	    	if (!(i+m >= 0 && i+m < map.length)) {
-    	    		renderSquare(g, map.length - 1, j+n);
-    	    		renderSquare(g, 0, j+n);
-    	    	} else if (!(j+n >= 0 && j+n < map[0].length)) { 
-    	    		renderSquare(g, i+m, map[0].length - 1);
-    	    		renderSquare(g, i+m, 0);
-    	    	} else 
-    	    		renderSquare(g, i+m, j+n);
+    			if (!(i+m >= 0 && i+m < map.length) && (j+n >= 0 && j+n < map[0].length)) {
+                    renderSquare(g, map.length - 1, j+n);
+                    renderSquare(g, 0, j+n);
+                } else if (!(j+n >= 0 && j+n < map[0].length) && (i+m >= 0 && i+m < map.length)) { 
+                    renderSquare(g, i+m, map[0].length - 1);
+                    renderSquare(g, i+m, 0);
+                } else if((j+n >= 0 && j+n < map[0].length) && (i+m >= 0 && i+m < map.length))
+                    renderSquare(g, i+m, j+n);
     		}
     	}
     }
