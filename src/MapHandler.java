@@ -5,8 +5,8 @@ public class MapHandler {
 	PacMan player;
 	
 	GameObject[][] map;
-	private int columns;
 	private int rows;
+	private int columns;
 
 	MapHandler(int rows, int columns){
 		this.rows = rows;
@@ -56,9 +56,9 @@ public class MapHandler {
     	map[i][j] = object;
     }
     
-    public void addMap(GameObject[][] gameObjects, int height, int width) {
-    	for (int i = 0; i < height; i++) {
-    		for (int j = 0; j < width; j++) {
+    public void addMap(GameObject[][] gameObjects) {
+    	for (int i = 0; i < rows; i++) {
+    		for (int j = 0; j < columns; j++) {
         		this.addObject(gameObjects[i][j], i, j);
         	}
     	}

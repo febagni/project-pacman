@@ -27,13 +27,4 @@ public class Window extends Canvas {
 		game.start();
 		lastPoint = frame.getLocationOnScreen();
 	}
-	//nao ta funfando
-	public boolean panelMoved() {
-		boolean moved = false;
-		if (lastPoint == frame.getLocationOnScreen()) {
-			moved = true;
-			lastPoint = frame.getLocationOnScreen();
-		}
-		return moved;
-	}
 }

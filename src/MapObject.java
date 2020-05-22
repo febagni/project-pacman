@@ -10,6 +10,16 @@ public abstract class MapObject implements GameObject {
 	abstract MapObject cloneMapObject(int x, int y);
 	
 	@Override
+	public MapID getID() {
+		return id;
+	}
+	
+	@Override
+	public void setID(MapID id) {
+		this.id = id;
+	}
+	
+	@Override
 	public int getX() {
 		return x;
 	}

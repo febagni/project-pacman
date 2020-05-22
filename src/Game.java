@@ -1,41 +1,57 @@
+/*
+ * @file Game.java
+ * 
+ * @brief Classe que representa o jogo e contem a main
+ * 
+ * @author Alexandre Marques Carrer <alexandrecarrer@usp.br>
+ * @author Felipe Bagni <febagni@usp.br> 
+ * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
+ * @author Gustavo Azevedo Correa <guazco@usp.br>
+ * 
+ * @date 05/2020
+ * 
+ */
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
 	
-	/* Private Variables*/
-
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; 
 	private Thread thread;
 	private boolean running = false;
-	private int width;
-	private int height;
-	private MapHandler mapHandler;
-	private EntityHandler entityHandler;
-	PacMan player;
-	Window window;
+	private boolean firstRender = true; //Ve se eh a primeira iteracao
+	private int width; //Largura da tela criada
+	private int height; //Altura da tela criada
+	private MapHandler mapHandler; //Handler dos objetos que nao se movem
+	private EntityHandler entityHandler; //Handler dos objetos que se movem
+	PacMan player; //Objeto que representa o jogador
+	Window window; //Tela do jogo
 	
-	private int testFlag = 0;
-	
-	/*Game function that will be called when the game starts*/ 
 	
 	public Game(String mapFileName) {
-		MapBuilder testMap = new MapBuilder(mapFileName);
-		mapHandler = new MapHandler(testMap.getHeight(), testMap.getWidth());
-		player = testMap.getPlayer();
-		entityHandler = new EntityHandler(testMap.getGhosts(), player);
-		width = testMap.getWidth()*MapObject.squareSize;
-		height = testMap.getHeight()*MapObject.squareSize;
-		mapHandler.addMap(testMap.build(), testMap.getHeight(), testMap.getWidth());
-		window = new Window(width, height, "Pacman", this);
+		MapBuilder mapBuilder = new MapBuilder(mapFileName); //Le o mapa
+		mapHandler = new MapHandler(mapBuilder.getHeight(), mapBuilder.getWidth()); //Constroi o handler com o mapa
+		player = mapBuilder.getPlayer(); //Pega o jogador
+		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
+		width = mapBuilder.getWidth()*MapObject.squareSize; //Pega as dimensoes da tela
+		height = mapBuilder.getHeight()*MapObject.squareSize;
+		mapHandler.addMap(mapBuilder.build()); //Constroi os objetos do mapa
+		window = new Window(width, height, "Pacman", this); //Constroi janela do jogos
 	}
 
+	/*
+	 * @brief Inicia thread do jogo
+	 */
 	public synchronized void start() {
 		thread = new Thread(this);
 		thread.start();
 		running = true;
 	}
 	
+	/*
+	 * @brief Para a thread do jogo
+	 */
 	public synchronized void stop() {
 		try {
 			thread.join();
@@ -45,10 +61,13 @@ public class Game extends Canvas implements Runnable {
 		}
 	} 
 	
+	/*
+	 * @brief Pattern GameLoop: Loop do jogo que mantem ele atualizado em tempo real
+	 */
 	public void run() {
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 60.0;
-        double ns = 1000000000 / amountOfTicks;
+		double amountOfTicks = 60.0; //Frequencia em Hz de ticks
+        double ns = 1000000000 / amountOfTicks; 
         double delta = 0;
         long timer = System.currentTimeMillis();
         
@@ -69,11 +88,13 @@ public class Game extends Canvas implements Runnable {
                 //System.out.println("FPS " + frames);
                 frames = 0;
             }
-       }
-        
+       }    
        stop();
 	}
-		
+	
+	/*
+	 * @brief Funcao que renderiza todos os objetos do jogo
+	 */
 	private void render() {
 		//Use with BufferedImage
 		BufferStrategy bufferStrategy = this.getBufferStrategy();
@@ -83,25 +104,30 @@ public class Game extends Canvas implements Runnable {
         }
 
         Graphics graphics = bufferStrategy.getDrawGraphics();
-        if (testFlag == 0) {
+        //Primeira iteracao: renderiza o mapa inteiro
+        if (firstRender) {
         	mapHandler.renderMap(graphics);
-        	testFlag ++;
-        }
-        if(window.panelMoved()) {
-        	mapHandler.renderMap(graphics);
-        }
+        	firstRender = false;
+        }      
+        //Renderiza o bloco entorno do pacman
         mapHandler.renderChunk(graphics, player.getX(), player.getY());
         entityHandler.render(graphics);
         graphics.dispose();
         bufferStrategy.show();
 	}
 
+	/*
+	 * @brief Atualiza os objetos do jogo
+	 */
 	private void tick() {
 		mapHandler.tick();
 		entityHandler.tick();
 	}
 	
+	/*
+	 * @brief Funcao main
+	 */
 	public static void main(String[] args) {
-		new Game("map.txt");
+		new Game(args[0]);
 	}
 }
