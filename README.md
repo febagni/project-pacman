@@ -122,4 +122,4 @@ OBS: a função main está dentro de *Game.java*.
 A primeira entrega corresponde a Fase 01, ou seja, aos requisitos 01 e 02 supracitados.
 O código da primeira entrega se encontra na branch *main*.
 **Cada um dos arquivos *.java* que compõem o projeto possuem comentários explicando detalhadamente o que foi feito.**
-Dentro do diário de bordo, pode ser encontrado o que foi feito dentro de cada sessão de "Dojo" realizada, explicando detalhada e progressivamente o trabalho feito.
+Dentro do [diário de bordo](./DiarioDeBordo.md), pode ser encontrado o que foi feito dentro de cada sessão de "Dojo" realizada, explicando detalhada e progressivamente o trabalho feito.
