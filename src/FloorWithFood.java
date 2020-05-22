@@ -27,20 +27,18 @@ public class FloorWithFood extends MapObject {
 	}
 	
 	/*
-	 * @brief Renderiza todas as entidades
+	 * @brief Renderiza o chao com comida
 	 */
 	public void render(Graphics graphic) {
 		graphic.setColor(Color.black);
 		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-		if(this.id == MapID.FloorWithFood) {
+		if(this.id == MapID.FloorWithFood) { //Se o ID mudar o jogador ja passou pelo bloco
 			graphic.setColor(Color.white);
 			graphic.fillOval(squareSize*x+14, squareSize*y+14, squareSize-28, squareSize-28);
 		}
 	}
 
-	/*
-	 * @brief Funcao que faz todas as entidades do jogo atualizarem
-	 */
+    //Nao utilizado ainda
 	@Override
 	public void tick() {
 	}

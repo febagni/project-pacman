@@ -1,46 +1,51 @@
+/*
+ * @file MapObject.java
+ * 
+ * @brief Superclasse abstrata que implementa GameObject e representa todos os elementos estaticos 
+ * 
+ * @author Alexandre Marques Carrer <alexandrecarrer@usp.br>
+ * @author Felipe Bagni <febagni@usp.br> 
+ * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
+ * @author Gustavo Azevedo Correa <guazco@usp.br>
+ * 
+ * @date 05/2020
+ * 
+ */
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public abstract class MapObject implements GameObject {
 	
-	protected BufferedImage sprite;
-	static final int squareSize = 32;
-	protected int x;
-	protected int y;
-	protected MapID id;
+	protected BufferedImage sprite; // Imagem que representa o objeto em questao
+	protected int x; // Posicao x na matriz
+	protected int y; // Posicao y na matriz
+	protected MapID id; // ID do objeto
 	
+	// Para a fabrica abstrata
 	abstract MapObject cloneMapObject(int x, int y);
 	
+	// Setters e getters
 	@Override
-	public MapID getID() {
-		return id;
-	}
+	public MapID getID() {return id;}
 	
 	@Override
-	public void setID(MapID id) {
-		this.id = id;
-	}
+	public void setID(MapID id) {this.id = id;}
 	
 	@Override
-	public int getX() {
-		return x;
-	}
+	public int getX() {return x;}
 
 	@Override
-	public int getY() {
-		return y;
-	}
+	public int getY() {return y;}
 	
 	@Override
-	public void setX(int x) {
-		this.x = x;
-	}
+	public void setX(int x) {this.x = x;}
 	
 	@Override
-	public void setY(int y) {
-		this.y = y;
-	}
+	public void setY(int y) {this.y = y;}
 	
+	/*
+	 * @brief Renderiza o objeto estatico
+	 */
 	@Override
 	public void render(Graphics graphic) {
 		graphic.drawImage(sprite,x*squareSize,y*squareSize,null);

@@ -30,6 +30,9 @@ public class PacMan extends Entity {
 		} else if (map[getX()][getY()].getID() == MapID.FloorWithBoost) {
 			map[getX()][getY()].setID(MapID.Floor);
 			boosted = true;
+		} else if (map[getX()][getY()].getID() == MapID.FloorWithCherry) {
+			map[getX()][getY()].setID(MapID.Floor);
+			points += 100;
 		}
 		frame++;
 		if (frame>5*animationSlowness) {

@@ -44,6 +44,7 @@ public class MapBuilder {
 		charMap.put('C', new Floor()); //Representa o jogador, mas no mapa eh um chao
 		charMap.put('M', new Floor()); //Representa um adversario, mas no mapa eh um chao
 		charMap.put('@', new FloorWithBoost());
+		charMap.put('%', new FloorWithCherry());
 	}
 	/*
 	 * @brief Constroi o mapa a partir do leitor, criando uma matriz com os objetos do jogo

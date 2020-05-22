@@ -16,12 +16,19 @@ import java.awt.Graphics;
 
 public class FloorWithBoost extends MapObject {
 	
-	//Nao utilizado ainda
+	//Necessario para fabrica abstrata com hashmap
 	@Override
-	public void tick() {
+	MapObject cloneMapObject(int x, int y) {
+		FloorWithBoost floorWithBoost = new FloorWithBoost();
+		floorWithBoost.setX(x);
+		floorWithBoost.setY(y);
+		floorWithBoost.setID(MapID.FloorWithBoost);
+		return floorWithBoost;
 	}
-
-	//Renderiza o chao com o poderzinho
+	
+	/*
+	 * @brief Renderiza o chao com poderzinho
+	 */	
 	@Override
 	public void render(Graphics graphic) {
 		graphic.setColor(Color.black);
@@ -32,13 +39,8 @@ public class FloorWithBoost extends MapObject {
 		}
 	}
 
-	//Necessario para fabrica abstrata com hashmap
+	//Nao utilizado ainda
 	@Override
-	MapObject cloneMapObject(int x, int y) {
-		FloorWithBoost floorWithBoost = new FloorWithBoost();
-		floorWithBoost.setX(x);
-		floorWithBoost.setY(y);
-		floorWithBoost.setID(MapID.FloorWithBoost);
-		return floorWithBoost;
+	public void tick() {
 	}
 }

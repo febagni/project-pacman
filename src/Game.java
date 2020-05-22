@@ -36,7 +36,7 @@ public class Game extends Canvas implements Runnable {
 		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		width = mapBuilder.getWidth()*MapObject.squareSize; //Pega as dimensoes da tela
 		height = mapBuilder.getHeight()*MapObject.squareSize;
-		mapHandler.addMap(mapBuilder.build()); //Constroi os objetos do mapa
+		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
 		window = new Window(width, height, "Pacman", this); //Constroi janela do jogos
 	}
 
