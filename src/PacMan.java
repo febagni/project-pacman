@@ -23,8 +23,12 @@ public class PacMan extends Entity {
 	protected boolean boosted;	//verdadeira se o pacman comeu um boost
 	protected int points;	//contador dos pontos
 	protected int lastDirection = KeyEvent.VK_LEFT; //Variavel que contem a ultima direcao que o Pacman estava olhando
+	protected int lifes; //Quantidade de vidas que o jogador tem sobrando
+	
+	int getPoints() {return points;}
 	
 	public PacMan(){
+		lifes = 3;  //Inicia o jogo com tres vidas (por enquanto)
 		boosted = false;	//inicializa como falso
 		points = 0;	//inicializa os pontos como zero
 		frame = 0;	//inicializa a frame como zero
@@ -44,7 +48,7 @@ public class PacMan extends Entity {
 		//se a posicao do pacman for:
 		if (map[getX()][getY()].getID() == MapID.FloorWithFood) {	//chao com comida
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
-			points++;	//e soma um para a contagem de pontos 
+			points += 10;	//e soma um para a contagem de pontos 
 		} else if (map[getX()][getY()].getID() == MapID.FloorWithBoost) {	//chao com boost
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
 			boosted = true;	//seta o boosted como verdade

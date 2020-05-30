@@ -34,6 +34,17 @@ public class EntityHandler {
 		}
 		player.tick();
 	}
+	public boolean playerTouchedGhost() {
+		boolean touched = false;
+		for(Ghost ghost : ghosts) {
+			int xDistance, yDistance;
+			xDistance = player.getRealX() - ghost.getRealX();
+			yDistance = player.getRealY() - ghost.getRealY();
+			if((xDistance < MapObject.squareSize || xDistance > -MapObject.squareSize) && (yDistance < MapObject.squareSize || yDistance > -MapObject.squareSize))
+				touched = true;
+		}
+		return touched;
+	}
 	
 	/*
 	 * @brief Renderiza todas as entidades

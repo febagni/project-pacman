@@ -23,6 +23,7 @@ public class MapBuilder {
 	private ArrayList<Ghost> ghosts;	//Lista com todos as entidades adversarias do jogo
 	HashMap<Character, MapObject> charMap = new HashMap<>();	//HashMap que contem os caracteres do jogo
 	PacMan player = new PacMan();	//Entidade que representa o jogador
+	int maxPoints;	//Contador de pontos maximos que o jogador pode obter
 	
 
 	//Getters
@@ -30,12 +31,14 @@ public class MapBuilder {
 	public ArrayList<Ghost> getGhosts() {return ghosts;}
 	int getHeight() {return mapReader.getHeight();}
 	int getWidth() {return mapReader.getWidth();}
+	int getMaxPoints() {return maxPoints;}
 	
 	MapBuilder (String fileName) {
 		ghosts = new ArrayList<Ghost>();
 		mapReader = new MapReader(fileName); //Leitor do mapa
 		width = mapReader.getWidth();
 		height = mapReader.getHeight();
+		maxPoints = 0;
 		
 		//Definicoes de qual caractere representa qual objeto no jogo
 		charMap.put('#', new Wall());
@@ -61,7 +64,14 @@ public class MapBuilder {
 					player.setRealY(j*GameObject.squareSize);
 				} 
 				else if (line.charAt(j) == 'M') { //Se for detectado um adversario, posiciona-lo na posicao encontrada
-					ghosts.add((new Ghost(i*32,j*32)));				}
+					ghosts.add((new Ghost(i*32,j*32)));				
+				}
+				else if (line.charAt(j) == '.') {
+					maxPoints += 10;
+				}
+				else if (line.charAt(j) == '%') {
+					maxPoints += 100;
+				}
 			}
 			i++;
 		}

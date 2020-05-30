@@ -23,11 +23,11 @@ public class Game extends Canvas implements Runnable {
 	private boolean firstRender = true; //Ve se eh a primeira iteracao
 	private int width; //Largura da tela criada
 	private int height; //Altura da tela criada
+	private int maxPoints; //Numero maximo de pontos atingiveis pelo jogador
 	private MapHandler mapHandler; //Handler dos objetos que nao se movem
 	private EntityHandler entityHandler; //Handler dos objetos que se movem
 	PacMan player; //Objeto que representa o jogador
 	Window window; //Tela do jogo
-	
 	
 	public Game(String mapFileName) {
 		MapBuilder mapBuilder = new MapBuilder(mapFileName); //Le o mapa
@@ -38,6 +38,7 @@ public class Game extends Canvas implements Runnable {
 		height = mapBuilder.getHeight()*MapObject.squareSize;
 		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
+		maxPoints = mapBuilder.getMaxPoints();
 	}
 
 	/*
@@ -116,6 +117,13 @@ public class Game extends Canvas implements Runnable {
         graphics.dispose();
         bufferStrategy.show();
 	}
+	
+	/*
+	 * @brief Funcao que devolve se o jogador ja pegou todos os pontos presentes no mapa
+	 */
+	private boolean gotAllPoints() {
+		return player.getPoints() >= maxPoints;
+	}
 
 	/*
 	 * @brief Atualiza os objetos do jogo
@@ -123,6 +131,14 @@ public class Game extends Canvas implements Runnable {
 	private void tick() {
 		mapHandler.tick();
 		entityHandler.tick();
+		if(entityHandler.playerTouchedGhost()) {
+			System.out.print("Perdeu desgraca");
+			stop();
+		}
+		if(gotAllPoints()) {
+			System.out.print("Ganhou desgraca");
+			stop();
+		}
 	}
 	
 	/*
