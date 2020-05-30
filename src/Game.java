@@ -129,11 +129,18 @@ public class Game extends Canvas implements Runnable {
 	 * @brief Atualiza os objetos do jogo
 	 */
 	private void tick() {
+		if(player.getLives() == 0) {
+			System.out.println("Perdeu desgraca");
+			stop();
+		}
 		mapHandler.tick();
 		entityHandler.tick();
 		if(entityHandler.playerTouchedGhost()) {
-			System.out.print("Perdeu desgraca");
-			stop();
+			player.updateLives();
+			player.setRealX(player.getInitialPositionX());
+			player.setRealY(player.getInitialPositionY());
+			player.setDirection();
+			System.out.println(player.getLives());
 		}
 		if(gotAllPoints()) {
 			System.out.print("Ganhou desgraca");

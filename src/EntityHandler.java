@@ -34,17 +34,28 @@ public class EntityHandler {
 		}
 		player.tick();
 	}
+	
+	/*
+	 * @brief Funcao que retorna o module
+	 */
+	public int absolute(int x) {
+		return (x >= 0) ? x:-x;
+	}
+	
+	/*
+	 * @brief Funcao que retorna se o jogador encostou no fantasma
+	 */
 	public boolean playerTouchedGhost() {
-		boolean touched = false;
 		for(Ghost ghost : ghosts) {
 			int xDistance, yDistance;
 			xDistance = player.getRealX() - ghost.getRealX();
 			yDistance = player.getRealY() - ghost.getRealY();
-			if((xDistance < MapObject.squareSize || xDistance > -MapObject.squareSize) && (yDistance < MapObject.squareSize || yDistance > -MapObject.squareSize))
-				touched = true;
+			if(absolute(xDistance) < MapObject.squareSize - 10 && absolute(yDistance) < MapObject.squareSize - 10) //10 é um fator de ajuste visual
+				return true;
 		}
-		return touched;
+		return false;
 	}
+	
 	
 	/*
 	 * @brief Renderiza todas as entidades

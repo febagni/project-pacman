@@ -23,12 +23,12 @@ public class PacMan extends Entity {
 	protected boolean boosted;	//verdadeira se o pacman comeu um boost
 	protected int points;	//contador dos pontos
 	protected int lastDirection = KeyEvent.VK_LEFT; //Variavel que contem a ultima direcao que o Pacman estava olhando
-	protected int lifes; //Quantidade de vidas que o jogador tem sobrando
-	
-	int getPoints() {return points;}
+	protected int lives; //Quantidade de vidas que o jogador tem sobrando
+	protected int initialPositionX;
+	protected int initialPositionY;
 	
 	public PacMan(){
-		lifes = 3;  //Inicia o jogo com tres vidas (por enquanto)
+		lives = 3;  //Inicia o jogo com tres vidas (por enquanto)
 		boosted = false;	//inicializa como falso
 		points = 0;	//inicializa os pontos como zero
 		frame = 0;	//inicializa a frame como zero
@@ -39,6 +39,30 @@ public class PacMan extends Entity {
 			e.printStackTrace();	
 		}
 		
+	}
+	
+	void setDirection() {
+		this.direction = KeyEvent.VK_LEFT;
+	}
+	
+	int getPoints() {return points;}
+	
+	int getLives() {return lives;}
+	
+	int getInitialPositionX() {return initialPositionX;}
+	
+	void setInitialPositionX(int x) {
+		this.initialPositionX = x;
+	}
+	
+	int getInitialPositionY() {return initialPositionY;}
+	
+	void setInitialPositionY(int y) {
+		this.initialPositionY = y;
+	}
+	
+	void updateLives() {
+		lives--;
 	}
 	
 	/*

@@ -62,6 +62,8 @@ public class MapBuilder {
 				if (line.charAt(j) == 'C') { //Se for detectado um player, posiciona-lo na posicao encontrada
 					player.setRealX(i*GameObject.squareSize);
 					player.setRealY(j*GameObject.squareSize);
+					player.setInitialPositionX(i*GameObject.squareSize);
+					player.setInitialPositionY(j*GameObject.squareSize);
 				} 
 				else if (line.charAt(j) == 'M') { //Se for detectado um adversario, posiciona-lo na posicao encontrada
 					ghosts.add((new Ghost(i*32,j*32)));				
