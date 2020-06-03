@@ -66,7 +66,11 @@ public class MapBuilder {
 					player.setInitialPositionY(j*GameObject.squareSize);
 				} 
 				else if (line.charAt(j) == 'M') { //Se for detectado um adversario, posiciona-lo na posicao encontrada
-					ghosts.add((new Ghost(i*32,j*32)));				
+					Ghost myLittleGhost = new Ghost();
+					myLittleGhost.setRealX(i*GameObject.squareSize);
+					myLittleGhost.setRealY(j*GameObject.squareSize);
+					ghosts.add(myLittleGhost);
+					//myLittleGhost.setStrategy(new RandomMovement());
 				}
 				else if (line.charAt(j) == '.') {
 					maxPoints += 10;

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
  * @file GhostMoviment.java
  * 
@@ -14,5 +16,5 @@
 
 public interface GhostMovement {
 	
-	void ghostMovement();
+	int ghostMovement(ArrayList<Integer> possibleDirections);
 }

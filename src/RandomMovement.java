@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 /*
@@ -17,8 +18,8 @@ import java.util.Random;
 public class RandomMovement implements GhostMovement {
 
 	@Override
-	public void	ghostMovement() {
-		
+	public int ghostMovement(ArrayList<Integer> possibleDirections) {
+		return possibleDirections.get(getRandomPosition(possibleDirections.size()));
 	}
 
 	private int getRandomPosition(int max) {

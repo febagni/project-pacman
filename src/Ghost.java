@@ -23,9 +23,9 @@ public class Ghost extends Entity {
 	
 	GhostMovement strategy;
 	
-	public Ghost (int realX, int realY) {
-		this.realX = realX;
-		this.realY = realY;
+	public Ghost () {
+//		this.realX = realX;
+//		this.realY = realY;
 		try {
 			sprite = ImageIO.read(new File("sprites/RedBlinky.png"));
 		} catch (IOException e) {
@@ -34,20 +34,29 @@ public class Ghost extends Entity {
 		this.direction = KeyEvent.VK_LEFT;
 	}
 	
-	@Override
-	public void tick() {
-//		Checa se chegou numa bifurcaÁ„o
-		if(possibleDirections().size()!=2) {
-			
-		}
-		
-		
-//		verifica pra onde consegue andar
-//		escolhe o caminho pelo strategyy
+	void setStrategy(GhostMovement strategy) {
+		this.strategy = strategy;
 	}
 	
+	@Override
+	public void tick() {
+		if(possibleDirections().size()!=2 || isStoped()) {
+			//this.direction = strategy.ghostMovement(possibleDirections());
+		}
+//		updateSpeed();
+//		updateMovement();
+	}
+
+	
+	/*
+	 * @brief Verifica e retorna lista de posi√ß√µes poss√≠veis
+	 */
 	public ArrayList<Integer> possibleDirections() {
 		ArrayList<Integer> list = new ArrayList<Integer>();
+		if (canGo("up")) list.add(KeyEvent.VK_UP);
+		if (canGo("down")) list.add(KeyEvent.VK_DOWN);
+		if (canGo("left")) list.add(KeyEvent.VK_LEFT);
+		if (canGo("right")) list.add(KeyEvent.VK_RIGHT);
 		return list;
 	}
 	

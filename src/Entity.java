@@ -13,6 +13,7 @@
  */
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public abstract class Entity implements GameObject {
@@ -88,6 +89,13 @@ public abstract class Entity implements GameObject {
 	}
 	
 	/*
+	 * @brief Verifica se a entidade está parada
+	 */
+	protected boolean isStoped() {
+		return (speedX == 0 && speedY == 0);
+	}
+	
+	/*
 	 * @brief Verifica se a entidade pode se mover na direcao indicada
 	 * 
 	 * @param	direction	Direcao da entidade
@@ -145,6 +153,26 @@ public abstract class Entity implements GameObject {
 		else if(getX() >= xLength - 1  && speedX > 0 && (higherThanCenterOnX())) realX = 0;
 		if(getY() <= 0 && speedY < 0 && (lowerThanCenterOnY())) realY = (yLength - 1)*squareSize;
 		else if(getY() >= yLength - 1  && speedY > 0 && (higherThanCenterOnY())) realY = 0;	
+	}
+	
+	/*
+	 * @brief Atualiza o valor da velocidade do pacman
+	 */
+	void updateSpeed() {
+		switch (direction) {
+		case KeyEvent.VK_UP:
+			moveUp();
+			break;
+		case KeyEvent.VK_DOWN:
+			moveDown();
+			break;
+		case KeyEvent.VK_LEFT:
+			moveLeft();
+			break;
+		case KeyEvent.VK_RIGHT:
+			moveRight();
+			break;
+		}
 	}
 	
 	/*

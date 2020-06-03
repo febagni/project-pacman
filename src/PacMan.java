@@ -90,25 +90,6 @@ public class PacMan extends Entity {
 		if(frame>5*animationSlowness) frame = 0;
 	}
 	
-	/*
-	 * @brief Atualiza o valor da velocidade do pacman
-	 */
-	void updateSpeed() {
-		switch (direction) {
-		case KeyEvent.VK_UP:
-			moveUp();
-			break;
-		case KeyEvent.VK_DOWN:
-			moveDown();
-			break;
-		case KeyEvent.VK_LEFT:
-			moveLeft();
-			break;
-		case KeyEvent.VK_RIGHT:
-			moveRight();
-			break;
-		}
-	}
 	
 	/*
 	 * @brief Tick do pacman
