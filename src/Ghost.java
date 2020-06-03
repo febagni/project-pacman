@@ -15,9 +15,13 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 
 public class Ghost extends Entity {
+	
+	GhostMovement strategy;
 	
 	public Ghost (int realX, int realY) {
 		this.realX = realX;
@@ -32,7 +36,19 @@ public class Ghost extends Entity {
 	
 	@Override
 	public void tick() {
-		//Os fantasmas ainda nao se movimentam
+//		Checa se chegou numa bifurcação
+		if(possibleDirections().size()!=2) {
+			
+		}
+		
+		
+//		verifica pra onde consegue andar
+//		escolhe o caminho pelo strategyy
+	}
+	
+	public ArrayList<Integer> possibleDirections() {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		return list;
 	}
 	
 	/*
@@ -43,4 +59,5 @@ public class Ghost extends Entity {
 		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
 				, realY+2, realX+2, null);
 	}
+	
 }
