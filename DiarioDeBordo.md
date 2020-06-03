@@ -94,3 +94,27 @@ Começamos refatorando e comentando as classes um a um, percebemos alguns métod
 4o Commit relacionado @AleMarquis: 9ff85167c47d7cc582cf5571a42b5b006d0ff5c5   
 5o Commit relacionado @febagni: adbfd36c7bbe365464efe339480ef219d016d136   
 6o Commit relacionado @guazco: 1938db9e7bf6762aef4a314941742f552b0acc11  
+
+## 30/05/2020
+
+A equipe começou organizando os afazeres para essa segunda entrega, construindo o colisor do Pacman com os fantasmas e construindo o sistema de vidas e o suporte para um "Game Over".
+
+O primeiro streamer foi o @gabrielKishida, nesse "round" foi construido o sistema colisões do pacman com outros fantasmas, com métodos que comparavam a posição do Pacman com as dos fantasmas, também foi criado o começo de um sistemas de vida para o jogo. Commit relacionado: 2fc4a305333b6bb49899c2aeb09e15f2ab82518d
+
+O segundo streamer foi o @guazco, nesse "round" foi concluido o sistema de vidas e criado um reset quando o jogador perde todas as vidas e chega uma tela de game over. Commit relacionado: 0a636223c1da4c83a818a79a2bfab42878d2be75
+
+Observação final: <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link Relevante</a>
+
+## 02/06/2020
+
+A equipe começou a criar o padrão strategy para os movimentos dos fantasmas, já criando o padrão de lógica aleatório para a inteligência dos fantasmas. Ao implementá-lo, geramos alguns bugs que serão resolvidos posteriormente. Commit Relacionado: 6bdad35c85cfea152aa65857b64cd7ac40425dfa
+
+O primeiro streamer foi o @AleMarquis, nesse "round" foi criado a interface de Movimentos para os fantasmas e uma classe que a implementa com o padrão pseudo-aleatório. Commit Relacionado: 6bdad35c85cfea152aa65857b64cd7ac40425dfa
+
+O segundo streamer foi o @febagni, nesse "round" foi implementado uma lógica para a estratégia dos fantasmas. Seu movimento pseudo-aleatório foi continuado a ser desenvolvido e geramos alguns bugs na detecção de paredes. Commit Relacionado: 93172d8a3367c0e41c6b58015991be86d030cb6f
+
+Observações Finais: 
+
+O bug provavelmente foi relacionado à falta de setar o mapa de objetos para os fantasmas, que ao tentar acessar uma posição no grid, recebem um NullPointerException
+
+<a href="https://www.youtube.com/watch?v=IF7g1mWOpUA">Link Relevante</a>
