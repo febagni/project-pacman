@@ -24,12 +24,26 @@ public class Ghost extends Entity {
 	protected int initX, initY; //posicao inicial do fantasma
 	GhostMovement strategy;
 	int flag = 0;
+	private StrategyID sId;
+	private String spritePath = "sprites/";
 	
-	public Ghost (int x, int y) {
+	public Ghost (int x, int y, StrategyID id) {
 		initX = x;
 		initY = y;
+		sId = id;
+		
+		if(id == StrategyID.Follow) {
+			spritePath += "RedBlinky.png";
+		} else if(id == StrategyID.Random) {
+			spritePath += "PinkPinky.png";
+		} else if(id == StrategyID.Mixed) {
+			spritePath += "OrangeClyde.png";
+		} else if(id == StrategyID.Escape) {
+			spritePath += "CyanInky.png";
+		}
+
 		try {
-			sprite = ImageIO.read(new File("sprites/RedBlinky.png"));
+			sprite = ImageIO.read(new File(spritePath));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -37,6 +51,7 @@ public class Ghost extends Entity {
 	}
 	public int getInitX() {return initX;}
 	public int getInitY() {return initY;}
+	public StrategyID getStrategyID() {return sId;}
 	
 	void setStrategy(GhostMovement strategy) {
 		this.strategy = strategy;
@@ -45,7 +60,7 @@ public class Ghost extends Entity {
 	@Override
 	public void tick() {
 		if((possibleDirections().size()!=2 || isStoped()) && flag >= 30) {
-			this.direction = strategy.ghostMovement(possibleDirections());
+			this.direction = strategy.ghostMovement(possibleDirections());	
 			flag = 0;
 		}
 		flag ++;

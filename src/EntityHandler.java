@@ -23,12 +23,28 @@ public class EntityHandler {
 	EntityHandler(ArrayList<Ghost> ghosts, PacMan player) {
 		this.ghosts = ghosts;
 		this.player = player;
+		//setAllStrategies();	//SE CHAMAR AQUI D√Å ERRO, PQ OCORREM TICKS ANTES DE SETAR AS ESTRATEGIAS
+	}
+	
+	private void setAllStrategies() {
+		for (Ghost ghost: ghosts) {
+			if(ghost.getStrategyID() == StrategyID.Follow) {
+				ghost.setStrategy(new DumbFollowMovement(ghost, player));
+			} else if(ghost.getStrategyID() == StrategyID.Random) {
+				ghost.setStrategy(new RandomMovement());
+			} else if(ghost.getStrategyID() == StrategyID.Mixed) {
+				ghost.setStrategy(new RandomMovement());
+			} else if(ghost.getStrategyID() == StrategyID.Escape) {
+				ghost.setStrategy(new GetawayMovement(ghost, player));
+			}
+		}
 	}
 	
 	/*
 	 * @brief Funcao que faz todas as entidades do jogo atualizarem
 	 */
 	public void tick() {
+		setAllStrategies();	//NAO DEVERIA TER QUE DEFINIR A CADA TICK!!!
 		for(Ghost ghost : ghosts) {
 			ghost.tick();
 		}
@@ -50,7 +66,7 @@ public class EntityHandler {
 			int xDistance, yDistance;
 			xDistance = player.getRealX() - ghost.getRealX();
 			yDistance = player.getRealY() - ghost.getRealY();
-			if(absolute(xDistance) < MapObject.squareSize - 10 && absolute(yDistance) < MapObject.squareSize - 10) //10 È um fator de ajuste visual
+			if(absolute(xDistance) < MapObject.squareSize - 10 && absolute(yDistance) < MapObject.squareSize - 10) //10 ÔøΩ um fator de ajuste visual
 				return true;
 		}
 		return false;

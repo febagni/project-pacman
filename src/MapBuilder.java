@@ -24,7 +24,7 @@ public class MapBuilder {
 	HashMap<Character, MapObject> charMap = new HashMap<>();	//HashMap que contem os caracteres do jogo
 	PacMan player = new PacMan();	//Entidade que representa o jogador
 	int maxPoints;	//Contador de pontos maximos que o jogador pode obter
-	boolean firstGhost = true;
+	int strategyIndex = 0;
 	
 
 	//Getters
@@ -67,14 +67,8 @@ public class MapBuilder {
 					player.setInitialPositionY(j*GameObject.squareSize);
 				} 
 				else if (line.charAt(j) == 'M') { //Se for detectado um adversario, posiciona-lo na posicao encontrada
-					Ghost myLittleGhost = new Ghost(i*GameObject.squareSize,j*GameObject.squareSize);
-//					if (firstGhost) {
-//						firstGhost = false;
-//						myLittleGhost.setStrategy(new DumbFollowMovement(myLittleGhost,player));
-//					}
-//					else {
-						myLittleGhost.setStrategy(new GetawayMovement(myLittleGhost, player));
-//					}
+					StrategyID myLittleID = defineStrategy();
+					Ghost myLittleGhost = new Ghost(i*GameObject.squareSize,j*GameObject.squareSize, myLittleID);
 					myLittleGhost.setRealX(i*GameObject.squareSize);
 					myLittleGhost.setRealY(j*GameObject.squareSize);
 					myLittleGhost.setMap(map);
@@ -91,5 +85,16 @@ public class MapBuilder {
 		}
 		player.setMap(map); //Atribui ao player o mapa criado
 		return map;
+	}
+	
+	private StrategyID defineStrategy() {
+		ArrayList<StrategyID> ids = new ArrayList<>();
+		ids.add(StrategyID.Random);
+		ids.add(StrategyID.Follow);
+		ids.add(StrategyID.Mixed);
+		ids.add(StrategyID.Escape);
+		strategyIndex++;
+		if(strategyIndex >= ids.size())strategyIndex = 0;
+		return ids.get(strategyIndex);
 	}
 }
