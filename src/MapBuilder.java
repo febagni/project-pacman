@@ -68,13 +68,13 @@ public class MapBuilder {
 				} 
 				else if (line.charAt(j) == 'M') { //Se for detectado um adversario, posiciona-lo na posicao encontrada
 					Ghost myLittleGhost = new Ghost(i*GameObject.squareSize,j*GameObject.squareSize);
-					if (firstGhost) {
-						firstGhost = false;
-						myLittleGhost.setStrategy(new DumbFollowMovement(myLittleGhost,player));
-					}
-					else {
-						myLittleGhost.setStrategy(new RandomMovement());
-					}
+//					if (firstGhost) {
+//						firstGhost = false;
+//						myLittleGhost.setStrategy(new DumbFollowMovement(myLittleGhost,player));
+//					}
+//					else {
+						myLittleGhost.setStrategy(new GetawayMovement(myLittleGhost, player));
+//					}
 					myLittleGhost.setRealX(i*GameObject.squareSize);
 					myLittleGhost.setRealY(j*GameObject.squareSize);
 					myLittleGhost.setMap(map);

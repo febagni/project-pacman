@@ -1,7 +1,7 @@
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class DumbFollowMovement extends FollowMovement {
+public class DumbFollowMovement extends NonRandomMovement {
 
 	DumbFollowMovement(Entity follower, Entity followed) {
 		super(follower, followed);

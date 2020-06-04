@@ -34,7 +34,7 @@ public class PacMan extends Entity {
 		frame = 0;	//inicializa a frame como zero
 		this.direction = KeyEvent.VK_LEFT;	//inicializa a direcao para a esquerda 
 		try {
-			sprite = ImageIO.read(new File("sprites/pacman.png"));	//le o a imagem com os sprites do pacman
+			sprite = ImageIO.read(new File("sprites/pacman.png"));//le o a imagem com os sprites do pacman
 		} catch (IOException e) {
 			e.printStackTrace();	
 		}
