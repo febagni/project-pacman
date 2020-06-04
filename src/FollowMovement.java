@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 
-public class FollowMovement implements GhostMovement {
+public abstract class FollowMovement implements GhostMovement {
 
+	Entity follower;
+	Entity followed;
+	
+	FollowMovement(Entity follower, Entity followed) {
+		this.follower = follower;
+		this.followed = followed;
+	}
+	
 	@Override
-	public int ghostMovement(ArrayList<Integer> possibleDirections) {
-		
-		return 0;
-	}
-
-	public int preferedDirection() {
-		
-		return 0;
-	}
+	public abstract int ghostMovement(ArrayList<Integer> possibleDirections);
 }

@@ -24,6 +24,7 @@ public class MapBuilder {
 	HashMap<Character, MapObject> charMap = new HashMap<>();	//HashMap que contem os caracteres do jogo
 	PacMan player = new PacMan();	//Entidade que representa o jogador
 	int maxPoints;	//Contador de pontos maximos que o jogador pode obter
+	boolean firstGhost = true;
 	
 
 	//Getters
@@ -66,8 +67,14 @@ public class MapBuilder {
 					player.setInitialPositionY(j*GameObject.squareSize);
 				} 
 				else if (line.charAt(j) == 'M') { //Se for detectado um adversario, posiciona-lo na posicao encontrada
-					Ghost myLittleGhost = new Ghost();
-					myLittleGhost.setStrategy(new RandomMovement());
+					Ghost myLittleGhost = new Ghost(i*GameObject.squareSize,j*GameObject.squareSize);
+					if (firstGhost) {
+						firstGhost = false;
+						myLittleGhost.setStrategy(new DumbFollowMovement(myLittleGhost,player));
+					}
+					else {
+						myLittleGhost.setStrategy(new RandomMovement());
+					}
 					myLittleGhost.setRealX(i*GameObject.squareSize);
 					myLittleGhost.setRealY(j*GameObject.squareSize);
 					myLittleGhost.setMap(map);

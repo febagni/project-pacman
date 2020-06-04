@@ -55,7 +55,16 @@ public class EntityHandler {
 		}
 		return false;
 	}
-	
+	public void playerDeathReset() {
+		player.updateLives();
+		player.setRealX(player.getInitialPositionX());
+		player.setRealY(player.getInitialPositionY());
+		player.setDirection();
+		for(Ghost ghost: ghosts) {
+			ghost.setRealX(ghost.getInitX());
+			ghost.setRealY(ghost.getInitY());
+		}
+	}
 	
 	/*
 	 * @brief Renderiza todas as entidades

@@ -21,12 +21,13 @@ import javax.imageio.ImageIO;
 
 public class Ghost extends Entity {
 	
+	protected int initX, initY; //posicao inicial do fantasma
 	GhostMovement strategy;
 	int flag = 0;
 	
-	public Ghost () {
-//		this.realX = realX;
-//		this.realY = realY;
+	public Ghost (int x, int y) {
+		initX = x;
+		initY = y;
 		try {
 			sprite = ImageIO.read(new File("sprites/RedBlinky.png"));
 		} catch (IOException e) {
@@ -34,14 +35,16 @@ public class Ghost extends Entity {
 		}
 		this.direction = KeyEvent.VK_LEFT;
 	}
+	public int getInitX() {return initX;}
+	public int getInitY() {return initY;}
 	
 	void setStrategy(GhostMovement strategy) {
 		this.strategy = strategy;
 	}
-	
+
 	@Override
 	public void tick() {
-		if((possibleDirections().size()!=2 || isStoped()) && flag >= 60) {
+		if((possibleDirections().size()!=2 || isStoped()) && flag >= 30) {
 			this.direction = strategy.ghostMovement(possibleDirections());
 			flag = 0;
 		}

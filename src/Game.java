@@ -136,10 +136,7 @@ public class Game extends Canvas implements Runnable {
 		mapHandler.tick();
 		entityHandler.tick();
 		if(entityHandler.playerTouchedGhost()) {
-			player.updateLives();
-			player.setRealX(player.getInitialPositionX());
-			player.setRealY(player.getInitialPositionY());
-			player.setDirection();
+			entityHandler.playerDeathReset();
 			System.out.println(player.getLives());
 		}
 		if(gotAllPoints()) {
