@@ -22,6 +22,7 @@ import javax.imageio.ImageIO;
 public class Ghost extends Entity {
 	
 	GhostMovement strategy;
+	int flag = 0;
 	
 	public Ghost () {
 //		this.realX = realX;
@@ -40,11 +41,13 @@ public class Ghost extends Entity {
 	
 	@Override
 	public void tick() {
-		if(possibleDirections().size()!=2 || isStoped()) {
-			//this.direction = strategy.ghostMovement(possibleDirections());
+		if((possibleDirections().size()!=2 || isStoped()) && flag >= 60) {
+			this.direction = strategy.ghostMovement(possibleDirections());
+			flag = 0;
 		}
-//		updateSpeed();
-//		updateMovement();
+		flag ++;
+		updateSpeed();
+		updateMovement();
 	}
 
 	

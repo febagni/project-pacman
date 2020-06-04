@@ -24,7 +24,7 @@ public class RandomMovement implements GhostMovement {
 
 	private int getRandomPosition(int max) {
 		Random random = new Random();
-		return random.nextInt(max+1); 
+		return random.nextInt(max); 
 	}
 	
 }
