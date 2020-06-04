@@ -118,3 +118,12 @@ Observações Finais:
 O bug provavelmente foi relacionado à falta de setar o mapa de objetos para os fantasmas, que ao tentar acessar uma posição no grid, recebem um NullPointerException
 
 <a href="https://www.youtube.com/watch?v=IF7g1mWOpUA">Link Relevante</a>
+
+## 03/06/2020
+
+O primeiro streamer foi o @guazco e nesse "round", o grupo arrumou o bug da movimentação dos fantasmas, fazendo com que eles conseguissem fazer o movimento aleatória implementado anteriormente. Commit relacionado: 5c03b5991fc5820af8fc402a287402505275c252
+
+O segundo streamer foi o @GabrielKishida e nesse "round", foi implementada a estratégia de movimentação DumbFollow, fazendo os fantasmas com essa estratégia de movimentação seguir o pacman, a DumbFollow é subclasse da classe abstrata FollowMovement, criada para implementar a interface de movimentos dos fantasmas. Foi criada a rotina de reset das posições dos fantasmas. Commit relacionado: d053f25ea2a5d805d341665d72a83c015d7e159f
+
+Observações finais:   
+<a href="https://www.youtube.com/watch?v=O-_gK7rPpcg">Link Relevante</a>
