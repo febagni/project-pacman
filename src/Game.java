@@ -21,15 +21,19 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	private boolean firstRender = true; //Ve se eh a primeira iteracao
+	private boolean firstRenderMenu = true; //Ve se eh a primeira iteracao	
 	private int width; //Largura da tela criada
 	private int height; //Altura da tela criada
 	private int maxPoints; //Numero maximo de pontos atingiveis pelo jogador
 	private MapHandler mapHandler; //Handler dos objetos que nao se movem
 	private EntityHandler entityHandler; //Handler dos objetos que se movem
+	private Menu menu;
 	PacMan player; //Objeto que representa o jogador
 	Window window; //Tela do jogo
+	ScreenID screen;
 	
 	public Game(String mapFileName) {
+		this.screen = ScreenID.MENU;
 		MapBuilder mapBuilder = new MapBuilder(mapFileName); //Le o mapa
 		mapHandler = new MapHandler(mapBuilder.getHeight(), mapBuilder.getWidth()); //Constroi o handler com o mapa
 		player = mapBuilder.getPlayer(); //Pega o jogador
@@ -39,6 +43,7 @@ public class Game extends Canvas implements Runnable {
 		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 		maxPoints = mapBuilder.getMaxPoints();
+		menu = new Menu();
 	}
 
 	/*
@@ -96,26 +101,31 @@ public class Game extends Canvas implements Runnable {
 	/*
 	 * @brief Funcao que renderiza todos os objetos do jogo
 	 */
-	private void render() {
+	private void render() {	
 		//Use with BufferedImage
 		BufferStrategy bufferStrategy = this.getBufferStrategy();
-        if (bufferStrategy == null) {
-            this.createBufferStrategy(3);
-            return;
-        }
-
-        Graphics graphics = bufferStrategy.getDrawGraphics();
-        //Primeira iteracao: renderiza o mapa inteiro
-        if (firstRender) {
-        	mapHandler.renderMap(graphics);
-        	firstRender = false;
-        }      
-        //Renderiza o bloco entorno do pacman (nao utilizado pois a renderizacao do mapa inteiro nao compromete o FPS)
-        //mapHandler.renderChunk(graphics, player.getX(), player.getY());
-        mapHandler.renderMap(graphics);
-        entityHandler.render(graphics);
-        graphics.dispose();
-        bufferStrategy.show();
+		if (bufferStrategy == null) {
+			this.createBufferStrategy(3);
+			return;
+		}
+		Graphics graphics = bufferStrategy.getDrawGraphics();
+		if(screen == ScreenID.GAME) {
+			//Primeira iteracao: renderiza o mapa inteiro
+			if (firstRender) {
+				mapHandler.renderMap(graphics);
+				firstRender = false;
+			}      
+			//Renderiza o bloco entorno do pacman (nao utilizado pois a renderizacao do mapa inteiro nao compromete o FPS)
+			//mapHandler.renderChunk(graphics, player.getX(), player.getY());
+			mapHandler.renderMap(graphics);
+			entityHandler.render(graphics);
+			graphics.dispose();
+			bufferStrategy.show();
+		} else if(screen == ScreenID.MENU) {
+			menu.render(graphics);
+			graphics.dispose();
+			bufferStrategy.show();
+		}
 	}
 	
 	/*
@@ -133,8 +143,10 @@ public class Game extends Canvas implements Runnable {
 			System.out.println("Perdeu desgraca");
 			stop();
 		}
-		mapHandler.tick();
-		entityHandler.tick();
+		if(screen == ScreenID.GAME) {
+			mapHandler.tick();
+			entityHandler.tick();
+		}
 		if(entityHandler.playerTouchedGhost()) {
 			entityHandler.playerDeathReset();
 			System.out.println(player.getLives());

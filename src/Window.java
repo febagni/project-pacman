@@ -12,8 +12,12 @@
  * 
  */
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Window extends Canvas {
 	
@@ -30,10 +34,20 @@ public class Window extends Canvas {
 		frame.setMinimumSize(new Dimension(width, height));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(true);
-		UserInput controls = new UserInput(game.player); //Define os controles do jogo
+		UserInput controls = new UserInput(game.player,game.screen); //Define os controles do jogo
 		frame.add(controls);
 		setFocusable(false);
-		frame.add(game);
+		if(game.screen == ScreenID.GAME) {
+			frame.add(game);
+		}else if(game.screen == ScreenID.MENU) {
+			JPanel myPanel = new JPanel();
+			JButton buttonGame = new JButton("Jogo");
+			myPanel.add(buttonGame);
+			JButton buttonCredits = new JButton("Créditos");
+			myPanel.add(buttonCredits);
+			myPanel.setBackground(Color.BLACK);
+			frame.add(myPanel);
+		}
 		frame.setVisible(true);
 		game.start();
 	}

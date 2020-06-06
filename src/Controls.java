@@ -21,9 +21,11 @@ public class Controls extends JPanel implements KeyListener{
 	private static final long serialVersionUID = 1L;
 	
 	PacMan player;
+	ScreenID screen;
 	
-	Controls(PacMan player){
+	Controls(PacMan player, ScreenID screen){
 		this.player = player;
+		this.screen = screen;
 	}
 	
 	/*
@@ -34,8 +36,10 @@ public class Controls extends JPanel implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		if (37 <= key && key <= 40) {	//se key for uma das teclas das setas do teclado
-			player.direction = key;
+		if(screen == ScreenID.GAME) {
+			if (37 <= key && key <= 40) {	//se key for uma das teclas das setas do teclado
+				player.direction = key;
+			}
 		}
 	}
 	
