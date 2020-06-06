@@ -218,6 +218,9 @@ public abstract class Entity implements GameObject {
 	// funcoes abstratas a serem implementadas pelas subclasses
 	@Override
 	public abstract void tick();
+	
+	public abstract void fixedTick();
+	
 	@Override
 	public abstract void render(Graphics g);
 }

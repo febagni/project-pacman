@@ -23,7 +23,7 @@ public class Ghost extends Entity {
 	
 	protected int initX, initY; //posicao inicial do fantasma
 	GhostMovement strategy;
-	int flag = 0;
+	int bufferedMovementFlag = 0;
 	private StrategyID sId;
 	private String spritePath = "sprites/";
 	
@@ -31,7 +31,6 @@ public class Ghost extends Entity {
 		initX = x;
 		initY = y;
 		sId = id;
-		
 		if(id == StrategyID.Follow) {
 			spritePath += "RedBlinky.png";
 		} else if(id == StrategyID.Random) {
@@ -59,20 +58,22 @@ public class Ghost extends Entity {
 
 	@Override
 	public void tick() {
-		if((possibleDirections().size()!=2 || isStoped()) && flag >= 30) {
+		if((possibleDirections().size()!=2 || isStoped()) && bufferedMovementFlag >= 30) {
 			this.direction = strategy.ghostMovement(possibleDirections());	
-			flag = 0;
+			bufferedMovementFlag = 0;
 		}
-		flag ++;
+		bufferedMovementFlag ++;
 		updateSpeed();
 		updateMovement();
 	}
-
+	
+	public void fixedTick() {
+	}
 	
 	/*
 	 * @brief Verifica e retorna lista de posições possíveis
 	 */
-	public ArrayList<Integer> possibleDirections() {
+	private ArrayList<Integer> possibleDirections() {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		if (canGo("up")) list.add(KeyEvent.VK_UP);
 		if (canGo("down")) list.add(KeyEvent.VK_DOWN);
@@ -89,5 +90,4 @@ public class Ghost extends Entity {
 		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
 				, realY+2, realX+2, null);
 	}
-	
 }

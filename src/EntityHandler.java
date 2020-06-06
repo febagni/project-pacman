@@ -14,16 +14,18 @@
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class EntityHandler {
 	
 	ArrayList<Ghost> ghosts; //Array com todos os fantasmas do jogo
-	PacMan player; //Objeto jogador 
+	PacMan player; //Objeto jogador
+	private int difficulty = 30;
 	
 	EntityHandler(ArrayList<Ghost> ghosts, PacMan player) {
 		this.ghosts = ghosts;
 		this.player = player;
-		//setAllStrategies();	//SE CHAMAR AQUI DÁ ERRO, PQ OCORREM TICKS ANTES DE SETAR AS ESTRATEGIAS
+		setAllStrategies();
 	}
 	
 	private void setAllStrategies() {
@@ -44,11 +46,35 @@ public class EntityHandler {
 	 * @brief Funcao que faz todas as entidades do jogo atualizarem
 	 */
 	public void tick() {
-		setAllStrategies();	//NAO DEVERIA TER QUE DEFINIR A CADA TICK!!!
+		//setAllStrategies();
 		for(Ghost ghost : ghosts) {
 			ghost.tick();
 		}
 		player.tick();
+	}
+	
+	public void fixedTick() {
+		for(Ghost ghost : ghosts) {
+			updateStrategy(ghost);
+		}
+		player.fixedTick();
+	}
+	
+	private void updateStrategy(Ghost ghost) {
+		if(ghost.getStrategyID() == StrategyID.Mixed) {
+			int randomNumber = randomNumber();
+			if(randomNumber < difficulty) {
+				ghost.setStrategy(new DumbFollowMovement(ghost, player));
+			}
+			else {
+				ghost.setStrategy(new RandomMovement());
+			}
+		}
+	}
+	
+	private int randomNumber() { //Gera um numero aleatorio entre 0 e 100
+		Random random = new Random();
+		return random.nextInt(100);
 	}
 	
 	/*

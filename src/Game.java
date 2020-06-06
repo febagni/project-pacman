@@ -24,6 +24,8 @@ public class Game extends Canvas implements Runnable {
 	private int width; //Largura da tela criada
 	private int height; //Altura da tela criada
 	private int maxPoints; //Numero maximo de pontos atingiveis pelo jogador
+	private int fixedTickFlag = 0; //Numero de miniticks
+	private static final int fixedTickMax = 60; //Numero de miniticks a serem atingidos a cada fixedTick
 	private MapHandler mapHandler; //Handler dos objetos que nao se movem
 	private EntityHandler entityHandler; //Handler dos objetos que se movem
 	PacMan player; //Objeto que representa o jogador
@@ -33,10 +35,10 @@ public class Game extends Canvas implements Runnable {
 		MapBuilder mapBuilder = new MapBuilder(mapFileName); //Le o mapa
 		mapHandler = new MapHandler(mapBuilder.getHeight(), mapBuilder.getWidth()); //Constroi o handler com o mapa
 		player = mapBuilder.getPlayer(); //Pega o jogador
-		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		width = mapBuilder.getWidth()*MapObject.squareSize; //Pega as dimensoes da tela
 		height = mapBuilder.getHeight()*MapObject.squareSize;
 		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
+		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 		maxPoints = mapBuilder.getMaxPoints();
 	}
@@ -142,6 +144,16 @@ public class Game extends Canvas implements Runnable {
 		if(gotAllPoints()) {
 			System.out.print("Ganhou desgraca");
 			stop();
+		}
+		fixedTick();
+	}
+	
+	private void fixedTick() {
+		if(fixedTickFlag < fixedTickMax) {
+			fixedTickFlag++;
+		} else {
+			entityHandler.fixedTick();
+			fixedTickFlag = 0;
 		}
 	}
 	

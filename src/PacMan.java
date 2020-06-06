@@ -100,6 +100,10 @@ public class PacMan extends Entity {
 		updateSpeed();
 		updateMovement();
 	}
+	
+	public void fixedTick() {
+		
+	}
 
 	/*
 	 * @brief Renderiza o sprite e realiza animacao do pacman
