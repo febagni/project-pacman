@@ -60,6 +60,13 @@ public class EntityHandler {
 		player.fixedTick();
 	}
 	
+	public void updateSprites() {
+		for(Ghost ghost : ghosts) {
+			ghost.updateSprite();
+		}
+		player.updateSprite();
+	}
+	
 	private void updateStrategy(Ghost ghost) {
 		if(ghost.getStrategyID() == StrategyID.Mixed) {
 			int randomNumber = randomNumber();

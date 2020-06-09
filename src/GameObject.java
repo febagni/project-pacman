@@ -29,5 +29,6 @@ public interface GameObject {
 	public MapID getID();
 	public void setID(MapID id);
 	public GameObject clone();
+	public void updateSprite();
 	
 }

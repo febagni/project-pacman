@@ -25,24 +25,23 @@ public class Ghost extends Entity {
 	GhostMovement strategy;
 	int bufferedMovementFlag = 0;
 	private StrategyID sId;
-	private String spritePath = "sprites/";
 	
 	public Ghost (int x, int y, StrategyID id) {
 		initX = x;
 		initY = y;
 		sId = id;
 		if(id == StrategyID.Follow) {
-			spritePath += "RedBlinky.png";
+			spritePath = "RedBlinky.png";
 		} else if(id == StrategyID.Random) {
-			spritePath += "PinkPinky.png";
+			spritePath = "PinkPinky.png";
 		} else if(id == StrategyID.Mixed) {
-			spritePath += "OrangeClyde.png";
+			spritePath = "OrangeClyde.png";
 		} else if(id == StrategyID.Escape) {
-			spritePath += "CyanInky.png";
+			spritePath = "CyanInky.png";
 		}
 
 		try {
-			sprite = ImageIO.read(new File(spritePath));
+			sprite = ImageIO.read(new File(SpritesManager.getFolder()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -13,6 +13,10 @@
  */
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public abstract class MapObject implements GameObject {
 	
@@ -20,6 +24,7 @@ public abstract class MapObject implements GameObject {
 	protected int x; // Posicao x na matriz
 	protected int y; // Posicao y na matriz
 	protected MapID id; // ID do objeto
+	protected String spritePath = null;  //Caminho dos sprites do objeto
 	
 	// Para a fabrica abstrata
 	public abstract GameObject clone();
@@ -49,5 +54,13 @@ public abstract class MapObject implements GameObject {
 	@Override
 	public void render(Graphics graphic) {
 		graphic.drawImage(sprite, x*squareSize, y*squareSize, null);
+	}
+	
+	public void updateSprite() {
+		try {
+			this.sprite = ImageIO.read(new File(SpritesManager.getFolder() + this.spritePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

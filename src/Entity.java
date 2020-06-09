@@ -15,6 +15,10 @@
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public abstract class Entity implements GameObject {
 	
@@ -29,7 +33,7 @@ public abstract class Entity implements GameObject {
 	protected int realX, realY;	//coordenadas do sprite da entidade na tela
 	protected int speedX, speedY;	//velocidades nos eixos cartesianos do sprite na tela
 	protected int xLength, yLength;	//tamanho da matriz nos eixos
-	
+	protected String spritePath; // Caminho dos sprites dos objetos
 	/*
 	 * @brief Setters e Getters para algumas caracteristicas
 	 */
@@ -225,4 +229,12 @@ public abstract class Entity implements GameObject {
 	
 	@Override
 	public abstract void render(Graphics g);
+	
+	public void updateSprite() {
+		try {
+			this.sprite = ImageIO.read(new File(SpritesManager.getFolder() + this.spritePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -16,6 +16,10 @@ import java.awt.Graphics;
 
 public class FloorWithBoost extends MapObject {
 	
+	FloorWithBoost(){
+		spritePath = "Floor.png";
+	}
+	
 	//Necessario para fabrica abstrata com hashmap
 	@Override
 	public GameObject clone() {
@@ -43,4 +47,5 @@ public class FloorWithBoost extends MapObject {
 	@Override
 	public void tick() {
 	}
+
 }

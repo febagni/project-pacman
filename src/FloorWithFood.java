@@ -42,4 +42,10 @@ public class FloorWithFood extends MapObject {
 	@Override
 	public void tick() {
 	}
+
+	@Override
+	public void updateSprite() {
+		// TODO Auto-generated method stub
+		
+	}
 }

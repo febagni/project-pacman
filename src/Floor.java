@@ -18,7 +18,9 @@ import javax.imageio.ImageIO;
 
 public class Floor extends MapObject {
 	
+	
 	public Floor() {
+		spritePath = "Floor.png";
 		try {
 			sprite = ImageIO.read(new File("sprites/PacManFloor.png"));
 		} catch (IOException e) {
@@ -39,5 +41,11 @@ public class Floor extends MapObject {
 	//N�o utilizado ainda
 	@Override
 	public void tick() {
+	}
+
+	@Override
+	public void updateSprite() {
+		// TODO Auto-generated method stub
+		
 	}
 }
