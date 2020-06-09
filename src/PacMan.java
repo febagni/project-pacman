@@ -28,17 +28,13 @@ public class PacMan extends Entity {
 	protected int initialPositionY;
 	
 	public PacMan(){
+		spritePath = "pacman.png";
 		lives = 3;  //Inicia o jogo com tres vidas (por enquanto)
 		boosted = false;	//inicializa como falso
 		points = 0;	//inicializa os pontos como zero
 		frame = 0;	//inicializa a frame como zero
 		this.direction = KeyEvent.VK_LEFT;	//inicializa a direcao para a esquerda 
-		try {
-			sprite = ImageIO.read(new File(SpritesManager.mainFolder + SpritesManager.folder +"pacman.png"));//le o a imagem com os sprites do pacman
-		} catch (IOException e) {
-			e.printStackTrace();	
-		}
-		
+		updateSprite();
 	}
 	
 	void setDirection() {

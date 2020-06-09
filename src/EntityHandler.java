@@ -60,7 +60,7 @@ public class EntityHandler {
 		player.fixedTick();
 	}
 	
-	public void updateSprites() {
+	public void updateAllSprites() {
 		for(Ghost ghost : ghosts) {
 			ghost.updateSprite();
 		}

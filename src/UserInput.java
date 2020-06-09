@@ -19,10 +19,10 @@ public class UserInput extends JPanel {
 	private static final long serialVersionUID = 1L;
 	PacMan player;
 	
-	public UserInput(PacMan player) {
-		KeyListener listener = new Controls(player);
+	public UserInput(Game game) {
+		KeyListener listener = new Controls(game);
 		addKeyListener(listener);
 		setFocusable(true);
-		this.player = player;
+		this.player = game.player;
 	}
 }

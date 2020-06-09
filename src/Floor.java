@@ -11,21 +11,13 @@
  * @date 05/2020
  * 
  */
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Floor extends MapObject {
 	
 	
 	public Floor() {
-		spritePath = "Floor.png";
-		try {
-			sprite = ImageIO.read(new File("sprites/PacManFloor.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		spritePath = "PacManFloor.png";
+		updateSprite();
 	}
 	
 	//Necessario para fabrica abstrata com hashmap
@@ -38,14 +30,8 @@ public class Floor extends MapObject {
 		return floor;
 	}
 
-	//N�o utilizado ainda
+	//Nao utilizado ainda
 	@Override
 	public void tick() {
-	}
-
-	@Override
-	public void updateSprite() {
-		// TODO Auto-generated method stub
-		
 	}
 }

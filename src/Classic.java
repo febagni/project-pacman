@@ -1,5 +1,5 @@
 
-public class Classic implements Map {
+public class Classic implements Skin {
 
 	@Override
 	public void display() {
@@ -8,7 +8,7 @@ public class Classic implements Map {
 	}
 
 	@Override
-	public Map clone() {
+	public Skin clone() {
 		SpritesManager.folder = "Classic/";
 		return new Classic();
 	}

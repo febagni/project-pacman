@@ -61,6 +61,14 @@ public class MapHandler {
     	}
     }
     
+    public void updateAllSprites() {
+    	for(int i = 0; i < xLength; i++) {
+    		for(int j = 0; j < yLength ; j++) {
+    			map[i][j].updateSprite();
+    		}
+    	}
+    }
+    
     /*
 	 * @brief Funcao que renderiza o objeto selecionado 
 	 */

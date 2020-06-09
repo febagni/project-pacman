@@ -11,19 +11,12 @@
  * @date 05/2020
  * 
  */
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Wall extends MapObject {
 	
 	public Wall() {
-		try {
-			sprite = ImageIO.read(new File("sprites/PacManWall.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		spritePath = "PacManWall.png";
+		updateSprite();
 	}
 	
 	

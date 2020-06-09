@@ -126,23 +126,28 @@ public class Game extends Canvas implements Runnable {
 	private boolean gotAllPoints() {
 		return player.getPoints() >= maxPoints;
 	}
+	
+	public void setSkin() {
+		mapHandler.updateAllSprites();
+		entityHandler.updateAllSprites();
+	}
 
 	/*
 	 * @brief Atualiza os objetos do jogo
 	 */
 	private void tick() {
 		if(player.getLives() == 0) {
-			System.out.println("Perdeu desgraca");
+			System.out.println("Perdeu :(");
 			stop();
 		}
 		mapHandler.tick();
 		entityHandler.tick();
 		if(entityHandler.playerTouchedGhost()) {
 			entityHandler.playerDeathReset();
-			System.out.println(player.getLives());
+			System.out.println("Vidas:" + player.getLives());
 		}
 		if(gotAllPoints()) {
-			System.out.print("Ganhou desgraca");
+			System.out.print("Ganhou!!!");
 			stop();
 		}
 		fixedTick();

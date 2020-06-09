@@ -16,6 +16,11 @@ import java.awt.Graphics;
 
 public class FloorWithFood extends MapObject {
 	
+	FloorWithFood() {
+		spritePath = "PacManFloorWithFood.png";
+		updateSprite();
+	}
+	
 	//Necessario para fabrica abstrata com hashmap
 	@Override
 	public GameObject clone() {

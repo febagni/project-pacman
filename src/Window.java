@@ -30,7 +30,7 @@ public class Window extends Canvas {
 		frame.setMinimumSize(new Dimension(width, height));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(true);
-		UserInput controls = new UserInput(game.player); //Define os controles do jogo
+		UserInput controls = new UserInput(game); //Define os controles do jogo
 		frame.add(controls);
 		setFocusable(false);
 		frame.add(game);

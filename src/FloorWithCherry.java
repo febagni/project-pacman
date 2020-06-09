@@ -13,18 +13,11 @@
  */
 import java.awt.Color;
 import java.awt.Graphics;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 public class FloorWithCherry extends MapObject{
 
     FloorWithCherry(){
-        try {
-            sprite = ImageIO.read(new File("sprites/PacManFloorWithCherry.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    	spritePath = "PacManFloorWithCherry.png";
+    	updateSprite();
     }
 
     //Necessario para fabrica abstrata com hashmap

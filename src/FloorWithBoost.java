@@ -17,7 +17,9 @@ import java.awt.Graphics;
 public class FloorWithBoost extends MapObject {
 	
 	FloorWithBoost(){
-		spritePath = "Floor.png";
+		//TO DO: adicionar imagem do FloorWithBoost, e substituir esse diretorio
+		spritePath = "PacManFloor.png";
+		updateSprite();
 	}
 	
 	//Necessario para fabrica abstrata com hashmap

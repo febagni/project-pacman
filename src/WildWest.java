@@ -1,5 +1,5 @@
 
-public class WildWest implements Map {
+public class WildWest implements Skin {
 
 	@Override
 	public void display() {
@@ -8,7 +8,7 @@ public class WildWest implements Map {
 	}
 
 	@Override
-	public Map clone() {
+	public Skin clone() {
 		SpritesManager.folder = "WildWest/";
 		return new WildWest();
 	}

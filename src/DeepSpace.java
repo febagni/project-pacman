@@ -1,5 +1,5 @@
 
-public class DeepSpace implements Map {
+public class DeepSpace implements Skin {
 
 	@Override
 	public void display() {
@@ -8,7 +8,7 @@ public class DeepSpace implements Map {
 	}
 
 	@Override
-	public Map clone() {
+	public Skin clone() {
 		SpritesManager.folder = "DeepSpace/";
 		return new DeepSpace();
 	}

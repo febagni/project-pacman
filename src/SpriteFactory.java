@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
-public class SpriteFactory implements AbstractFactory<Map> {
+public class SpriteFactory implements AbstractFactory<Skin> {
 
-	HashMap<String,Map> prototypeMap = new HashMap<>();
+	HashMap<String,Skin> prototypeMap = new HashMap<>();
 
     SpriteFactory() {
         prototypeMap.put("Classic", new Classic());
@@ -11,7 +11,7 @@ public class SpriteFactory implements AbstractFactory<Map> {
     }
 
     @Override
-    public Map create(String maptype) {
+    public Skin create(String maptype) {
         return prototypeMap.get(maptype).clone();
     }
 

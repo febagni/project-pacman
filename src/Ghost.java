@@ -13,11 +13,7 @@
  */
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 public class Ghost extends Entity {
 	
@@ -39,12 +35,7 @@ public class Ghost extends Entity {
 		} else if(id == StrategyID.Escape) {
 			spritePath = "CyanInky.png";
 		}
-
-		try {
-			sprite = ImageIO.read(new File(SpritesManager.getFolder()));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		updateSprite();
 		this.direction = KeyEvent.VK_LEFT;
 	}
 	public int getInitX() {return initX;}

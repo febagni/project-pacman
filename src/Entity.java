@@ -26,7 +26,7 @@ public abstract class Entity implements GameObject {
 	protected int y;	//coordenada y da entidade na matriz do mapa
 	protected MapID id;	//identidade do objeto
 	protected GameObject[][] map;	//matriz dos objetos do mapa
-	protected int direction;	//direção da entidade
+	protected int direction;	//direcao da entidade
 	protected int frame;	//frame da animacao do sprite da entidade
 	protected BufferedImage sprite;	//sprite da entidade
 	protected final int animationSlowness = 3;	//fator da velocidade da animacao
