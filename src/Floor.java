@@ -28,15 +28,15 @@ public class Floor extends MapObject {
 	
 	//Necessario para fabrica abstrata com hashmap
 	@Override
-	MapObject cloneMapObject(int x, int y) {
-		Floor floor = new Floor();
-		floor.setX(x);
-		floor.setY(y);
-		floor.setID(MapID.Floor);
-		return floor;
+	public GameObject clone() {
+//		Floor floor = new Floor();
+//		floor.setX(x);
+//		floor.setY(y);
+//		floor.setID(MapID.Floor);
+		return new Floor();
 	}
 
-	//Não utilizado ainda
+	//Nï¿½o utilizado ainda
 	@Override
 	public void tick() {
 	}

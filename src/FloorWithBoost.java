@@ -18,11 +18,11 @@ public class FloorWithBoost extends MapObject {
 	
 	//Necessario para fabrica abstrata com hashmap
 	@Override
-	MapObject cloneMapObject(int x, int y) {
+	public GameObject clone() {
 		FloorWithBoost floorWithBoost = new FloorWithBoost();
-		floorWithBoost.setX(x);
-		floorWithBoost.setY(y);
-		floorWithBoost.setID(MapID.FloorWithBoost);
+//		floorWithBoost.setX(x);
+//		floorWithBoost.setY(y);
+//		floorWithBoost.setID(MapID.FloorWithBoost);
 		return floorWithBoost;
 	}
 	

@@ -29,11 +29,11 @@ public class FloorWithCherry extends MapObject{
 
     //Necessario para fabrica abstrata com hashmap
     @Override
-    MapObject cloneMapObject(int x, int y) {
+    public GameObject clone() {
         FloorWithCherry floor = new FloorWithCherry();
-        floor.setX(x);
-        floor.setY(y);
-        floor.setID(MapID.FloorWithCherry);
+//        floor.setX(x);
+//        floor.setY(y);
+//        floor.setID(MapID.FloorWithCherry);
         return floor;
     }
     

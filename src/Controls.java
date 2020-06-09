@@ -37,6 +37,15 @@ public class Controls extends JPanel implements KeyListener{
 		if (37 <= key && key <= 40) {	//se key for uma das teclas das setas do teclado
 			player.direction = key;
 		}
+		if (key == KeyEvent.VK_1) {
+			
+		}
+		if (key == KeyEvent.VK_2) {
+					
+		}
+		if (key == KeyEvent.VK_3) {
+			
+		}
 	}
 	
 	//metodos da interface ainda nao utillizadas vai se fuder	

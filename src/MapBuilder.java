@@ -59,7 +59,7 @@ public class MapBuilder {
 		int i = 0;           
 		for(String line : rawMap) {	
 			for(int j = 0; j < line.length() ; j++) {
-				map[i][j] = charMap.get(line.charAt(j)).cloneMapObject(j, i);	//Coloca o objeto identificado em sua posicao correspondente
+				map[i][j] = (MapObject) charMap.get(line.charAt(j)).clone();	//Coloca o objeto identificado em sua posicao correspondente
 				if (line.charAt(j) == 'C') { //Se for detectado um player, posiciona-lo na posicao encontrada
 					player.setRealX(i*GameObject.squareSize);
 					player.setRealY(j*GameObject.squareSize);

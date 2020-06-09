@@ -90,4 +90,9 @@ public class Ghost extends Entity {
 		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
 				, realY+2, realX+2, null);
 	}
+	@Override
+	public GameObject clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

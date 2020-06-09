@@ -119,4 +119,10 @@ public class PacMan extends Entity {
 				, realY+2, realX+2, null);
 		lastDirection = animationDirection;
 	}
+
+	@Override
+	public GameObject clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

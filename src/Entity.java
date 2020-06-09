@@ -62,6 +62,8 @@ public abstract class Entity implements GameObject {
 		return map[x][y].getID() != MapID.Wall;
 	}
 	
+	public abstract GameObject clone();
+	
 	/*
 	 * @brief Funcoes booleanas que verificam a posicao relativa do sprite em comparacao com o centro de seu bloco no eixo X
 	 */

@@ -26,19 +26,19 @@ public class Wall extends MapObject {
 		}
 	}
 	
-	//Necessario para fabrica abstrata com hashmap
-	@Override
-	MapObject cloneMapObject(int x, int y) {
-		Wall wall = new Wall();
-		wall.setX(x);
-		wall.setY(y);
-		wall.setID(MapID.Wall);
-		return wall;
-	}
 	
-	//Não utilizado ainda
+	//Nï¿½o utilizado ainda
 	@Override
 	public void tick() {
 		//In construction
 	}
+
+
+	@Override
+	public GameObject clone() {
+		// TODO Auto-generated method stub
+		return new Wall();
+	}
+
+
 }

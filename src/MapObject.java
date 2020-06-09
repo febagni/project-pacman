@@ -22,7 +22,7 @@ public abstract class MapObject implements GameObject {
 	protected MapID id; // ID do objeto
 	
 	// Para a fabrica abstrata
-	abstract MapObject cloneMapObject(int x, int y);
+	public abstract GameObject clone();
 	
 	// Setters e getters
 	@Override
@@ -48,6 +48,6 @@ public abstract class MapObject implements GameObject {
 	 */
 	@Override
 	public void render(Graphics graphic) {
-		graphic.drawImage(sprite,x*squareSize,y*squareSize,null);
+		graphic.drawImage(sprite, x*squareSize, y*squareSize, null);
 	}
 }

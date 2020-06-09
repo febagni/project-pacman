@@ -18,11 +18,11 @@ public class FloorWithFood extends MapObject {
 	
 	//Necessario para fabrica abstrata com hashmap
 	@Override
-	MapObject cloneMapObject(int x, int y) {
+	public GameObject clone() {
 		FloorWithFood floorWithFood = new FloorWithFood();
-		floorWithFood.setX(x);
-		floorWithFood.setY(y);
-		floorWithFood.setID(MapID.FloorWithFood);
+//		floorWithFood.setX(x);
+//		floorWithFood.setY(y);
+//		floorWithFood.setID(MapID.FloorWithFood);
 		return floorWithFood;
 	}
 	
