@@ -34,7 +34,7 @@ public class PacMan extends Entity {
 		frame = 0;	//inicializa a frame como zero
 		this.direction = KeyEvent.VK_LEFT;	//inicializa a direcao para a esquerda 
 		try {
-			sprite = ImageIO.read(new File("sprites/pacman.png"));//le o a imagem com os sprites do pacman
+			sprite = ImageIO.read(new File(SpritesManager.mainFolder + SpritesManager.folder +"pacman.png"));//le o a imagem com os sprites do pacman
 		} catch (IOException e) {
 			e.printStackTrace();	
 		}
@@ -115,6 +115,11 @@ public class PacMan extends Entity {
 		else if(speedY > 0) animationDirection = KeyEvent.VK_RIGHT;
 		else if(speedY < 0) animationDirection = KeyEvent.VK_LEFT;
 		else animationDirection = lastDirection;
+		try {
+			sprite = ImageIO.read(new File(SpritesManager.mainFolder + SpritesManager.folder +"pacman.png"));//le o a imagem com os sprites do pacman
+		} catch (IOException e) {
+			e.printStackTrace();	
+		}
 		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (animationDirection - 37)*30, 28, 28)
 				, realY+2, realX+2, null);
 		lastDirection = animationDirection;

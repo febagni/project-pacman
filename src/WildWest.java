@@ -9,7 +9,7 @@ public class WildWest implements Map {
 
 	@Override
 	public Map clone() {
-		// TODO Auto-generated method stub
+		SpritesManager.folder = "WildWest/";
 		return new WildWest();
 	}
 

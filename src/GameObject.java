@@ -15,6 +15,7 @@ import java.awt.Graphics;
 
 public interface GameObject {
 	
+//	static String folder = "/sprites/Classic";
 	static final int squareSize = 32;	//Tamanho do bloco do jogo (em pixels)
 	static final int step = 2;	//Velocidade das entidades moveis do jogo
 	public void tick();	//Funcao que atualiza o objeto em questao
@@ -28,4 +29,5 @@ public interface GameObject {
 	public MapID getID();
 	public void setID(MapID id);
 	public GameObject clone();
+	
 }

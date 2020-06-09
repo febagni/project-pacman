@@ -5,9 +5,9 @@ public class SpriteFactory implements AbstractFactory<Map> {
 	HashMap<String,Map> prototypeMap = new HashMap<>();
 
     SpriteFactory() {
-        prototypeMap.put("Normal", new Classic());
-        prototypeMap.put("VelhoOeste", new WildWest());
-        prototypeMap.put("EspacoSideral", new DeepSpace());
+        prototypeMap.put("Classic", new Classic());
+        prototypeMap.put("WildWest", new WildWest());
+        prototypeMap.put("DeepSpace", new DeepSpace());
     }
 
     @Override

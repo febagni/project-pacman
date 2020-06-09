@@ -5,13 +5,13 @@ public class MapFactory implements AbstractFactory<GameObject> {
     HashMap<String,GameObject> prototypeMap = new HashMap<>();
 
     MapFactory() {
-        prototypeMap.put("Wall", new Wall());
-        prototypeMap.put("Floor", new Floor());
-        prototypeMap.put("FloorWithFood", new FloorWithFood());
-        prototypeMap.put("FloorWithBoost", new FloorWithBoost());
-        prototypeMap.put("FloorWithCherry", new FloorWithCherry());
-        prototypeMap.put("Ghost", new Floor());
-        prototypeMap.put("PacMan", new Floor());
+        prototypeMap.put("#", new Wall());
+        prototypeMap.put(" ", new Floor());
+        prototypeMap.put(".", new FloorWithFood());
+        prototypeMap.put("@", new FloorWithBoost());
+        prototypeMap.put("%", new FloorWithCherry());
+        prototypeMap.put("M", new Floor());
+        prototypeMap.put("C", new Floor());
     }
 
     @Override

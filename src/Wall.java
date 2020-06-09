@@ -36,8 +36,9 @@ public class Wall extends MapObject {
 
 	@Override
 	public GameObject clone() {
-		// TODO Auto-generated method stub
-		return new Wall();
+		Wall wall = new Wall();
+		wall.setID(MapID.Wall);
+		return wall;
 	}
 
 

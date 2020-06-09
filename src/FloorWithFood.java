@@ -22,7 +22,7 @@ public class FloorWithFood extends MapObject {
 		FloorWithFood floorWithFood = new FloorWithFood();
 //		floorWithFood.setX(x);
 //		floorWithFood.setY(y);
-//		floorWithFood.setID(MapID.FloorWithFood);
+		floorWithFood.setID(MapID.FloorWithFood);
 		return floorWithFood;
 	}
 	

@@ -9,6 +9,7 @@ public class Classic implements Map {
 
 	@Override
 	public Map clone() {
+		SpritesManager.folder = "Classic/";
 		return new Classic();
 	}
 

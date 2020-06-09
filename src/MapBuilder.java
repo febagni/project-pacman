@@ -12,19 +12,18 @@
  * 
  */
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MapBuilder {
 
 	final int width;	//Largura da matriz do mapa
 	final int height;	//Altura da matriz do mapa
-	private MapObject[][] map;	//Mapa de objetos imoveis do jogo
+	private GameObject[][] map;	//Mapa de objetos imoveis do jogo
 	private MapReader mapReader;	//Leitor do mapa
 	private ArrayList<Ghost> ghosts;	//Lista com todos as entidades adversarias do jogo
-	HashMap<Character, MapObject> charMap = new HashMap<>();	//HashMap que contem os caracteres do jogo
 	PacMan player = new PacMan();	//Entidade que representa o jogador
 	int maxPoints;	//Contador de pontos maximos que o jogador pode obter
 	int strategyIndex = 0;
+	MapFactory mapFactory = new MapFactory();
 	
 
 	//Getters
@@ -40,26 +39,20 @@ public class MapBuilder {
 		width = mapReader.getWidth();
 		height = mapReader.getHeight();
 		maxPoints = 0;
-		
-		//Definicoes de qual caractere representa qual objeto no jogo
-		charMap.put('#', new Wall());
-		charMap.put('.', new FloorWithFood());
-		charMap.put(' ', new Floor());
-		charMap.put('C', new Floor()); //Representa o jogador, mas no mapa eh um chao
-		charMap.put('M', new Floor()); //Representa um adversario, mas no mapa eh um chao
-		charMap.put('@', new FloorWithBoost());
-		charMap.put('%', new FloorWithCherry());
 	}
 	/*
 	 * @brief Constroi o mapa a partir do leitor, criando uma matriz com os objetos do jogo
 	 */
 	GameObject[][] build() {
-		map = new MapObject[height][width];
+		map = new GameObject[height][width];
 		ArrayList<String> rawMap = mapReader.getInput(); //Mapa recebido em String
 		int i = 0;           
 		for(String line : rawMap) {	
 			for(int j = 0; j < line.length() ; j++) {
-				map[i][j] = (MapObject) charMap.get(line.charAt(j)).clone();	//Coloca o objeto identificado em sua posicao correspondente
+				GameObject mapObject = mapFactory.create(String.valueOf(line.charAt(j)));//Coloca o objeto identificado em sua posicao correspondente
+				mapObject.setX(j); mapObject.setY(i);
+				map[i][j] = mapObject; 
+				
 				if (line.charAt(j) == 'C') { //Se for detectado um player, posiciona-lo na posicao encontrada
 					player.setRealX(i*GameObject.squareSize);
 					player.setRealY(j*GameObject.squareSize);

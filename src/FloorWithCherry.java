@@ -33,7 +33,7 @@ public class FloorWithCherry extends MapObject{
         FloorWithCherry floor = new FloorWithCherry();
 //        floor.setX(x);
 //        floor.setY(y);
-//        floor.setID(MapID.FloorWithCherry);
+        floor.setID(MapID.FloorWithCherry);
         return floor;
     }
     

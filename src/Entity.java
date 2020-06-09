@@ -21,7 +21,7 @@ public abstract class Entity implements GameObject {
 	protected int x;	//coordenada x da entidade na matriz do mapa
 	protected int y;	//coordenada y da entidade na matriz do mapa
 	protected MapID id;	//identidade do objeto
-	protected MapObject[][] map;	//matriz dos objetos do mapa
+	protected GameObject[][] map;	//matriz dos objetos do mapa
 	protected int direction;	//direção da entidade
 	protected int frame;	//frame da animacao do sprite da entidade
 	protected BufferedImage sprite;	//sprite da entidade
@@ -37,10 +37,10 @@ public abstract class Entity implements GameObject {
 	public void setRealY(int y) {realY = y;}
 	public int getRealX() {return realX;}
 	public int getRealY() {return realY;}
-	public void setMap(MapObject[][] map) {
-		this.map = map;
-		xLength = map.length;
-		yLength = map[0].length;
+	public void setMap(GameObject[][] map2) {
+		this.map = map2;
+		xLength = map2.length;
+		yLength = map2[0].length;
 	}
 	@Override
 	public int getX() {return (realX+(squareSize/2))/squareSize;}

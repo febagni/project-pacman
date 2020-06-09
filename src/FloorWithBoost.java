@@ -22,7 +22,7 @@ public class FloorWithBoost extends MapObject {
 		FloorWithBoost floorWithBoost = new FloorWithBoost();
 //		floorWithBoost.setX(x);
 //		floorWithBoost.setY(y);
-//		floorWithBoost.setID(MapID.FloorWithBoost);
+		floorWithBoost.setID(MapID.FloorWithBoost);
 		return floorWithBoost;
 	}
 	
