@@ -11,8 +11,6 @@
  * @date 05/2020
  * 
  */
-import java.awt.Color;
-import java.awt.Graphics;
 
 public class FloorWithFood extends MapObject {
 	
@@ -30,27 +28,9 @@ public class FloorWithFood extends MapObject {
 		floorWithFood.setID(MapID.FloorWithFood);
 		return floorWithFood;
 	}
-	
-	/*
-	 * @brief Renderiza o chao com comida
-	 */
-	public void render(Graphics graphic) {
-		graphic.setColor(Color.black);
-		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-		if(this.id == MapID.FloorWithFood) { //Se o ID mudar o jogador ja passou pelo bloco
-			graphic.setColor(Color.white);
-			graphic.fillOval(squareSize*x+14, squareSize*y+14, squareSize-28, squareSize-28);
-		}
-	}
 
     //Nao utilizado ainda
 	@Override
 	public void tick() {
-	}
-
-	@Override
-	public void updateSprite() {
-		// TODO Auto-generated method stub
-		
 	}
 }

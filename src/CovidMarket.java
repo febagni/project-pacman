@@ -1,5 +1,5 @@
 
-public class Classic implements Skin {
+public class CovidMarket implements Skin {
 
 	@Override
 	public void display() {
@@ -9,7 +9,7 @@ public class Classic implements Skin {
 
 	@Override
 	public Skin clone() {
-		SpritesManager.folder = "Classic/";
-		return new Classic();
+		SpritesManager.folder = "CovidMarket/";
+		return new CovidMarket();
 	}
 }

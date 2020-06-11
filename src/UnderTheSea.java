@@ -1,5 +1,5 @@
 
-public class Classic implements Skin {
+public class UnderTheSea implements Skin {
 
 	@Override
 	public void display() {
@@ -9,7 +9,7 @@ public class Classic implements Skin {
 
 	@Override
 	public Skin clone() {
-		SpritesManager.folder = "Classic/";
-		return new Classic();
+		SpritesManager.folder = "UnderTheSea/";
+		return new UnderTheSea();
 	}
 }

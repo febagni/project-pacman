@@ -8,6 +8,8 @@ public class SpriteFactory implements AbstractFactory<Skin> {
         prototypeMap.put("Classic", new Classic());
         prototypeMap.put("WildWest", new WildWest());
         prototypeMap.put("DeepSpace", new DeepSpace());
+        prototypeMap.put("UnderTheSea", new UnderTheSea());
+        prototypeMap.put("CovidMarket", new CovidMarket());
     }
 
     @Override

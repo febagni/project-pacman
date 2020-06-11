@@ -52,6 +52,14 @@ public class Controls extends JPanel implements KeyListener{
 			spriteFactory.create("WildWest");
 			game.setSkin();
 		}
+		if (key == KeyEvent.VK_4) {
+			spriteFactory.create("UnderTheSea");
+			game.setSkin();
+		}
+		if (key == KeyEvent.VK_5) {
+			spriteFactory.create("CovidMarket");
+			game.setSkin();
+		}
 	}
 	
 	//metodos da interface ainda nao utillizadas 

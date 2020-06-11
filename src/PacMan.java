@@ -68,12 +68,18 @@ public class PacMan extends Entity {
 		//se a posicao do pacman for:
 		if (map[getX()][getY()].getID() == MapID.FloorWithFood) {	//chao com comida
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
+			map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
+			map[getX()][getY()].updateSprite();
 			points += 10;	//e soma um para a contagem de pontos 
 		} else if (map[getX()][getY()].getID() == MapID.FloorWithBoost) {	//chao com boost
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
+			map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
+			map[getX()][getY()].updateSprite();
 			boosted = true;	//seta o boosted como verdade
 		} else if (map[getX()][getY()].getID() == MapID.FloorWithCherry) {	//chao com a cherry
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para chao normal
+			map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
+			map[getX()][getY()].updateSprite();
 			points += 100;	//soma os pontos extras
 		}
 	}

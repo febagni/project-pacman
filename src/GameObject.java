@@ -28,6 +28,7 @@ public interface GameObject {
 	public void setY(int y);
 	public MapID getID();
 	public void setID(MapID id);
+	public void setSpritePath(String spritePath);
 	public GameObject clone();
 	public void updateSprite();
 	

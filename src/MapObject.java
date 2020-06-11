@@ -34,7 +34,10 @@ public abstract class MapObject implements GameObject {
 	public MapID getID() {return id;}
 	
 	@Override
-	public void setID(MapID id) {this.id = id;}
+	public void setID(MapID id) {
+		this.id = id;
+		
+		}
 	
 	@Override
 	public int getX() {return x;}
@@ -54,6 +57,11 @@ public abstract class MapObject implements GameObject {
 	@Override
 	public void render(Graphics graphic) {
 		graphic.drawImage(sprite, x*squareSize, y*squareSize, null);
+	}
+	
+	@Override
+	public void setSpritePath(String spritePath) {
+		this.spritePath = spritePath;
 	}
 	
 	public void updateSprite() {

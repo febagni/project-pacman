@@ -41,6 +41,9 @@ public abstract class Entity implements GameObject {
 	public void setRealY(int y) {realY = y;}
 	public int getRealX() {return realX;}
 	public int getRealY() {return realY;}
+	public void setSpritePath (String spritePath) {
+		this.spritePath = spritePath;
+	}
 	public void setMap(GameObject[][] map2) {
 		this.map = map2;
 		xLength = map2.length;
