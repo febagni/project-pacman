@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Random;
-
 /*
  * @file RandomMovement.java
  * 
@@ -11,17 +8,26 @@ import java.util.Random;
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class RandomMovement implements GhostMovement {
 
+	/*
+	 * @brief Executa a direção escolhida para o movimento dos fantasmas
+	 */
 	@Override
 	public int ghostMovement(ArrayList<Integer> possibleDirections) {
 		return possibleDirections.get(getRandomPosition(possibleDirections.size()));
 	}
 
+	/*
+	 * @brief Gera uma direção aleatória para o fantasma seguir
+	 */
 	private int getRandomPosition(int max) {
 		Random random = new Random();
 		return random.nextInt(max); 

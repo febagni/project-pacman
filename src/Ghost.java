@@ -11,7 +11,7 @@
  * @date 05/2020
  * 
  */
-import java.awt.Graphics;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -55,6 +55,7 @@ public class Ghost extends Entity {
 		bufferedMovementFlag ++;
 		updateSpeed();
 		updateMovement();
+		updateAnimation();
 	}
 	
 	public void fixedTick() {
@@ -72,17 +73,8 @@ public class Ghost extends Entity {
 		return list;
 	}
 	
-	/*
-	 * @brief Desenha a imagem a partir de um png que contem todos os frames para a animacao do personagem.
-	 */
-	@Override
-	public void render(Graphics graphic) {
-		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
-				, realY+2, realX+2, null);
-	}
 	@Override
 	public GameObject clone() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

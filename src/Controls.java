@@ -8,7 +8,7 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 
@@ -32,7 +32,7 @@ public class Controls extends JPanel implements KeyListener{
 	/*
 	 * @brief Pega o input do teclado e traduz para a direcao do player
 	 * 
-	 * @param	e	Evento do teclado 
+	 * @param e Evento do teclado 
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -62,7 +62,7 @@ public class Controls extends JPanel implements KeyListener{
 		}
 	}
 	
-	//metodos da interface ainda nao utillizadas 
+	//metodos da interface nao utillizadas 
 	@Override
 	public void keyTyped(KeyEvent e) {}
 

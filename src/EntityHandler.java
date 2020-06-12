@@ -8,7 +8,7 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 
@@ -27,7 +27,9 @@ public class EntityHandler {
 		this.player = player;
 		setAllStrategies();
 	}
-	
+	/*
+	 * @brief setter das estratégias aos fantasmas
+	 */
 	private void setAllStrategies() {
 		for (Ghost ghost: ghosts) {
 			if(ghost.getStrategyID() == StrategyID.Follow) {
@@ -53,6 +55,9 @@ public class EntityHandler {
 		player.tick();
 	}
 	
+	/*
+	 * @brief Funcao que faz todas as entidades do jogo atualizarem uma quantidade fixas de ticks
+	 */
 	public void fixedTick() {
 		for(Ghost ghost : ghosts) {
 			updateStrategy(ghost);
@@ -60,6 +65,9 @@ public class EntityHandler {
 		player.fixedTick();
 	}
 	
+	/*
+	 * @brief Funcao atualiza os endereços dos sprites
+	 */
 	public void updateAllSprites() {
 		for(Ghost ghost : ghosts) {
 			ghost.updateSprite();
