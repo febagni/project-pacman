@@ -150,6 +150,7 @@ Estratégia    |	Descrição
 DumbFollowMovement| O fantasma segue o PacMan comparando suas posições
 RandomMovement| O fantasma muda de direção aleatoriamente
 GetAwayMovement| O fantasma foge do PacMan comparando suas posições
+
 Ademais, temos também um fantasma que se comporta de maneira "mista", alternando entre o DumbFollowMovement e o RandomMovement. Pretendemos mudar a dificuldade do jogo alterando a proporção entre as duas estratégias que ele utiliza.
 
 Utilizamos o padrão Fábrica Abstrata, com o auxílio do padrão Prototype, para implementar diferentes aparências (Looks & Feels) do jogo. Assim, o jogador pode alternar entre as aparências facilmente ao selecionar a tecla correspondente à aparência desejada (vide tabela na seção de Instruções / Sobre o Look & Feel). Dessa forma, todos os elementos gráficos do jogo se redesenham imediatamente com o clicar do botão.
