@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable {
 		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
 		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
-		maxPoints = mapBuilder.getMaxPoints();
+		maxPoints = mapBuilder.getMaxPoints();	//Pega os pontos maximos que podem ser feitos no jogo
 	}
 
 	/*
@@ -112,8 +112,6 @@ public class Game extends Canvas implements Runnable {
         	mapHandler.renderMap(graphics);
         	firstRender = false;
         }      
-        //Renderiza o bloco entorno do pacman (nao utilizado pois a renderizacao do mapa inteiro nao compromete o FPS)
-        //mapHandler.renderChunk(graphics, player.getX(), player.getY());
         mapHandler.renderMap(graphics);
         entityHandler.render(graphics);
         graphics.dispose();
@@ -127,6 +125,9 @@ public class Game extends Canvas implements Runnable {
 		return player.getPoints() >= maxPoints;
 	}
 	
+	/*
+	 * @brief Faz o update de todos os sprites do jogo
+	 */
 	public void setSkin() {
 		mapHandler.updateAllSprites();
 		entityHandler.updateAllSprites();
@@ -153,6 +154,10 @@ public class Game extends Canvas implements Runnable {
 		fixedTick();
 	}
 	
+	/*
+	 * @brief O fixed tick é um tick com intervalo maior
+	 * @brief Os ghosts de estrategia mista usam o fixed tick como referencia para escolher a estrategia 
+	 */
 	private void fixedTick() {
 		if(fixedTickFlag < fixedTickMax) {
 			fixedTickFlag++;

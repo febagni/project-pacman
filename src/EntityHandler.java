@@ -8,7 +8,7 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 
@@ -27,7 +27,9 @@ public class EntityHandler {
 		this.player = player;
 		setAllStrategies();
 	}
-	
+	/*
+	 * @brief setter das estrat�gias aos fantasmas
+	 */
 	private void setAllStrategies() {
 		for (Ghost ghost: ghosts) {
 			if(ghost.getStrategyID() == StrategyID.Follow) {
@@ -53,13 +55,18 @@ public class EntityHandler {
 		player.tick();
 	}
 	
+	/*
+	 * @brief Funcao que faz todas as entidades do jogo atualizarem uma quantidade fixas de ticks
+	 */
 	public void fixedTick() {
 		for(Ghost ghost : ghosts) {
 			updateStrategy(ghost);
 		}
-		player.fixedTick();
 	}
 	
+	/*
+	 * @brief Funcao atualiza os endere�os dos sprites
+	 */
 	public void updateAllSprites() {
 		for(Ghost ghost : ghosts) {
 			ghost.updateSprite();
@@ -67,6 +74,9 @@ public class EntityHandler {
 		player.updateSprite();
 	}
 	
+	/*
+	 * @brief Faz a escolha da estrategia do ghost com estrategia mixed 
+	 */
 	private void updateStrategy(Ghost ghost) {
 		if(ghost.getStrategyID() == StrategyID.Mixed) {
 			int randomNumber = randomNumber();
@@ -104,6 +114,10 @@ public class EntityHandler {
 		}
 		return false;
 	}
+	
+	/*
+	 * @brief Faz o reset das posicoes iniciais das entidades quando o player morre
+	 */
 	public void playerDeathReset() {
 		player.updateLives();
 		player.setRealX(player.getInitialPositionX());

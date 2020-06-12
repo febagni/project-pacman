@@ -11,12 +11,8 @@
  * @date 05/2020
  * 
  */
-import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import java.awt.event.KeyEvent;
 
 public class PacMan extends Entity {
 
@@ -24,8 +20,8 @@ public class PacMan extends Entity {
 	protected int points;	//contador dos pontos
 	protected int lastDirection = KeyEvent.VK_LEFT; //Variavel que contem a ultima direcao que o Pacman estava olhando
 	protected int lives; //Quantidade de vidas que o jogador tem sobrando
-	protected int initialPositionX;
-	protected int initialPositionY;
+	protected int initialPositionX;	//Posicao x inicial do pacman 
+	protected int initialPositionY;	//Posicao y inicial do pacman
 	
 	public PacMan(){
 		spritePath = "pacman.png";
@@ -34,29 +30,21 @@ public class PacMan extends Entity {
 		points = 0;	//inicializa os pontos como zero
 		frame = 0;	//inicializa a frame como zero
 		this.direction = KeyEvent.VK_LEFT;	//inicializa a direcao para a esquerda 
-		updateSprite();
+		updateSprite();	//faz o update dos sprites
 	}
 	
-	void setDirection() {
-		this.direction = KeyEvent.VK_LEFT;
-	}
-	
+	//Getters e Setters
+	void setDirection() {this.direction = KeyEvent.VK_LEFT;}
 	int getPoints() {return points;}
-	
 	int getLives() {return lives;}
-	
 	int getInitialPositionX() {return initialPositionX;}
-	
-	void setInitialPositionX(int x) {
-		this.initialPositionX = x;
-	}
-	
+	void setInitialPositionX(int x) {this.initialPositionX = x;}
 	int getInitialPositionY() {return initialPositionY;}
+	void setInitialPositionY(int y) {this.initialPositionY = y;}
 	
-	void setInitialPositionY(int y) {
-		this.initialPositionY = y;
-	}
-	
+	/*
+	 * @brief Faz o update das lives, se o pacman morre
+	 */
 	void updateLives() {
 		lives--;
 	}
@@ -92,7 +80,6 @@ public class PacMan extends Entity {
 		if(frame>5*animationSlowness) frame = 0;
 	}
 	
-	
 	/*
 	 * @brief Tick do pacman
 	 */
@@ -103,33 +90,8 @@ public class PacMan extends Entity {
 		updateMovement();
 	}
 	
-	public void fixedTick() {
-		
-	}
-
-	/*
-	 * @brief Renderiza o sprite e realiza animacao do pacman
-	 */
-	public void render(Graphics graphic) {
-		int animationDirection;
-		if(speedX > 0) animationDirection = KeyEvent.VK_DOWN;
-		else if(speedX < 0) animationDirection = KeyEvent.VK_UP;
-		else if(speedY > 0) animationDirection = KeyEvent.VK_RIGHT;
-		else if(speedY < 0) animationDirection = KeyEvent.VK_LEFT;
-		else animationDirection = lastDirection;
-		try {
-			sprite = ImageIO.read(new File(SpritesManager.mainFolder + SpritesManager.folder +"pacman.png"));//le o a imagem com os sprites do pacman
-		} catch (IOException e) {
-			e.printStackTrace();	
-		}
-		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (animationDirection - 37)*30, 28, 28)
-				, realY+2, realX+2, null);
-		lastDirection = animationDirection;
-	}
-
 	@Override
 	public GameObject clone() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

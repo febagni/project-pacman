@@ -8,7 +8,7 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 
@@ -19,17 +19,17 @@ public class FloorWithFood extends MapObject {
 		updateSprite();
 	}
 	
-	//Necessario para fabrica abstrata com hashmap
+	/*
+	 * @brief Implementação do padrão prototype: clona o objeto para criar os objetos pela fábrica abstrata
+	 */
 	@Override
 	public GameObject clone() {
 		FloorWithFood floorWithFood = new FloorWithFood();
-//		floorWithFood.setX(x);
-//		floorWithFood.setY(y);
 		floorWithFood.setID(MapID.FloorWithFood);
 		return floorWithFood;
 	}
 
-    //Nao utilizado ainda
+    //Nao utilizado 
 	@Override
 	public void tick() {
 	}

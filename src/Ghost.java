@@ -11,21 +11,22 @@
  * @date 05/2020
  * 
  */
-import java.awt.Graphics;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Ghost extends Entity {
 	
 	protected int initX, initY; //posicao inicial do fantasma
-	GhostMovement strategy;
-	int bufferedMovementFlag = 0;
-	private StrategyID sId;
+	GhostMovement strategy;	//estrategia do fantasma
+	int bufferedMovementFlag = 0;	//cooldown para a mudanca de direcao do fantasma
+	private StrategyID sId;	//id da estrategia relacionada ao objeto fantasma
 	
 	public Ghost (int x, int y, StrategyID id) {
 		initX = x;
 		initY = y;
 		sId = id;
+		//define a skin do sprite de acordo com a sua estrategia
 		if(id == StrategyID.Follow) {
 			spritePath = "RedBlinky.png";
 		} else if(id == StrategyID.Random) {
@@ -38,14 +39,16 @@ public class Ghost extends Entity {
 		updateSprite();
 		this.direction = KeyEvent.VK_LEFT;
 	}
+	
+	//Getters e Setters
 	public int getInitX() {return initX;}
 	public int getInitY() {return initY;}
 	public StrategyID getStrategyID() {return sId;}
-	
-	void setStrategy(GhostMovement strategy) {
-		this.strategy = strategy;
-	}
+	void setStrategy(GhostMovement strategy) {this.strategy = strategy;}
 
+	/*
+	 * @brief Faz o update da velocidade, movimento e animacao dos fantasmas
+	 */
 	@Override
 	public void tick() {
 		if((possibleDirections().size()!=2 || isStoped()) && bufferedMovementFlag >= 30) {
@@ -55,9 +58,7 @@ public class Ghost extends Entity {
 		bufferedMovementFlag ++;
 		updateSpeed();
 		updateMovement();
-	}
-	
-	public void fixedTick() {
+		updateAnimation();
 	}
 	
 	/*
@@ -72,17 +73,9 @@ public class Ghost extends Entity {
 		return list;
 	}
 	
-	/*
-	 * @brief Desenha a imagem a partir de um png que contem todos os frames para a animacao do personagem.
-	 */
-	@Override
-	public void render(Graphics graphic) {
-		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
-				, realY+2, realX+2, null);
-	}
 	@Override
 	public GameObject clone() {
-		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

@@ -8,7 +8,7 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 
@@ -34,6 +34,8 @@ public abstract class Entity implements GameObject {
 	protected int speedX, speedY;	//velocidades nos eixos cartesianos do sprite na tela
 	protected int xLength, yLength;	//tamanho da matriz nos eixos
 	protected String spritePath; // Caminho dos sprites dos objetos
+	protected int lastDirection = KeyEvent.VK_LEFT; // Ultima dire��o da entidade
+	
 	/*
 	 * @brief Setters e Getters para algumas caracteristicas
 	 */
@@ -224,15 +226,36 @@ public abstract class Entity implements GameObject {
 		else setSpeed(speedX, 0);
 	}
 	
-	// funcoes abstratas a serem implementadas pelas subclasses
 	@Override
 	public abstract void tick();
+
+	/*
+	 * @brief m�todo que atualiza a anima��o da entidade
+	 */
+	void updateAnimation() {
+		frame++;
+		if(frame>5*animationSlowness) frame = 0;
+	}
 	
-	public abstract void fixedTick();
-	
+	/*
+	 * @brief m�todo que especifica como deve ser renderizado as entidades
+	 */
 	@Override
-	public abstract void render(Graphics g);
+	public void render(Graphics graphic) {
+		int animationDirection;
+		if(speedX > 0) animationDirection = KeyEvent.VK_DOWN;
+		else if(speedX < 0) animationDirection = KeyEvent.VK_UP;
+		else if(speedY > 0) animationDirection = KeyEvent.VK_RIGHT;
+		else if(speedY < 0) animationDirection = KeyEvent.VK_LEFT;
+		else animationDirection = lastDirection;
+		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (animationDirection - 37)*30, 28, 28)
+				, realY+2, realX+2, null);
+		lastDirection = animationDirection;
+	}
 	
+	/*
+	 * @brief m�todo que atualiza a o sprite da entidade baseado no look-and-feel
+	 */
 	public void updateSprite() {
 		try {
 			this.sprite = ImageIO.read(new File(SpritesManager.getFolder() + this.spritePath));
