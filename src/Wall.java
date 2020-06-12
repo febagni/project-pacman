@@ -8,7 +8,7 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 
@@ -19,20 +19,17 @@ public class Wall extends MapObject {
 		updateSprite();
 	}
 	
-	
-	//N�o utilizado ainda
+	//Nao utilizado ainda
 	@Override
-	public void tick() {
-		//In construction
-	}
+	public void tick() {}
 
-
+	/*
+	 * @brief Método clone do padrao prototype
+	 */
 	@Override
 	public GameObject clone() {
 		Wall wall = new Wall();
 		wall.setID(MapID.Wall);
 		return wall;
 	}
-
-
 }

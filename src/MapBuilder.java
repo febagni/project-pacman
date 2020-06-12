@@ -8,7 +8,7 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 import java.util.ArrayList;
@@ -22,24 +22,29 @@ public class MapBuilder {
 	private ArrayList<Ghost> ghosts;	//Lista com todos as entidades adversarias do jogo
 	PacMan player = new PacMan();	//Entidade que representa o jogador
 	int maxPoints;	//Contador de pontos maximos que o jogador pode obter
-	int strategyIndex = 0;
-	MapFactory mapFactory = new MapFactory();
-	
-
-	//Getters
-	PacMan getPlayer() {return player;}
-	public ArrayList<Ghost> getGhosts() {return ghosts;}
-	int getHeight() {return mapReader.getHeight();}
-	int getWidth() {return mapReader.getWidth();}
-	int getMaxPoints() {return maxPoints;}
+	int strategyIndex = 0;	//Indice das estrategias
+	MapFactory mapFactory = new MapFactory();	//Inicializador da fabrica abstrata do mapa
+	ArrayList<StrategyID> ids = new ArrayList<>();
 	
 	MapBuilder (String fileName) {
 		ghosts = new ArrayList<Ghost>();
 		mapReader = new MapReader(fileName); //Leitor do mapa
 		width = mapReader.getWidth();
 		height = mapReader.getHeight();
+		ids.add(StrategyID.Random);
+		ids.add(StrategyID.Follow);
+		ids.add(StrategyID.Mixed);
+		ids.add(StrategyID.Escape);
 		maxPoints = 0;
 	}
+	
+	//Getters
+		PacMan getPlayer() {return player;}
+		public ArrayList<Ghost> getGhosts() {return ghosts;}
+		int getHeight() {return mapReader.getHeight();}
+		int getWidth() {return mapReader.getWidth();}
+		int getMaxPoints() {return maxPoints;}
+		
 	/*
 	 * @brief Constroi o mapa a partir do leitor, criando uma matriz com os objetos do jogo
 	 */
@@ -67,27 +72,25 @@ public class MapBuilder {
 					myLittleGhost.setMap(map);
 					ghosts.add(myLittleGhost);
 				}
-				else if (line.charAt(j) == '.') {
+				else if (line.charAt(j) == '.') {	//Se for um food, adiciona 10 pontos para a contagem total de pontos
 					maxPoints += 10;
 				}
-				else if (line.charAt(j) == '%') {
+				else if (line.charAt(j) == '%') {	//Se for uma cherry, adiciona 100 pontos para a contagem total de pontos
 					maxPoints += 100;
 				}
 			}
 			i++;
 		}
 		player.setMap(map); //Atribui ao player o mapa criado
-		return map;
+		return map;	//retorna o mapa
 	}
 	
+	/*
+	 * @brief Define a estrategia associada a cada ghost existente em uma dada ordem
+	 */
 	private StrategyID defineStrategy() {
-		ArrayList<StrategyID> ids = new ArrayList<>();
-		ids.add(StrategyID.Random);
-		ids.add(StrategyID.Follow);
-		ids.add(StrategyID.Mixed);
-		ids.add(StrategyID.Escape);
 		strategyIndex++;
-		if(strategyIndex >= ids.size())strategyIndex = 0;
+		if(strategyIndex >= ids.size()) strategyIndex = 0;
 		return ids.get(strategyIndex);
 	}
 }

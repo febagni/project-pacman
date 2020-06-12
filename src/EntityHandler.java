@@ -28,7 +28,7 @@ public class EntityHandler {
 		setAllStrategies();
 	}
 	/*
-	 * @brief setter das estratégias aos fantasmas
+	 * @brief setter das estratï¿½gias aos fantasmas
 	 */
 	private void setAllStrategies() {
 		for (Ghost ghost: ghosts) {
@@ -62,11 +62,10 @@ public class EntityHandler {
 		for(Ghost ghost : ghosts) {
 			updateStrategy(ghost);
 		}
-		player.fixedTick();
 	}
 	
 	/*
-	 * @brief Funcao atualiza os endereços dos sprites
+	 * @brief Funcao atualiza os endereï¿½os dos sprites
 	 */
 	public void updateAllSprites() {
 		for(Ghost ghost : ghosts) {
@@ -75,6 +74,9 @@ public class EntityHandler {
 		player.updateSprite();
 	}
 	
+	/*
+	 * @brief Faz a escolha da estrategia do ghost com estrategia mixed 
+	 */
 	private void updateStrategy(Ghost ghost) {
 		if(ghost.getStrategyID() == StrategyID.Mixed) {
 			int randomNumber = randomNumber();
@@ -112,6 +114,10 @@ public class EntityHandler {
 		}
 		return false;
 	}
+	
+	/*
+	 * @brief Faz o reset das posicoes iniciais das entidades quando o player morre
+	 */
 	public void playerDeathReset() {
 		player.updateLives();
 		player.setRealX(player.getInitialPositionX());

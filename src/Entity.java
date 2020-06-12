@@ -34,7 +34,7 @@ public abstract class Entity implements GameObject {
 	protected int speedX, speedY;	//velocidades nos eixos cartesianos do sprite na tela
 	protected int xLength, yLength;	//tamanho da matriz nos eixos
 	protected String spritePath; // Caminho dos sprites dos objetos
-	protected int lastDirection = KeyEvent.VK_LEFT; // Ultima direção da entidade
+	protected int lastDirection = KeyEvent.VK_LEFT; // Ultima direï¿½ï¿½o da entidade
 	
 	/*
 	 * @brief Setters e Getters para algumas caracteristicas
@@ -226,15 +226,11 @@ public abstract class Entity implements GameObject {
 		else setSpeed(speedX, 0);
 	}
 	
-	// funcoes abstratas a serem implementadas pelas subclasses
 	@Override
 	public abstract void tick();
-	
-	public abstract void fixedTick();
-	
-	
+
 	/*
-	 * @brief método que atualiza a animação da entidade
+	 * @brief mï¿½todo que atualiza a animaï¿½ï¿½o da entidade
 	 */
 	void updateAnimation() {
 		frame++;
@@ -242,7 +238,7 @@ public abstract class Entity implements GameObject {
 	}
 	
 	/*
-	 * @brief método que especifica como deve ser renderizado as entidades
+	 * @brief mï¿½todo que especifica como deve ser renderizado as entidades
 	 */
 	@Override
 	public void render(Graphics graphic) {
@@ -258,7 +254,7 @@ public abstract class Entity implements GameObject {
 	}
 	
 	/*
-	 * @brief método que atualiza a o sprite da entidade baseado no look-and-feel
+	 * @brief mï¿½todo que atualiza a o sprite da entidade baseado no look-and-feel
 	 */
 	public void updateSprite() {
 		try {

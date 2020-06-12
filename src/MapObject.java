@@ -8,7 +8,7 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 import java.awt.Graphics;
@@ -26,7 +26,9 @@ public abstract class MapObject implements GameObject {
 	protected MapID id; // ID do objeto
 	protected String spritePath;   //Caminho dos sprites do objeto
 	
-	// Para a fabrica abstrata
+	/*
+	 * @brief Método abstrato para o padrao prototype
+	 */
 	public abstract GameObject clone();
 	
 	// Setters e getters
@@ -34,10 +36,7 @@ public abstract class MapObject implements GameObject {
 	public MapID getID() {return id;}
 	
 	@Override
-	public void setID(MapID id) {
-		this.id = id;
-		
-		}
+	public void setID(MapID id) {this.id = id;}
 	
 	@Override
 	public int getX() {return x;}
@@ -51,6 +50,9 @@ public abstract class MapObject implements GameObject {
 	@Override
 	public void setY(int y) {this.y = y;}
 	
+	@Override
+	public void setSpritePath(String spritePath) {this.spritePath = spritePath;}
+	
 	/*
 	 * @brief Renderiza o objeto estatico
 	 */
@@ -59,11 +61,9 @@ public abstract class MapObject implements GameObject {
 		graphic.drawImage(sprite, x*squareSize, y*squareSize, null);
 	}
 	
-	@Override
-	public void setSpritePath(String spritePath) {
-		this.spritePath = spritePath;
-	}
-	
+	/*
+	 * @brief Atualiza o endereco do sprite do Map Object 
+	 */
 	public void updateSprite() {
 		try {
 			this.sprite = ImageIO.read(new File(SpritesManager.getFolder() + spritePath));
