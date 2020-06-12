@@ -127,3 +127,35 @@ O segundo streamer foi o @GabrielKishida e nesse "round", foi implementada a est
 
 Observações finais:   
 <a href="https://www.youtube.com/watch?v=O-_gK7rPpcg">Link Relevante</a>
+
+## 04/06/2020
+
+O primeiro streamer foi o @AleMarquis e nesse "round" o grupo criou a movimentação em que o fantasma foge do jogador. Commit relacionado: 18200c2e05954a5401b57f937e4dc3c37d3bd97e 
+O segundo streamer foi o @febagni e nesse "round" o grupo adicionou novas cores para  os fantasmas e ferramentas necessárias para as estratégias, criando um problema no FPS em consequência. Commit relacionado: 86b0b512debe09fa2911e71b2106daab890e4a81
+
+## 05/06/2020
+
+O primeiro streamer foi o @GabrielKishida e nesse "round" o grupo fez a mistura de movimentos do fantasmas para diferentes cores e fantasmas.Commit relacionado: 70bcc7997b8b138610d8f31ad41ab9e9a7d893c7
+O segundo streamer foi o @guazco e nesse "round" o grupo continuou com os testes para criação do menu do jogo, foi feito tudo na branch menu. Commit relacionado: b09840d40499aefb935f0761a1020bf9ccdb0192
+
+## 08/06/2020
+
+O primeiro streamer foi o @febagni e nesse "round" o grupo criou uma nova Fábrica Abstrata para os diferentes tipos de mapas. Commit relacionado: 9fe05d2d40a8f18c827510eb0c9aec38c547bc9e
+O segundo streamer foi o @AleMarquis e nesse "round" o grupo adicionou um fábrica abstrata inicial para o "look and feel". Commit relacionado: ea7e4b6e472e62cc08b5aca34df12cf79ac63294
+
+## 09/06/2020
+
+O primeiro streamer foi o @guazco e nesse "round" o grupo criou um jeito de gerenciar os sprites. Commit Relacionado: cd20d4da941aea4d34d4b11fa9329f8471e14f23
+O segundo streamer foi o @GabrielKishida e nesse "round" o grupo terminou a fábrica abstrata para mudar o "look and feel" de acordo com o tema. Commit relacionado: 38c928218dad480570c358a297b981fa93ceebd0
+
+## 10/06/2020
+
+Cada um fez um dos pacotes de sprites para looks and feels diferentes. Utilizando de ferramentas para fazer pixel art. 
+
+## 11/06/2020
+
+O primeiro streamer foi o @AleMarquis e nesse "round" foi feito a primeira parte do refatoração do código. Commit Relacionado: e30e8d4c96159c3717d8e1a0407879b795262654
+O segundo streamer foi o @febagni e nesse "round" foi feito a segunda e última parte da refatoração do código. Commit Relacionado:2ed0bfc8fbe6943505c2765bc6d89644c20da3cd
+
+Observações Finais: 
+<a href="https://www.youtube.com/watch?v=688OPQ9WFpA"/>Link Relevante</a>
