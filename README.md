@@ -117,9 +117,45 @@ Dentro do eclipse, é necessário colocar como argumento da main o path do arqui
 Para executar o programa, após setar o argumento, basta dar "Run" e se divertir! ;)
 OBS: a função main está dentro de *Game.java*.
 
+### Movimentação do PacMan
+
+Para movimentar o PacMan no jogo, basta utilizar as setas do teclado para o sentido correspondente à própria tecla.
+
+### Sobre o Look & Feel
+
+Temos 5 diferentes Looks & Feels para o nosso jogo atualmente.
+Para alternar, em tempo real, entre um e outro durante a partida, basta apertar a tecla correspondente ao Look & Feel desejado, seguindo a tabela:
+
+Tecla    |	Look & Feel | Descrição
+----------|-----------|-----------
+'1'|Classic| Visual padrão do jogo: voltando aos anos 80!
+'2'|Deep Space| Visual de espaço sideral: polícia e ladrão intergalático!
+'3'|Wild West| Visual do velho oeste: dê a volta por cima nos caras pálidas!
+'4'|Under The Sea| Visual subnáutico: tente sobreviver no fundo do mar!
+'5'|Covid Market| Visual em tempos de pandemia: combatendo o coronavírus!
+
 ## Primeira entrega
 
 A primeira entrega corresponde a Fase 01, ou seja, aos requisitos 01 e 02 supracitados.
-O código da primeira entrega se encontra na branch *main*.
+O código da primeira entrega se encontra na branch *master*.
 **Cada um dos arquivos *.java* que compõem o projeto possuem comentários explicando detalhadamente o que foi feito.**
+Dentro do [diário de bordo](./DiarioDeBordo.md), pode ser encontrado o que foi feito dentro de cada sessão de "Dojo" realizada, explicando detalhada e progressivamente o trabalho feito.
+
+## Segunda Entrega
+
+A segunda entrega corresponde à Fase 02, ou seja, aos requisitos 03 e 04; em outras palavras, usamos o padrão Strategy para implementar diferentes estratégias de movimentação para os fantasmas do jogo, cujos sprites mudam de acordo com a estratégia:
+Estratégia    |	Descrição
+----------|-----------
+DumbFollowMovement| O fantasma segue o PacMan comparando suas posições
+RandomMovement| O fantasma muda de direção aleatoriamente
+GetAwayMovement| O fantasma foge do PacMan comparando suas posições
+Ademais, temos também um fantasma que se comporta de maneira "mista", alternando entre o DumbFollowMovement e o RandomMovement. Pretendemos mudar a dificuldade do jogo alterando a proporção entre as duas estratégias que ele utiliza.
+
+Utilizamos o padrão Fábrica Abstrata, com o auxílio do padrão Prototype, para implementar diferentes aparências (Looks & Feels) do jogo. Assim, o jogador pode alternar entre as aparências facilmente ao selecionar a tecla correspondente à aparência desejada (vide tabela na seção de Instruções / Sobre o Look & Feel). Dessa forma, todos os elementos gráficos do jogo se redesenham imediatamente com o clicar do botão.
+
+Mais uma vez, o código se encontra na branch *master*.
+
+**Cada um dos arquivos *.java* que compõem o projeto possuem comentários explicando detalhadamente o que foi feito.**
+**Todos as imagens foram produzidas pelos membros da equipe, e pertencem a mesma**
+
 Dentro do [diário de bordo](./DiarioDeBordo.md), pode ser encontrado o que foi feito dentro de cada sessão de "Dojo" realizada, explicando detalhada e progressivamente o trabalho feito.
