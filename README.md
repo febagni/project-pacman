@@ -144,6 +144,7 @@ Dentro do [diário de bordo](./DiarioDeBordo.md), pode ser encontrado o que foi 
 ## Segunda Entrega
 
 A segunda entrega corresponde à Fase 02, ou seja, aos requisitos 03 e 04; em outras palavras, usamos o padrão Strategy para implementar diferentes estratégias de movimentação para os fantasmas do jogo, cujos sprites mudam de acordo com a estratégia:
+
 Estratégia    |	Descrição
 ----------|-----------
 DumbFollowMovement| O fantasma segue o PacMan comparando suas posições
