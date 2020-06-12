@@ -42,9 +42,7 @@ public class MapReader {
 				rawMap.add(data);	//adiciona na arraylist rawMap
 			}
 			scanner.close();	
-		} catch (Exception e) {	
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 	}
 	
 	/*
@@ -104,9 +102,8 @@ public class MapReader {
 		try {
 			if(rectangularMap() && hasCorners() && hasOnePacman()) //O mapa deve ser retangular, ter parede em seus 4 vertices, e ter apenas um pacman
 				return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		} return false;
+		} catch (Exception e) {}
+		return false;
 	}
 	
 	//Getters
