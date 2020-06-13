@@ -8,26 +8,33 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public abstract class Entity implements GameObject {
 	
 	protected int x;	//coordenada x da entidade na matriz do mapa
 	protected int y;	//coordenada y da entidade na matriz do mapa
 	protected MapID id;	//identidade do objeto
-	protected MapObject[][] map;	//matriz dos objetos do mapa
-	protected int direction;	//direção da entidade
+	protected GameObject[][] map;	//matriz dos objetos do mapa
+	protected int direction;	//direcao da entidade
 	protected int frame;	//frame da animacao do sprite da entidade
 	protected BufferedImage sprite;	//sprite da entidade
 	protected final int animationSlowness = 3;	//fator da velocidade da animacao
 	protected int realX, realY;	//coordenadas do sprite da entidade na tela
 	protected int speedX, speedY;	//velocidades nos eixos cartesianos do sprite na tela
 	protected int xLength, yLength;	//tamanho da matriz nos eixos
+	protected String spritePath; // Caminho dos sprites dos objetos
+	protected int lastDirection = KeyEvent.VK_LEFT; // Ultima dire��o da entidade
 	
 	/*
 	 * @brief Setters e Getters para algumas caracteristicas
@@ -36,10 +43,13 @@ public abstract class Entity implements GameObject {
 	public void setRealY(int y) {realY = y;}
 	public int getRealX() {return realX;}
 	public int getRealY() {return realY;}
-	public void setMap(MapObject[][] map) {
-		this.map = map;
-		xLength = map.length;
-		yLength = map[0].length;
+	public void setSpritePath (String spritePath) {
+		this.spritePath = spritePath;
+	}
+	public void setMap(GameObject[][] map2) {
+		this.map = map2;
+		xLength = map2.length;
+		yLength = map2[0].length;
 	}
 	@Override
 	public int getX() {return (realX+(squareSize/2))/squareSize;}
@@ -60,6 +70,8 @@ public abstract class Entity implements GameObject {
 	protected boolean isNotAWall(int x, int y) {
 		return map[x][y].getID() != MapID.Wall;
 	}
+	
+	public abstract GameObject clone();
 	
 	/*
 	 * @brief Funcoes booleanas que verificam a posicao relativa do sprite em comparacao com o centro de seu bloco no eixo X
@@ -85,6 +97,13 @@ public abstract class Entity implements GameObject {
 		if (speedX != 0 && (getX() == xLength -1 || getX() == 0)) return true;	//se a entidade esta se movendo no eixo x e esta em seus extremos
 		else if (speedY != 0 && (getY() == yLength -1 || getY() == 0)) return true;	//se a entidade esta se movendo no eixo y e esta em seus extremos
 		else return false;
+	}
+	
+	/*
+	 * @brief Verifica se a entidade está parada
+	 */
+	protected boolean isStoped() {
+		return (speedX == 0 && speedY == 0);
 	}
 	
 	/*
@@ -148,6 +167,26 @@ public abstract class Entity implements GameObject {
 	}
 	
 	/*
+	 * @brief Atualiza o valor da velocidade do pacman
+	 */
+	void updateSpeed() {
+		switch (direction) {
+		case KeyEvent.VK_UP:
+			moveUp();
+			break;
+		case KeyEvent.VK_DOWN:
+			moveDown();
+			break;
+		case KeyEvent.VK_LEFT:
+			moveLeft();
+			break;
+		case KeyEvent.VK_RIGHT:
+			moveRight();
+			break;
+		}
+	}
+	
+	/*
 	 * @brief Movimento da entidade para cima 
 	 */
 	void moveUp() {
@@ -187,9 +226,41 @@ public abstract class Entity implements GameObject {
 		else setSpeed(speedX, 0);
 	}
 	
-	// funcoes abstratas a serem implementadas pelas subclasses
 	@Override
 	public abstract void tick();
+
+	/*
+	 * @brief m�todo que atualiza a anima��o da entidade
+	 */
+	void updateAnimation() {
+		frame++;
+		if(frame>5*animationSlowness) frame = 0;
+	}
+	
+	/*
+	 * @brief m�todo que especifica como deve ser renderizado as entidades
+	 */
 	@Override
-	public abstract void render(Graphics g);
+	public void render(Graphics graphic) {
+		int animationDirection;
+		if(speedX > 0) animationDirection = KeyEvent.VK_DOWN;
+		else if(speedX < 0) animationDirection = KeyEvent.VK_UP;
+		else if(speedY > 0) animationDirection = KeyEvent.VK_RIGHT;
+		else if(speedY < 0) animationDirection = KeyEvent.VK_LEFT;
+		else animationDirection = lastDirection;
+		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (animationDirection - 37)*30, 28, 28)
+				, realY+2, realX+2, null);
+		lastDirection = animationDirection;
+	}
+	
+	/*
+	 * @brief m�todo que atualiza a o sprite da entidade baseado no look-and-feel
+	 */
+	public void updateSprite() {
+		try {
+			this.sprite = ImageIO.read(new File(SpritesManager.getFolder() + this.spritePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

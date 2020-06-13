@@ -94,3 +94,68 @@ Começamos refatorando e comentando as classes um a um, percebemos alguns métod
 4o Commit relacionado @AleMarquis: 9ff85167c47d7cc582cf5571a42b5b006d0ff5c5   
 5o Commit relacionado @febagni: adbfd36c7bbe365464efe339480ef219d016d136   
 6o Commit relacionado @guazco: 1938db9e7bf6762aef4a314941742f552b0acc11  
+
+## 30/05/2020
+
+A equipe começou organizando os afazeres para essa segunda entrega, construindo o colisor do Pacman com os fantasmas e construindo o sistema de vidas e o suporte para um "Game Over".
+
+O primeiro streamer foi o @gabrielKishida, nesse "round" foi construido o sistema colisões do pacman com outros fantasmas, com métodos que comparavam a posição do Pacman com as dos fantasmas, também foi criado o começo de um sistemas de vida para o jogo. Commit relacionado: 2fc4a305333b6bb49899c2aeb09e15f2ab82518d
+
+O segundo streamer foi o @guazco, nesse "round" foi concluido o sistema de vidas e criado um reset quando o jogador perde todas as vidas e chega uma tela de game over. Commit relacionado: 0a636223c1da4c83a818a79a2bfab42878d2be75
+
+Observação final: <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Link Relevante</a>
+
+## 02/06/2020
+
+A equipe começou a criar o padrão strategy para os movimentos dos fantasmas, já criando o padrão de lógica aleatório para a inteligência dos fantasmas. Ao implementá-lo, geramos alguns bugs que serão resolvidos posteriormente. Commit Relacionado: 6bdad35c85cfea152aa65857b64cd7ac40425dfa
+
+O primeiro streamer foi o @AleMarquis, nesse "round" foi criado a interface de Movimentos para os fantasmas e uma classe que a implementa com o padrão pseudo-aleatório. Commit Relacionado: 6bdad35c85cfea152aa65857b64cd7ac40425dfa
+
+O segundo streamer foi o @febagni, nesse "round" foi implementado uma lógica para a estratégia dos fantasmas. Seu movimento pseudo-aleatório foi continuado a ser desenvolvido e geramos alguns bugs na detecção de paredes. Commit Relacionado: 93172d8a3367c0e41c6b58015991be86d030cb6f
+
+Observações Finais: 
+
+O bug provavelmente foi relacionado à falta de setar o mapa de objetos para os fantasmas, que ao tentar acessar uma posição no grid, recebem um NullPointerException
+
+<a href="https://www.youtube.com/watch?v=IF7g1mWOpUA">Link Relevante</a>
+
+## 03/06/2020
+
+O primeiro streamer foi o @guazco e nesse "round", o grupo arrumou o bug da movimentação dos fantasmas, fazendo com que eles conseguissem fazer o movimento aleatória implementado anteriormente. Commit relacionado: 5c03b5991fc5820af8fc402a287402505275c252
+
+O segundo streamer foi o @GabrielKishida e nesse "round", foi implementada a estratégia de movimentação DumbFollow, fazendo os fantasmas com essa estratégia de movimentação seguir o pacman, a DumbFollow é subclasse da classe abstrata FollowMovement, criada para implementar a interface de movimentos dos fantasmas. Foi criada a rotina de reset das posições dos fantasmas. Commit relacionado: d053f25ea2a5d805d341665d72a83c015d7e159f
+
+Observações finais:   
+<a href="https://www.youtube.com/watch?v=O-_gK7rPpcg">Link Relevante</a>
+
+## 04/06/2020
+
+O primeiro streamer foi o @AleMarquis e nesse "round" o grupo criou a movimentação em que o fantasma foge do jogador. Commit relacionado: 18200c2e05954a5401b57f937e4dc3c37d3bd97e 
+O segundo streamer foi o @febagni e nesse "round" o grupo adicionou novas cores para  os fantasmas e ferramentas necessárias para as estratégias, criando um problema no FPS em consequência. Commit relacionado: 86b0b512debe09fa2911e71b2106daab890e4a81
+
+## 05/06/2020
+
+O primeiro streamer foi o @GabrielKishida e nesse "round" o grupo fez a mistura de movimentos do fantasmas para diferentes cores e fantasmas.Commit relacionado: 70bcc7997b8b138610d8f31ad41ab9e9a7d893c7
+O segundo streamer foi o @guazco e nesse "round" o grupo continuou com os testes para criação do menu do jogo, foi feito tudo na branch menu. Commit relacionado: b09840d40499aefb935f0761a1020bf9ccdb0192
+
+## 08/06/2020
+
+O primeiro streamer foi o @febagni e nesse "round" o grupo criou uma nova Fábrica Abstrata para os diferentes tipos de mapas. Commit relacionado: 9fe05d2d40a8f18c827510eb0c9aec38c547bc9e
+O segundo streamer foi o @AleMarquis e nesse "round" o grupo adicionou um fábrica abstrata inicial para o "look and feel". Commit relacionado: ea7e4b6e472e62cc08b5aca34df12cf79ac63294
+
+## 09/06/2020
+
+O primeiro streamer foi o @guazco e nesse "round" o grupo criou um jeito de gerenciar os sprites. Commit Relacionado: cd20d4da941aea4d34d4b11fa9329f8471e14f23
+O segundo streamer foi o @GabrielKishida e nesse "round" o grupo terminou a fábrica abstrata para mudar o "look and feel" de acordo com o tema. Commit relacionado: 38c928218dad480570c358a297b981fa93ceebd0
+
+## 10/06/2020
+
+Cada um fez um dos pacotes de sprites para looks and feels diferentes. Utilizando de ferramentas para fazer pixel art. 
+
+## 11/06/2020
+
+O primeiro streamer foi o @AleMarquis e nesse "round" foi feito a primeira parte do refatoração do código. Commit Relacionado: e30e8d4c96159c3717d8e1a0407879b795262654
+O segundo streamer foi o @febagni e nesse "round" foi feito a segunda e última parte da refatoração do código. Commit Relacionado:2ed0bfc8fbe6943505c2765bc6d89644c20da3cd
+
+Observações Finais: 
+<a href="https://www.youtube.com/watch?v=688OPQ9WFpA"/>Link Relevante</a>

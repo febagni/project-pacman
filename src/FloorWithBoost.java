@@ -8,38 +8,29 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
-import java.awt.Color;
-import java.awt.Graphics;
+
 
 public class FloorWithBoost extends MapObject {
 	
-	//Necessario para fabrica abstrata com hashmap
-	@Override
-	MapObject cloneMapObject(int x, int y) {
-		FloorWithBoost floorWithBoost = new FloorWithBoost();
-		floorWithBoost.setX(x);
-		floorWithBoost.setY(y);
-		floorWithBoost.setID(MapID.FloorWithBoost);
-		return floorWithBoost;
+	FloorWithBoost(){
+		spritePath = "PacManFloorWithBoost.png";
+		updateSprite();
 	}
 	
 	/*
-	 * @brief Renderiza o chao com poderzinho
-	 */	
+	 * @brief Implementação do padrão prototype: clona o objeto para criar os objetos pela fábrica abstrata
+	 */
 	@Override
-	public void render(Graphics graphic) {
-		graphic.setColor(Color.black);
-		graphic.fillRect(x*squareSize, y*squareSize, squareSize, squareSize);
-		if(this.id == MapID.FloorWithBoost) {
-			graphic.setColor(Color.yellow);
-			graphic.fillOval(squareSize*x+10, squareSize*y+10, squareSize-20, squareSize-20);
-		}
+	public GameObject clone() {
+		FloorWithBoost floorWithBoost = new FloorWithBoost();
+		floorWithBoost.setID(MapID.FloorWithBoost);
+		return floorWithBoost;
 	}
 
-	//Nao utilizado ainda
+	//Nao utilizado 
 	@Override
 	public void tick() {
 	}

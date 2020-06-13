@@ -8,11 +8,15 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public abstract class MapObject implements GameObject {
 	
@@ -20,9 +24,12 @@ public abstract class MapObject implements GameObject {
 	protected int x; // Posicao x na matriz
 	protected int y; // Posicao y na matriz
 	protected MapID id; // ID do objeto
+	protected String spritePath;   //Caminho dos sprites do objeto
 	
-	// Para a fabrica abstrata
-	abstract MapObject cloneMapObject(int x, int y);
+	/*
+	 * @brief Método abstrato para o padrao prototype
+	 */
+	public abstract GameObject clone();
 	
 	// Setters e getters
 	@Override
@@ -43,11 +50,25 @@ public abstract class MapObject implements GameObject {
 	@Override
 	public void setY(int y) {this.y = y;}
 	
+	@Override
+	public void setSpritePath(String spritePath) {this.spritePath = spritePath;}
+	
 	/*
 	 * @brief Renderiza o objeto estatico
 	 */
 	@Override
 	public void render(Graphics graphic) {
-		graphic.drawImage(sprite,x*squareSize,y*squareSize,null);
+		graphic.drawImage(sprite, x*squareSize, y*squareSize, null);
+	}
+	
+	/*
+	 * @brief Atualiza o endereco do sprite do Map Object 
+	 */
+	public void updateSprite() {
+		try {
+			this.sprite = ImageIO.read(new File(SpritesManager.getFolder() + spritePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

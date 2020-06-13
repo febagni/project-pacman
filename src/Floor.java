@@ -8,36 +8,29 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Floor extends MapObject {
 	
+	
 	public Floor() {
-		try {
-			sprite = ImageIO.read(new File("sprites/PacManFloor.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		spritePath = "PacManFloor.png";
+		updateSprite();
 	}
 	
-	//Necessario para fabrica abstrata com hashmap
+	/*
+	 * @brief Implementação do padrão prototype: clona o objeto para criar os objetos pela fábrica abstrata
+	 */
 	@Override
-	MapObject cloneMapObject(int x, int y) {
+	public GameObject clone() {
 		Floor floor = new Floor();
-		floor.setX(x);
-		floor.setY(y);
 		floor.setID(MapID.Floor);
 		return floor;
 	}
 
-	//N�o utilizado ainda
+	//Nao utilizado 
 	@Override
-	public void tick() {
-	}
+	public void tick() {}
 }

@@ -23,21 +23,24 @@ public class Game extends Canvas implements Runnable {
 	private boolean firstRender = true; //Ve se eh a primeira iteracao
 	private int width; //Largura da tela criada
 	private int height; //Altura da tela criada
+	private int maxPoints; //Numero maximo de pontos atingiveis pelo jogador
+	private int fixedTickFlag = 0; //Numero de miniticks
+	private static final int fixedTickMax = 60; //Numero de miniticks a serem atingidos a cada fixedTick
 	private MapHandler mapHandler; //Handler dos objetos que nao se movem
 	private EntityHandler entityHandler; //Handler dos objetos que se movem
 	PacMan player; //Objeto que representa o jogador
 	Window window; //Tela do jogo
 	
-	
 	public Game(String mapFileName) {
 		MapBuilder mapBuilder = new MapBuilder(mapFileName); //Le o mapa
 		mapHandler = new MapHandler(mapBuilder.getHeight(), mapBuilder.getWidth()); //Constroi o handler com o mapa
 		player = mapBuilder.getPlayer(); //Pega o jogador
-		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		width = mapBuilder.getWidth()*MapObject.squareSize; //Pega as dimensoes da tela
 		height = mapBuilder.getHeight()*MapObject.squareSize;
 		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
+		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
+		maxPoints = mapBuilder.getMaxPoints();	//Pega os pontos maximos que podem ser feitos no jogo
 	}
 
 	/*
@@ -85,7 +88,7 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                //System.out.println("FPS " + frames);
+                System.out.println("FPS " + frames);
                 frames = 0;
             }
        }    
@@ -109,20 +112,59 @@ public class Game extends Canvas implements Runnable {
         	mapHandler.renderMap(graphics);
         	firstRender = false;
         }      
-        //Renderiza o bloco entorno do pacman (nao utilizado pois a renderizacao do mapa inteiro nao compromete o FPS)
-        //mapHandler.renderChunk(graphics, player.getX(), player.getY());
         mapHandler.renderMap(graphics);
         entityHandler.render(graphics);
         graphics.dispose();
         bufferStrategy.show();
+	}
+	
+	/*
+	 * @brief Funcao que devolve se o jogador ja pegou todos os pontos presentes no mapa
+	 */
+	private boolean gotAllPoints() {
+		return player.getPoints() >= maxPoints;
+	}
+	
+	/*
+	 * @brief Faz o update de todos os sprites do jogo
+	 */
+	public void setSkin() {
+		mapHandler.updateAllSprites();
+		entityHandler.updateAllSprites();
 	}
 
 	/*
 	 * @brief Atualiza os objetos do jogo
 	 */
 	private void tick() {
+		if(player.getLives() == 0) {
+			System.out.println("Perdeu :(");
+			stop();
+		}
 		mapHandler.tick();
 		entityHandler.tick();
+		if(entityHandler.playerTouchedGhost()) {
+			entityHandler.playerDeathReset();
+			System.out.println("Vidas:" + player.getLives());
+		}
+		if(gotAllPoints()) {
+			System.out.print("Ganhou!!!");
+			stop();
+		}
+		fixedTick();
+	}
+	
+	/*
+	 * @brief O fixed tick é um tick com intervalo maior
+	 * @brief Os ghosts de estrategia mista usam o fixed tick como referencia para escolher a estrategia 
+	 */
+	private void fixedTick() {
+		if(fixedTickFlag < fixedTickMax) {
+			fixedTickFlag++;
+		} else {
+			entityHandler.fixedTick();
+			fixedTickFlag = 0;
+		}
 	}
 	
 	/*

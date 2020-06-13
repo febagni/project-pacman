@@ -62,6 +62,17 @@ public class MapHandler {
     }
     
     /*
+     * @brief Faz o update de todos os sprites
+     */
+    public void updateAllSprites() {
+    	for(int i = 0; i < xLength; i++) {
+    		for(int j = 0; j < yLength ; j++) {
+    			map[i][j].updateSprite();
+    		}
+    	}
+    }
+    
+    /*
 	 * @brief Funcao que renderiza o objeto selecionado 
 	 */
     public void renderSquare(Graphics g, int i, int j) {
@@ -69,25 +80,8 @@ public class MapHandler {
     }
     
     /*
-	 * @brief Funcao que renderiza o objeto selecionado e seus arredores
-	 */
-    // A funcao nao esta sendo utilizada por enquanto
-    public void renderChunk(Graphics g, int i, int j) {
-    	for(int m = -1; m < 2; m++) {
-    		for (int n = -1; n < 2; n++) {
-    			if (!(i+m >= 0 && i+m < map.length) && (j+n >= 0 && j+n < map[0].length)) {
-                    renderSquare(g, map.length - 1, j+n);
-                    renderSquare(g, 0, j+n);
-                } else if (!(j+n >= 0 && j+n < map[0].length) && (i+m >= 0 && i+m < map.length)) { 
-                    renderSquare(g, i+m, map[0].length - 1);
-                    renderSquare(g, i+m, 0);
-                } else if((j+n >= 0 && j+n < map[0].length) && (i+m >= 0 && i+m < map.length))
-                    renderSquare(g, i+m, j+n);
-    		}
-    	}
-    }
-    
-    // Adiciona o objeto ao mapa
+     * @brief Adiciona o objeto ao mapa
+     */
     public void addObject(GameObject object, int i, int j) {
     	map[i][j] = object;
     }  

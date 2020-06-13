@@ -11,36 +11,71 @@
  * @date 05/2020
  * 
  */
-import java.awt.Graphics;
+
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.util.ArrayList;
 
 public class Ghost extends Entity {
 	
-	public Ghost (int realX, int realY) {
-		this.realX = realX;
-		this.realY = realY;
-		try {
-			sprite = ImageIO.read(new File("sprites/RedBlinky.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
+	protected int initX, initY; //posicao inicial do fantasma
+	GhostMovement strategy;	//estrategia do fantasma
+	int bufferedMovementFlag = 0;	//cooldown para a mudanca de direcao do fantasma
+	private StrategyID sId;	//id da estrategia relacionada ao objeto fantasma
+	
+	public Ghost (int x, int y, StrategyID id) {
+		initX = x;
+		initY = y;
+		sId = id;
+		//define a skin do sprite de acordo com a sua estrategia
+		if(id == StrategyID.Follow) {
+			spritePath = "RedBlinky.png";
+		} else if(id == StrategyID.Random) {
+			spritePath = "PinkPinky.png";
+		} else if(id == StrategyID.Mixed) {
+			spritePath = "OrangeClyde.png";
+		} else if(id == StrategyID.Escape) {
+			spritePath = "CyanInky.png";
 		}
+		updateSprite();
 		this.direction = KeyEvent.VK_LEFT;
 	}
 	
+	//Getters e Setters
+	public int getInitX() {return initX;}
+	public int getInitY() {return initY;}
+	public StrategyID getStrategyID() {return sId;}
+	void setStrategy(GhostMovement strategy) {this.strategy = strategy;}
+
+	/*
+	 * @brief Faz o update da velocidade, movimento e animacao dos fantasmas
+	 */
 	@Override
 	public void tick() {
-		//Os fantasmas ainda nao se movimentam
+		if((possibleDirections().size()!=2 || isStoped()) && bufferedMovementFlag >= 30) {
+			this.direction = strategy.ghostMovement(possibleDirections());	
+			bufferedMovementFlag = 0;
+		}
+		bufferedMovementFlag ++;
+		updateSpeed();
+		updateMovement();
+		updateAnimation();
 	}
 	
 	/*
-	 * @brief Desenha a imagem a partir de um png que contem todos os frames para a animacao do personagem.
+	 * @brief Verifica e retorna lista de posições possíveis
 	 */
-	@Override
-	public void render(Graphics graphic) {
-		graphic.drawImage(sprite.getSubimage((frame/(2*animationSlowness))*30, (direction - 37)*30, 28, 28)
-				, realY+2, realX+2, null);
+	private ArrayList<Integer> possibleDirections() {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		if (canGo("up")) list.add(KeyEvent.VK_UP);
+		if (canGo("down")) list.add(KeyEvent.VK_DOWN);
+		if (canGo("left")) list.add(KeyEvent.VK_LEFT);
+		if (canGo("right")) list.add(KeyEvent.VK_RIGHT);
+		return list;
 	}
+	
+	@Override
+	public GameObject clone() {
+		return null;
+	}
+
 }

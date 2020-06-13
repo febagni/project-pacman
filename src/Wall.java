@@ -8,37 +8,28 @@
  * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
- * @date 05/2020
+ * @date 06/2020
  * 
  */
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class Wall extends MapObject {
 	
 	public Wall() {
-		try {
-			sprite = ImageIO.read(new File("sprites/PacManWall.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		spritePath = "PacManWall.png";
+		updateSprite();
 	}
 	
-	//Necessario para fabrica abstrata com hashmap
+	//Nao utilizado ainda
 	@Override
-	MapObject cloneMapObject(int x, int y) {
+	public void tick() {}
+
+	/*
+	 * @brief MÃ©todo clone do padrao prototype
+	 */
+	@Override
+	public GameObject clone() {
 		Wall wall = new Wall();
-		wall.setX(x);
-		wall.setY(y);
 		wall.setID(MapID.Wall);
 		return wall;
-	}
-	
-	//Não utilizado ainda
-	@Override
-	public void tick() {
-		//In construction
 	}
 }
