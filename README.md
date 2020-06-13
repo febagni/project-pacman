@@ -129,7 +129,7 @@ Para alternar, em tempo real, entre um e outro durante a partida, basta apertar 
 Tecla    |	Look & Feel | Descrição
 ----------|-----------|-----------
 '1'|Classic| Visual padrão do jogo: voltando aos anos 80!
-'2'|Deep Space| Visual de espaço sideral: polícia e ladrão intergalático!
+'2'|Deep Space| Visual de espaço sideral: polícia e ladrão intergaláctico!
 '3'|Wild West| Visual do velho oeste: dê a volta por cima nos caras pálidas!
 '4'|Under The Sea| Visual subnáutico: tente sobreviver no fundo do mar!
 '5'|Covid Market| Visual em tempos de pandemia: combatendo o coronavírus!
