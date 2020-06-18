@@ -20,7 +20,7 @@ public class EntityHandler {
 	
 	ArrayList<Ghost> ghosts; //Array com todos os fantasmas do jogo
 	PacMan player; //Objeto jogador
-	private int difficulty = 30;
+	private int difficulty = 50;
 	
 	EntityHandler(ArrayList<Ghost> ghosts, PacMan player) {
 		this.ghosts = ghosts;

@@ -35,7 +35,7 @@ public abstract class Entity implements GameObject {
 	protected int xLength, yLength;	//tamanho da matriz nos eixos
 	protected String spritePath; // Caminho dos sprites dos objetos
 	protected int lastDirection = KeyEvent.VK_LEFT; // Ultima dire��o da entidade
-	
+	protected static int step = 2;
 	/*
 	 * @brief Setters e Getters para algumas caracteristicas
 	 */
@@ -43,6 +43,7 @@ public abstract class Entity implements GameObject {
 	public void setRealY(int y) {realY = y;}
 	public int getRealX() {return realX;}
 	public int getRealY() {return realY;}
+	public static void setStep(int newStep) {step = newStep;}
 	public void setSpritePath (String spritePath) {
 		this.spritePath = spritePath;
 	}

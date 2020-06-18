@@ -5,7 +5,7 @@ public class Difficulty1 extends GameState {
 		mapBuilder = new MapBuilder(mapFileName);
 		map = mapBuilder.build();
 		this.difficulty = 10;
-		this.speed = 2;
+		Entity.setStep(1);
 		this.cherryChance = 0;
 		this.boostedTime = 2.0f;
 		this.lives = Integer.MAX_VALUE;

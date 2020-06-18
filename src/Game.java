@@ -17,6 +17,7 @@ import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
 	
+	private GameState state;
 	private static final long serialVersionUID = 1L; 
 	private Thread thread;
 	private boolean running = false;
@@ -32,6 +33,7 @@ public class Game extends Canvas implements Runnable {
 	Window window; //Tela do jogo
 	
 	public Game(String mapFileName) {
+		state = new Difficulty1(mapFileName);
 		MapBuilder mapBuilder = new MapBuilder(mapFileName); //Le o mapa
 		mapHandler = new MapHandler(mapBuilder.getHeight(), mapBuilder.getWidth()); //Constroi o handler com o mapa
 		player = mapBuilder.getPlayer(); //Pega o jogador
@@ -64,12 +66,32 @@ public class Game extends Canvas implements Runnable {
 		}
 	} 
 	
+	private void setState(int difficulty, String mapFileName) {
+		switch(difficulty) {
+			case 1:
+				this.state = new Difficulty1(mapFileName);
+				break;
+			case 2:
+				this.state = new Difficulty2(mapFileName);
+				break;
+			case 3:
+				this.state = new Difficulty3(mapFileName);
+				break;
+			case 4:
+				this.state = new Difficulty4(mapFileName);
+				break;
+			case 5:
+				this.state = new Difficulty5(mapFileName);
+				break;
+		}
+	}
+	
 	/*
 	 * @brief Pattern GameLoop: Loop do jogo que mantem ele atualizado em tempo real
 	 */
 	public void run() {
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 60.0; //Frequencia em Hz de ticks
+		double amountOfTicks = 120.0; //Frequencia em Hz de ticks
         double ns = 1000000000 / amountOfTicks; 
         double delta = 0;
         long timer = System.currentTimeMillis();

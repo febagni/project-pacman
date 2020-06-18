@@ -51,7 +51,7 @@ public class Ghost extends Entity {
 	 */
 	@Override
 	public void tick() {
-		if((possibleDirections().size()!=2 || isStoped()) && bufferedMovementFlag >= 30) {
+		if((possibleDirections().size()!=2 || isStoped()) && bufferedMovementFlag >= 15) {
 			this.direction = strategy.ghostMovement(possibleDirections());	
 			bufferedMovementFlag = 0;
 		}
