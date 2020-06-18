@@ -74,7 +74,7 @@ public class Game extends Canvas implements Runnable {
         double delta = 0;
         long timer = System.currentTimeMillis();
         
-        @SuppressWarnings("unused")
+        //@SuppressWarnings("unused")
 		int frames = 0;
         while(running) {
             long now = System.nanoTime();

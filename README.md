@@ -40,7 +40,7 @@ Vou apenas descrever alguns requisitos obrigatórios; fiquem à vontade para col
   
 4) Utilizando o padrão Fábrica Abstrata, implemente a possibilidade do jogo ter diferentes aparências (look-and-feel). Assim, facilmente, o jogador poderá escolher se o espaço do jogo terá uma aparência de supermercado em tempos de covid, velho oeste, espaço sideral ou os corredores do IME, por exemplo. Quando o usuário selecionar uma nova aparência, todos os elementos gráficos do jogo devem se redesenhar imediatamente.  
   
-5) Utilize o padrão State para representar as diferentes fases do jogo. Cada fase deve ser um pouquinho mais difícil que a anterior.  
+5) Utilize o padrão State para representar as diferentes fases do jogo. Cada fase deve ser um pouquinho mais difícil que a anterior.
   
 6) Utilize o padrão Decorator para acrescentar algum comportamento dinâmico em um jogador quando ele pega alguma coisa que lhe dá super-poderes durante alguns segundos (como o Mario do Super Mario Bros quando come o cogumelo e fica grande e ligadão).  
   
