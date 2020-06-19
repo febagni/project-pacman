@@ -27,6 +27,7 @@ public class Game extends Canvas implements Runnable {
 	private int height; //Altura da tela criada
 	private int maxPoints; //Numero maximo de pontos atingiveis pelo jogador
 	private int fixedTickFlag = 0; //Numero de miniticks
+	private String mapFileName;
 	private static final int fixedTickMax = 60; //Numero de miniticks a serem atingidos a cada fixedTick
 	private MapHandler mapHandler; //Handler dos objetos que nao se movem
 	private EntityHandler entityHandler; //Handler dos objetos que se movem
@@ -34,15 +35,20 @@ public class Game extends Canvas implements Runnable {
 	Window window; //Tela do jogo
 	
 	public Game(String mapFileName) {
+		this.mapFileName = mapFileName;
 		state = new Difficulty1(mapFileName);
-		MapBuilder mapBuilder = new MapBuilder(mapFileName); //Le o mapa
+		gamePrepare(mapFileName);
+		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
+	}
+	
+	public void gamePrepare(String newMapFile) {
+		MapBuilder mapBuilder = new MapBuilder(newMapFile); //Le o mapa
 		mapHandler = new MapHandler(mapBuilder.getHeight(), mapBuilder.getWidth()); //Constroi o handler com o mapa
 		player = mapBuilder.getPlayer(); //Pega o jogador
 		width = mapBuilder.getWidth()*MapObject.squareSize; //Pega as dimensoes da tela
 		height = mapBuilder.getHeight()*MapObject.squareSize;
 		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
 		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
-		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 		maxPoints = mapBuilder.getMaxPoints();	//Pega os pontos maximos que podem ser feitos no jogo
 	}
 
@@ -118,37 +124,38 @@ public class Game extends Canvas implements Runnable {
        stop();
 	}
 	
-	private void pause() {
-		paused = true;
-	}
-	
 	/*
 	 * @brief Funcao que renderiza todos os objetos do jogo
 	 */
 	private void render() {
-		//Use with BufferedImage
-		BufferStrategy bufferStrategy = this.getBufferStrategy();
-        if (bufferStrategy == null) {
-            this.createBufferStrategy(3);
-            return;
-        }
-
-        Graphics graphics = bufferStrategy.getDrawGraphics();
-        //Primeira iteracao: renderiza o mapa inteiro
-        if (firstRender) {
-        	mapHandler.renderMap(graphics);
-        	firstRender = false;
-        }      
-        mapHandler.renderMap(graphics);
-        entityHandler.render(graphics);
-        graphics.dispose();
-        bufferStrategy.show();
+		if(paused) {
+			
+		}
+		else {
+			//Use with BufferedImage
+			BufferStrategy bufferStrategy = this.getBufferStrategy();
+	        if (bufferStrategy == null) {
+	            this.createBufferStrategy(3);
+	            return;
+	        }
+	
+	        Graphics graphics = bufferStrategy.getDrawGraphics();
+	        //Primeira iteracao: renderiza o mapa inteiro
+	        if (firstRender) {
+	        	mapHandler.renderMap(graphics);
+	        	firstRender = false;
+	        }      
+	        mapHandler.renderMap(graphics);
+	        entityHandler.render(graphics);
+	        graphics.dispose();
+	        bufferStrategy.show();
+		}
 	}
 	
 	/*
 	 * @brief Funcao que devolve se o jogador ja pegou todos os pontos presentes no mapa
 	 */
-	private boolean gotAllPoints() {
+	public boolean gotAllPoints() {
 		return player.getPoints() >= maxPoints;
 	}
 	
@@ -165,7 +172,7 @@ public class Game extends Canvas implements Runnable {
 	 */
 	private void tick() {
 		if(paused) {
-			System.out.println("WAIT A MINUTE");
+			//rotina de pause
 		} else {
 			if(player.getLives() == 0) {
 				System.out.println("Perdeu :(");
@@ -177,11 +184,27 @@ public class Game extends Canvas implements Runnable {
 				entityHandler.playerDeathReset();
 				System.out.println("Vidas:" + player.getLives());
 			}
-			if(gotAllPoints()) {	
+			if(gotAllPoints()) {
+				if(state.getLevelNumber() == 5) {
+					System.out.println("voce eh o bichao mesmo ein doido");
+					stop();
+				}
 				System.out.print("Ganhou!!!");
-				stop();
+				paused = true;
 			}
 			fixedTick();
+		}
+	}
+	
+	public void reset() {
+		gamePrepare(mapFileName);
+	}
+	
+	public void nextLevel() {
+		gamePrepare(mapFileName);
+		if(state.getLevelNumber() < 5) {
+			setState(state.getLevelNumber() + 1, mapFileName);
+			System.out.println("Nivel:" + state.getLevelNumber());
 		}
 	}
 	

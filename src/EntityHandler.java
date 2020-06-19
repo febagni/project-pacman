@@ -20,7 +20,7 @@ public class EntityHandler {
 	
 	ArrayList<Ghost> ghosts; //Array com todos os fantasmas do jogo
 	PacMan player; //Objeto jogador
-	protected static int difficulty;	//dificuldade do jogo
+	protected static int mixedFollowRate;	//dificuldade do jogo
 	
 	EntityHandler(ArrayList<Ghost> ghosts, PacMan player) {
 		this.ghosts = ghosts;
@@ -31,7 +31,7 @@ public class EntityHandler {
 	/*
 	 * @brief Setter da dificuldade do jogo 
 	 */
-	public static void setDifficulty(int newDifficulty) {difficulty = newDifficulty;}
+	public static void setMixedFollowRate(int newFollowRate) {mixedFollowRate = newFollowRate;}
 	
 	/*
 	 * @brief Setter das estrat�gias aos fantasmas
@@ -86,7 +86,7 @@ public class EntityHandler {
 	private void updateStrategy(Ghost ghost) {
 		if(ghost.getStrategyID() == StrategyID.Mixed) {
 			int randomNumber = randomNumber();
-			if(randomNumber < difficulty) {
+			if(randomNumber < mixedFollowRate) {
 				ghost.setStrategy(new DumbFollowMovement(ghost, player));
 			}
 			else {

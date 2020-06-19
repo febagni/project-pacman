@@ -2,9 +2,10 @@
 public class Difficulty5 extends GameState {
 
 	Difficulty5(String mapFileName) {
+		levelNumber = 5;
 		mapBuilder = new MapBuilder(mapFileName);
 		map = mapBuilder.build();
-		EntityHandler.setDifficulty(90);
+		EntityHandler.setMixedFollowRate(90);
 		Entity.setStep(2);
 		this.cherryChance = 500;
 		this.boostedTime = 0.5f;

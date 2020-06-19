@@ -1,7 +1,8 @@
 
 public abstract class GameState {
 	
-	protected int difficulty;
+	protected int levelNumber;
+	protected int mixedFollowRate;
 	protected int speed;
 	protected int cherryChance;
 	protected float boostedTime;
@@ -12,7 +13,8 @@ public abstract class GameState {
 	/*
 	 * @brief getters da classe 
 	 */
-	int getDifficulty() {return this.difficulty;}
+	int getLevelNumber() {return this.levelNumber;}
+	int getMixedFollowRate() {return this.mixedFollowRate;}
 	int getSpeed() {return this.speed;}
 	int getCherryChance() {return this.cherryChance;}
 	float getBoostTime(){return this.boostedTime;}

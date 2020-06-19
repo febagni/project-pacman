@@ -29,6 +29,8 @@ public class Controls extends JPanel implements KeyListener{
 		this.player = game.player;
 	}
 	
+	void setPlayer(PacMan player) {this.player = player;}
+	
 	/*
 	 * @brief Pega o input do teclado e traduz para a direcao do player
 	 * 
@@ -61,7 +63,23 @@ public class Controls extends JPanel implements KeyListener{
 			game.setSkin();
 		}
 		if (key == KeyEvent.VK_P) {
-			game.paused = !game.paused;
+			if(!game.gotAllPoints()) {
+				game.paused = !game.paused;	
+			}
+		}
+		if (key == KeyEvent.VK_N) { //Next Level
+			if(game.gotAllPoints() && game.paused) {
+				game.nextLevel();
+				setPlayer(game.player);
+				game.paused = false;
+			}
+		}
+		if (key == KeyEvent.VK_R) { //Reset Game
+			if(game.gotAllPoints() && game.paused) {
+				game.reset();
+				setPlayer(game.player);
+				game.paused = false;
+			}
 		}
 	}
 	
