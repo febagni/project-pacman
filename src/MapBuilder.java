@@ -34,7 +34,7 @@ public class MapBuilder {
 		ids.add(StrategyID.Random);
 		ids.add(StrategyID.Follow);
 		ids.add(StrategyID.Mixed);
-		ids.add(StrategyID.Escape);
+		//ids.add(StrategyID.Escape);
 		maxPoints = 0;
 	}
 	

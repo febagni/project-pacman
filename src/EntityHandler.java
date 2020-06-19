@@ -20,15 +20,21 @@ public class EntityHandler {
 	
 	ArrayList<Ghost> ghosts; //Array com todos os fantasmas do jogo
 	PacMan player; //Objeto jogador
-	private int difficulty = 50;
+	protected static int difficulty;	//dificuldade do jogo
 	
 	EntityHandler(ArrayList<Ghost> ghosts, PacMan player) {
 		this.ghosts = ghosts;
 		this.player = player;
 		setAllStrategies();
 	}
+	
 	/*
-	 * @brief setter das estrat�gias aos fantasmas
+	 * @brief Setter da dificuldade do jogo 
+	 */
+	public static void setDifficulty(int newDifficulty) {difficulty = newDifficulty;}
+	
+	/*
+	 * @brief Setter das estrat�gias aos fantasmas
 	 */
 	private void setAllStrategies() {
 		for (Ghost ghost: ghosts) {

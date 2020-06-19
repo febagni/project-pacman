@@ -60,6 +60,9 @@ public class Controls extends JPanel implements KeyListener{
 			spriteFactory.create("CovidMarket");
 			game.setSkin();
 		}
+		if (key == KeyEvent.VK_P) {
+			game.paused = !game.paused;
+		}
 	}
 	
 	//metodos da interface nao utillizadas 

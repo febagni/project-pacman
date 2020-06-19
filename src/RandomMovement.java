@@ -12,23 +12,26 @@
  * 
  */
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomMovement implements GhostMovement {
 
 	/*
-	 * @brief Executa a direção escolhida para o movimento dos fantasmas
+	 * @brief Executa a direï¿½ï¿½o escolhida para o movimento dos fantasmas
 	 */
 	@Override
 	public int ghostMovement(ArrayList<Integer> possibleDirections) {
+		if(possibleDirections.size()==0) return KeyEvent.VK_LEFT;
 		return possibleDirections.get(getRandomPosition(possibleDirections.size()));
 	}
 
 	/*
-	 * @brief Gera uma direção aleatória para o fantasma seguir
+	 * @brief Gera uma direï¿½ï¿½o aleatï¿½ria para o fantasma seguir
 	 */
 	private int getRandomPosition(int max) {
+		if(max == 0) return 0;
 		Random random = new Random();
 		return random.nextInt(max); 
 	}

@@ -21,6 +21,7 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; 
 	private Thread thread;
 	private boolean running = false;
+	boolean paused = false;
 	private boolean firstRender = true; //Ve se eh a primeira iteracao
 	private int width; //Largura da tela criada
 	private int height; //Altura da tela criada
@@ -117,6 +118,10 @@ public class Game extends Canvas implements Runnable {
        stop();
 	}
 	
+	private void pause() {
+		paused = true;
+	}
+	
 	/*
 	 * @brief Funcao que renderiza todos os objetos do jogo
 	 */
@@ -159,21 +164,25 @@ public class Game extends Canvas implements Runnable {
 	 * @brief Atualiza os objetos do jogo
 	 */
 	private void tick() {
-		if(player.getLives() == 0) {
-			System.out.println("Perdeu :(");
-			stop();
+		if(paused) {
+			System.out.println("WAIT A MINUTE");
+		} else {
+			if(player.getLives() == 0) {
+				System.out.println("Perdeu :(");
+				stop();
+			}
+			mapHandler.tick();
+			entityHandler.tick();
+			if(entityHandler.playerTouchedGhost()) {
+				entityHandler.playerDeathReset();
+				System.out.println("Vidas:" + player.getLives());
+			}
+			if(gotAllPoints()) {	
+				System.out.print("Ganhou!!!");
+				stop();
+			}
+			fixedTick();
 		}
-		mapHandler.tick();
-		entityHandler.tick();
-		if(entityHandler.playerTouchedGhost()) {
-			entityHandler.playerDeathReset();
-			System.out.println("Vidas:" + player.getLives());
-		}
-		if(gotAllPoints()) {
-			System.out.print("Ganhou!!!");
-			stop();
-		}
-		fixedTick();
 	}
 	
 	/*
