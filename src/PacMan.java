@@ -16,7 +16,8 @@ import java.awt.event.KeyEvent;
 
 public class PacMan extends Entity {
 
-	protected boolean boosted;	//verdadeira se o pacman comeu um boost
+	protected int boostedTimeMax;	// numero maximos de ticks para o pacman continuar boostado
+	protected int boostedTime;	//ticks restantes para o pacman continuar boostado
 	protected int points;	//contador dos pontos
 	protected int lastDirection = KeyEvent.VK_LEFT; //Variavel que contem a ultima direcao que o Pacman estava olhando
 	protected int lives; //Quantidade de vidas que o jogador tem sobrando
@@ -26,7 +27,7 @@ public class PacMan extends Entity {
 	public PacMan(){
 		spritePath = "pacman.png";
 		lives = 3;  //Inicia o jogo com tres vidas (por enquanto)
-		boosted = false;	//inicializa como falso
+		boostedTime = 0;	//inicializa como falso
 		points = 0;	//inicializa os pontos como zero
 		frame = 0;	//inicializa a frame como zero
 		this.direction = KeyEvent.VK_LEFT;	//inicializa a direcao para a esquerda 
@@ -48,6 +49,11 @@ public class PacMan extends Entity {
 	void updateLives() {
 		lives--;
 	}
+	void setLives(int lives) {
+		this.lives = lives;
+	}
+	
+	void setBoostedTime(int boostedTimeMax) {this.boostedTimeMax = boostedTimeMax;}
 	
 	/*
 	 * @brief Metodo que atualiza o chao que o pacman esta atravessando
@@ -63,7 +69,7 @@ public class PacMan extends Entity {
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
 			map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
 			map[getX()][getY()].updateSprite();
-			boosted = true;	//seta o boosted como verdade
+			boostedTime = boostedTimeMax;	//seta o boosted como verdade
 		} else if (map[getX()][getY()].getID() == MapID.FloorWithCherry) {	//chao com a cherry
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para chao normal
 			map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
@@ -88,6 +94,7 @@ public class PacMan extends Entity {
 		updateAnimation();
 		updateSpeed();
 		updateMovement();
+		if (boostedTime > 0) boostedTime--;
 	}
 	
 	@Override

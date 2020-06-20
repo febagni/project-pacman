@@ -8,7 +8,7 @@ public class Difficulty5 extends GameState {
 		EntityHandler.setMixedFollowRate(90);
 		Entity.setStep(2);
 		this.cherryChance = 500;
-		this.boostedTime = 0.5f;
+		this.boostedTime = 600;
 		this.lives = 1;
 		this.pointMultiplier = 3;
 	}

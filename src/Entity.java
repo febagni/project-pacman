@@ -29,7 +29,7 @@ public abstract class Entity implements GameObject {
 	protected int direction;	//direcao da entidade
 	protected int frame;	//frame da animacao do sprite da entidade
 	protected BufferedImage sprite;	//sprite da entidade
-	protected final int animationSlowness = 3;	//fator da velocidade da animacao
+	protected final int animationSlowness = 6;	//fator da velocidade da animacao
 	protected int realX, realY;	//coordenadas do sprite da entidade na tela
 	protected int speedX, speedY;	//velocidades nos eixos cartesianos do sprite na tela
 	protected int xLength, yLength;	//tamanho da matriz nos eixos

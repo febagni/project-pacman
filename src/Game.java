@@ -38,6 +38,7 @@ public class Game extends Canvas implements Runnable {
 		this.mapFileName = mapFileName;
 		state = new Difficulty1(mapFileName);
 		gamePrepare(mapFileName);
+		setStateVariables();
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 	}
 	
@@ -66,6 +67,7 @@ public class Game extends Canvas implements Runnable {
 	 */
 	public synchronized void stop() {
 		try {
+			System.exit(-1);
 			thread.join();
 			running = false;
 		} catch (Exception e) {
@@ -93,6 +95,11 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 	
+	void setStateVariables(){
+		player.setLives(state.getLives());
+		player.setBoostedTime(state.getBoostTime());
+	}
+	
 	/*
 	 * @brief Pattern GameLoop: Loop do jogo que mantem ele atualizado em tempo real
 	 */
@@ -102,8 +109,6 @@ public class Game extends Canvas implements Runnable {
         double ns = 1000000000 / amountOfTicks; 
         double delta = 0;
         long timer = System.currentTimeMillis();
-        
-        //@SuppressWarnings("unused")
 		int frames = 0;
         while(running) {
             long now = System.nanoTime();
@@ -129,7 +134,6 @@ public class Game extends Canvas implements Runnable {
 	 */
 	private void render() {
 		if(paused) {
-			
 		}
 		else {
 			//Use with BufferedImage
@@ -186,8 +190,7 @@ public class Game extends Canvas implements Runnable {
 			}
 			if(gotAllPoints()) {
 				if(state.getLevelNumber() == 5) {
-					System.out.println("voce eh o bichao mesmo ein doido");
-					stop();
+					paused = true;
 				}
 				System.out.print("Ganhou!!!");
 				paused = true;
@@ -205,7 +208,11 @@ public class Game extends Canvas implements Runnable {
 		if(state.getLevelNumber() < 5) {
 			setState(state.getLevelNumber() + 1, mapFileName);
 			System.out.println("Nivel:" + state.getLevelNumber());
+		} else {
+			System.out.println("voce eh o bichao mesmo ein doido");
+			stop();
 		}
+		setStateVariables();	
 	}
 	
 	/*
@@ -218,6 +225,7 @@ public class Game extends Canvas implements Runnable {
 		} else {
 			entityHandler.fixedTick();
 			fixedTickFlag = 0;
+			System.out.println(player.boostedTime);
 		}
 	}
 	
