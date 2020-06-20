@@ -25,6 +25,7 @@ public class MapBuilder {
 	int strategyIndex = 0;	//Indice das estrategias
 	MapFactory mapFactory = new MapFactory();	//Inicializador da fabrica abstrata do mapa
 	ArrayList<StrategyID> ids = new ArrayList<>();
+	ArrayList<Integer[]> cherryPosition = new ArrayList<>();
 	
 	MapBuilder (String fileName) {
 		ghosts = new ArrayList<Ghost>();
@@ -76,13 +77,18 @@ public class MapBuilder {
 					maxPoints += 10;
 				}
 				else if (line.charAt(j) == '%') {	//Se for uma cherry, adiciona 100 pontos para a contagem total de pontos
-					maxPoints += 100;
+					Integer[] position = {i,j};
+					cherryPosition.add(position);
 				}
 			}
 			i++;
 		}
 		player.setMap(map); //Atribui ao player o mapa criado
 		return map;	//retorna o mapa
+	}
+	
+	public ArrayList<Integer[]> getCherryPosition() {
+		return cherryPosition;
 	}
 	
 	/*

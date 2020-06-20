@@ -7,7 +7,7 @@ public class Difficulty3 extends GameState {
 		map = mapBuilder.build();
 		EntityHandler.setMixedFollowRate(50);
 		Entity.setStep(1);
-		this.cherryChance = 100;
+		this.cherryChance = 3;
 		this.boostedTime = 1200;
 		this.lives = 3;
 		this.pointMultiplier = 1;

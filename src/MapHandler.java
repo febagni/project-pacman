@@ -12,6 +12,8 @@
  * 
  */
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Random; 
 
 public class MapHandler {
 	
@@ -19,11 +21,17 @@ public class MapHandler {
 	GameObject[][] map; //Mapa dos objetos imoveis
 	private int xLength; //Numero de linhas do mapa
 	private int yLength; //Numero de colunas do mapa
+	private int cherryChance;
+	private ArrayList<Integer[]> cherryPosition;
 
 	MapHandler(int rows, int columns){
 		this.xLength = rows;
 		this.yLength = columns;
 		map = new GameObject[rows][columns];
+	}
+	
+	public void setCherryPosition(ArrayList<Integer[]> cherryPosition) {
+		this.cherryPosition = cherryPosition;
 	}
 	
 	// Setters
@@ -38,6 +46,10 @@ public class MapHandler {
         	}
     	}
     }
+    
+    public void setCherryChance(int chance){
+    	this.cherryChance = chance;
+    }
 	
     /*
 	 * @brief Atualiza os objetos do mapa
@@ -49,6 +61,19 @@ public class MapHandler {
     		}
     	}
     }
+    
+    public void fixedTick() {
+    	Random random = new Random();
+		int chance = random.nextInt(100);
+		if(chance < cherryChance) {
+			for(Integer[] position : cherryPosition) {
+				map[position[0]][position[1]].setID(MapID.FloorWithCherry);
+				map[position[0]][position[1]].setSpritePath(SpritesManager.getSpritePath(MapID.FloorWithCherry));
+				map[position[0]][position[1]].updateSprite();
+			}
+	    }
+    }
+
     
     /*
 	 * @brief Funcao que renderiza todos os objetos do mapa

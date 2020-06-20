@@ -74,7 +74,7 @@ public class PacMan extends Entity {
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para chao normal
 			map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
 			map[getX()][getY()].updateSprite();
-			points += 100;	//soma os pontos extras
+//			points += 100;	//soma os pontos extras
 		}
 	}
 	

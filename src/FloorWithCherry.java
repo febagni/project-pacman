@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 /*
  * @file FloorWithCherry.java
  * 
@@ -14,7 +16,11 @@
 
 public class FloorWithCherry extends MapObject{
 
+	private boolean hasCherry;
+	private int cherryChance;
+	
     FloorWithCherry(){
+    	hasCherry = true;
     	spritePath = "PacManFloorWithCherry.png";
     	updateSprite();
     }
@@ -27,6 +33,15 @@ public class FloorWithCherry extends MapObject{
         FloorWithCherry floor = new FloorWithCherry();
         floor.setID(MapID.FloorWithCherry);
         return floor;
+    }
+    
+    public void setHasCherry(boolean hasCherry) {
+    	this.hasCherry = hasCherry;
+    }
+    
+    @Override
+    public void render(Graphics g) {
+    	
     }
     
     //Nao utilizado 
