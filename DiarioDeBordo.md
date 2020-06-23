@@ -18,7 +18,7 @@ O segundo Stramer foi o @GabrielKishida, nesse "round" foi feita a classe MapBui
 
 As observações iniciais foram a respeito de Hashmap e da forma com o qual o Map e MapObjects serão organizados.
 
-O primeiro Streamer do dia foi @guazco. Em seu "round", determinamos o enum MapID -- que determina o ID dos objetos que se situarão no mapa do jogo. Após isso, começamos a utilizar a classe HashMap para "preencher" uma matriz de MapObjects (a matriz MapObject map[][] ) com os objetos desejados. Commit relacionado: c0c3369001cb92da306ea413de9b8e8673b16f0f
+O primeiro Streamer do dia foi @guazco. Em seu "round", determinamos o enum MapID -- que determina o ID dos objetos que se situarão no mapa do jogo. Após isso, começamos a utilizar a classe HashMap para "preencher" uma matriz de MapObjects (a matriz MapObject map ) com os objetos desejados. Commit relacionado: c0c3369001cb92da306ea413de9b8e8673b16f0f
 
 O segundo Streamer do dia foi @febagni. Felipe ficou encarregado de "faxinar" os restos mortais do código de Gustavo, e após isso, gerou a classe Game (que contém o *game loop* pattern). Desenvolvemos também às classes relacionadas à janela (Window), e renderizamos os gráficos do MapObjects. No entanto, o mapa estava invertido na janela representada; um bug que será corrigido no próximo encontro. Commit relacionado: dde37cd27e689984caa642f12dfbc51f583627d6
 

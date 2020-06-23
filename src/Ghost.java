@@ -21,30 +21,40 @@ public class Ghost extends Entity {
 	GhostMovement strategy;	//estrategia do fantasma
 	int bufferedMovementFlag = 0;	//cooldown para a mudanca de direcao do fantasma
 	private StrategyID sId;	//id da estrategia relacionada ao objeto fantasma
+	private String colorPath;
 	
 	public Ghost (int x, int y, StrategyID id) {
 		initX = x;
 		initY = y;
 		sId = id;
-		//define a skin do sprite de acordo com a sua estrategia
-		if(id == StrategyID.Follow) {
-			spritePath = "RedBlinky.png";
-		} else if(id == StrategyID.Random) {
-			spritePath = "PinkPinky.png";
-		} else if(id == StrategyID.Mixed) {
-			spritePath = "OrangeClyde.png";
-		} else if(id == StrategyID.Escape) {
-			spritePath = "CyanInky.png";
+		if(sId == StrategyID.Follow) {
+			colorPath = "RedBlinky.png";
+		} else if(sId == StrategyID.Random) {
+			colorPath = "PinkPinky.png";
+		} else if(sId == StrategyID.Mixed) {
+			colorPath = "OrangeClyde.png";
 		}
 		updateSprite();
 		this.direction = KeyEvent.VK_LEFT;
 	}
 	
+	
 	//Getters e Setters
 	public int getInitX() {return initX;}
 	public int getInitY() {return initY;}
 	public StrategyID getStrategyID() {return sId;}
+	public void setStrategyID(StrategyID id) {sId = id;}
 	void setStrategy(GhostMovement strategy) {this.strategy = strategy;}
+	
+	void setOriginalStrategy() {
+		if(colorPath.contains("Red")) {
+			sId = StrategyID.Follow;
+		} else if(colorPath.contains("Pink")) {
+			sId = StrategyID.Random;
+		} else if(colorPath.contains("Orange")) {
+			sId = StrategyID.Mixed;
+		}
+	}
 
 	/*
 	 * @brief Faz o update da velocidade, movimento e animacao dos fantasmas
@@ -77,5 +87,17 @@ public class Ghost extends Entity {
 	public GameObject clone() {
 		return null;
 	}
-
+	
+	@Override
+	public void updateSprite() {
+		//define a skin do sprite de acordo com a sua estrategia
+		if(sId == StrategyID.Escape) {
+			spritePath = "ScaryWary.png";
+		} else if(sId == StrategyID.EndOfEscape) {
+			spritePath = "Transition" + spritePath;
+		} else {
+			spritePath = colorPath;
+		}
+		super.updateSprite();
+	}
 }

@@ -50,6 +50,20 @@ public class EntityHandler {
 		}
 	}
 	
+	public void setAllGhostsEscape() {
+		for(Ghost ghost: ghosts) {
+			ghost.setStrategyID(StrategyID.Escape);
+			ghost.setStrategy(new GetawayMovement(ghost,player));
+		}
+	}
+	
+	public void setAllGhostsOriginalStrategy() {
+		for(Ghost ghost: ghosts) {
+			ghost.setOriginalStrategy();
+		}
+		setAllStrategies();
+	}
+	
 	/*
 	 * @brief Funcao que faz todas as entidades do jogo atualizarem
 	 */
