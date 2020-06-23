@@ -33,6 +33,7 @@ public class Game extends Canvas implements Runnable {
 	private EntityHandler entityHandler; //Handler dos objetos que se movem
 	PacMan player; //Objeto que representa o jogador
 	Window window; //Tela do jogo
+	static SoundManager sound;
 	
 	public Game(String mapFileName) {
 		this.mapFileName = mapFileName;
@@ -52,6 +53,7 @@ public class Game extends Canvas implements Runnable {
 		mapHandler.setCherryPosition(mapBuilder.getCherryPosition());
 		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		maxPoints = mapBuilder.getMaxPoints();	//Pega os pontos maximos que podem ser feitos no jogo
+		sound = new SoundManager("audio/iliketosing.aif");
 	}
 
 	/*

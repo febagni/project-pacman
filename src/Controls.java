@@ -64,7 +64,12 @@ public class Controls extends JPanel implements KeyListener{
 		}
 		if (key == KeyEvent.VK_P) {
 			if(!game.gotAllPoints()) {
-				game.paused = !game.paused;	
+				game.paused = !game.paused;
+				if(game.paused) {
+					game.sound.pause();
+				} else {
+					game.sound.resumeAudio();
+				}
 			}
 		}
 		if (key == KeyEvent.VK_N) { //Next Level
@@ -72,6 +77,7 @@ public class Controls extends JPanel implements KeyListener{
 				game.nextLevel();
 				setPlayer(game.player);
 				game.paused = false;
+				game.sound.restart();
 			}
 		}
 		if (key == KeyEvent.VK_R) { //Reset Game
@@ -79,6 +85,7 @@ public class Controls extends JPanel implements KeyListener{
 				game.reset();
 				setPlayer(game.player);
 				game.paused = false;
+				game.sound.restart();
 			}
 		}
 		if (key == KeyEvent.VK_E) { //Reset Game

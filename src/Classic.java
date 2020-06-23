@@ -1,3 +1,8 @@
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 /*
  * @file Classic.java
  * 
@@ -20,6 +25,8 @@ public class Classic implements Skin {
 	@Override
 	public Skin clone() {
 		SpritesManager.folder = "Classic/";
+		@SuppressWarnings("unused")
+		SoundManager sound = new SoundManager("audio/iliketosing.aif");	
 		return new Classic();
 	}
 }
