@@ -159,3 +159,22 @@ O segundo streamer foi o @febagni e nesse "round" foi feito a segunda e última 
 
 Observações Finais: 
 <a href="https://www.youtube.com/watch?v=688OPQ9WFpA"/>Link Relevante</a>
+
+## 16/06/2020   
+
+Após a primeira entrega, nós nos reunimos para reassisitir os vídeos sobe o <a href="https://www.youtube.com/watch?v=Z93dSsQzuCI&list=PLTeQ2u81sjqfsFNWrUCIoqJZBSJrai8M7&index=17"/>padrão State</a> e nos organizar quanto aos afazeres para essa próxima entrega, como definir quais fatores seriam alterados com as diferentes dificuldades do jogo, como seria o controle de fase a fase, entre outras coisas.   
+
+## 18/06/2020    
+
+O primeiro streamer foi o @AleMarquis, nesse "round" foi iniciada a implementação do padrão state: criando as classes das diferentes dificuldades e a classe do GameState. Commit relacionado: 77a505276f868a21006987bdde1c0198d37f6517   
+O segundo streamer foi o @guazco e nesse "round" foram implementadas características e métodos relacionados às dificuldades e também foram feitos testes em relação aos mesmos. Commit relacionado: aeef7a9f326edf8530bef10baf123995272b2f09   
+
+## 19/06/2020   
+
+O primeiro streamer foi o @febagni, nesse "round" foi adicionado um botão de pausa (tecla 'P') para pausar o jogo, foi encontrado e ajustado um bug relacionado a movimentação do fantasma, quando é cercado de paredes, além de dar continuidade a implementação das dificuldades. Commit relacionado: bb7a7d075d59f1465c78104d9733a158752638ba   
+O segundo streamer foi o @GabrielKishida, nesse "round" foram implementados os botões de Reset (tecla 'R'), adicionando a função de resetar o jogo quando pausado ou quando o jogo termina; e de "Next Level" (tecla 'N'), adicionando a função de ir para a próxima fase quando o jogo termina. COmmit relacionado: aebee2ba326a27055e910db13542ac274f8e2210   
+
+## 20/06/2020   
+
+O primeiro streamer foi o @AleMarquis, nesse "round" foi adicionado um botão Exit (tecla 'E'), para poder fechar o jogo quando pausado e quando o jogo termina. Também foi feito um método que atualiza algumas características de acordo com o State de dificuldade. Commit relacionado: 05898a7a38c82ed8cd7f08a9795d4ae1a411e377   
+O segundo streamer foi o @guazco, nesse "round" foram consertados bugs em relação a cherry, adicionados métodos para a probabilidade de aparecimento de cherries de acordo com o state de dificuldade . Além de dar continuidade a implementação das dificuldades. Commit relacionado: b268cd41a1b3674cef515965991ed28ae01c6ee3   
