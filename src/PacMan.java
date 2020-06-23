@@ -18,7 +18,9 @@ public class PacMan extends Entity {
 
 	protected int boostedTimeMax;	// numero maximos de ticks para o pacman continuar boostado
 	protected int boostedTime;	//ticks restantes para o pacman continuar boostado
+	protected boolean lastBoostDrop;
 	protected int points;	//contador dos pontos
+	protected int extraPoints;	//pontos extras relacionados a cherries
 	protected int lastDirection = KeyEvent.VK_LEFT; //Variavel que contem a ultima direcao que o Pacman estava olhando
 	protected int lives; //Quantidade de vidas que o jogador tem sobrando
 	protected int initialPositionX;	//Posicao x inicial do pacman 
@@ -26,6 +28,7 @@ public class PacMan extends Entity {
 	
 	public PacMan(){
 		spritePath = "pacman.png";
+		lastBoostDrop = false;
 		lives = 3;  //Inicia o jogo com tres vidas (por enquanto)
 		boostedTime = 0;	//inicializa como falso
 		points = 0;	//inicializa os pontos como zero
@@ -74,8 +77,16 @@ public class PacMan extends Entity {
 			map[getX()][getY()].setID(MapID.Floor);	//atualiza para chao normal
 			map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
 			map[getX()][getY()].updateSprite();
-//			points += 100;	//soma os pontos extras
+			extraPoints += 100;	//soma os pontos extras
 		}
+	}
+	
+	int totalPoints() {
+		return points+extraPoints;
+	}
+	
+	boolean isBoosted() {
+		return boostedTime>0;
 	}
 	
 	/*
@@ -94,7 +105,11 @@ public class PacMan extends Entity {
 		updateAnimation();
 		updateSpeed();
 		updateMovement();
-		if (boostedTime > 0) boostedTime--;
+		if (boostedTime > 0) {
+			if (boostedTime == 1) lastBoostDrop = true;
+			boostedTime--;
+		}
+		
 	}
 	
 	@Override

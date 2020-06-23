@@ -110,6 +110,7 @@ public class Game extends Canvas implements Runnable {
         double ns = 1000000000 / amountOfTicks; 
         double delta = 0;
         long timer = System.currentTimeMillis();
+		@SuppressWarnings("unused")
 		int frames = 0;
         while(running) {
             long now = System.nanoTime();
@@ -123,7 +124,7 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                System.out.println("FPS " + frames);
+                //System.out.println("FPS " + frames);
                 frames = 0;
             }
        }    
@@ -189,11 +190,19 @@ public class Game extends Canvas implements Runnable {
 				entityHandler.playerDeathReset();
 				System.out.println("Vidas:" + player.getLives());
 			}
+			if(player.isBoosted()) {
+				//player = new BoostedPacmanDecorator(player);
+			}
+			if(player.lastBoostDrop) {
+				//player = new PacMan(player);
+			}
+			
 			if(gotAllPoints()) {
 				if(state.getLevelNumber() == 5) {
 					paused = true;
 				}
-				System.out.print("Ganhou!!!");
+				System.out.println("Ganhou!!!");
+				System.out.println("Pontuação: " + Integer.toString(player.totalPoints()));
 				paused = true;
 			}
 			fixedTick();
