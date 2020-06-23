@@ -10,6 +10,8 @@ public abstract class GameState {
 	protected GameObject[][] map;
 	protected float pointMultiplier;
 	protected MapBuilder mapBuilder;
+	protected String songPath;
+	
 	/*
 	 * @brief getters da classe 
 	 */
@@ -21,4 +23,5 @@ public abstract class GameState {
 	int getLives(){return this.lives;}
 	GameObject[][] getMap(){return this.map;}
 	float getPointMultiplier() {return this.pointMultiplier;}
+	String getSongPath() {return this.songPath;}
 }

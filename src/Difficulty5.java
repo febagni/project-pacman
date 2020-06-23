@@ -11,5 +11,6 @@ public class Difficulty5 extends GameState {
 		this.boostedTime = 600;
 		this.lives = 1;
 		this.pointMultiplier = 3;
+		this.songPath = "dif5.aif";
 	}
 }

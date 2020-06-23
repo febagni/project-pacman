@@ -1,74 +1,69 @@
 import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner; 
-  
+
 import javax.sound.sampled.AudioInputStream; 
 import javax.sound.sampled.AudioSystem; 
 import javax.sound.sampled.Clip; 
-import javax.sound.sampled.LineUnavailableException; 
-import javax.sound.sampled.UnsupportedAudioFileException; 
 
 public class SoundManager {
 
     // to store current position 
-    Long currentFrame; 
-    Clip clip; 
+    static Long currentFrame; 
+    static Clip clip; 
       
     // current status of clip 
-    String status; 
+    static String status; 
       
-    AudioInputStream audioInputStream; 
-    protected String filePath; 
+    static AudioInputStream audioInputStream; 
+    
+    static final String mainFolder = "audio/";
+    static String filePath = "Dif1.aif"; 
+    static String sourceFolder = "Classic/";
   
     // constructor to initialize streams and clip 
-    public SoundManager(String filePath) { 
-    	this.filePath = filePath;
+    public static void setSong(String path) { 
+    	filePath = path;
         // create AudioInputStream object 
         try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
+        	//stop();
+			audioInputStream = AudioSystem.getAudioInputStream(new File(mainFolder + sourceFolder + filePath).getAbsoluteFile());
 			// create clip reference 
 	        clip = AudioSystem.getClip(); 
 	          
 	        // open audioInputStream to the clip 
 	        clip.open(audioInputStream); 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}                    
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
         play();
     } 
     
-    public void play() { 
+    public static void play() { 
         //start the clip 
         clip.start(); 
-          
         status = "play"; 
     } 
     
-    public void restart()  { 
+    public static void restart()  { 
     	clip.stop(); 
     	clip.close(); 
     	resetAudioStream(); 
     	currentFrame = 0L; 
     	clip.setMicrosecondPosition(0); 
-    	this.play(); 
+    	play(); 
     } 
 
     // Method to stop the audio 
-    public void stop() throws UnsupportedAudioFileException, 
-    IOException, LineUnavailableException  
-    { 
+    public static void stop() throws Exception { 
     	currentFrame = 0L; 
     	clip.stop(); 
     	clip.close(); 
     } 
     
  // Method to reset audio stream 
-    public void resetAudioStream() { 
+    public static void resetAudioStream() { 
         try {
-			audioInputStream = AudioSystem.getAudioInputStream( 
-			new File(filePath).getAbsoluteFile());
+			audioInputStream = AudioSystem.getAudioInputStream(new File(mainFolder + sourceFolder + filePath).getAbsoluteFile());
 	        clip.open(audioInputStream); 
 	        clip.loop(Clip.LOOP_CONTINUOUSLY); 
 		} catch (Exception e) {
@@ -78,22 +73,21 @@ public class SoundManager {
     } 
     
     // Method to pause the audio 
-    public void pause()  
-    { 
-        this.currentFrame = this.clip.getMicrosecondPosition(); 
+    public static void pause() {
+        currentFrame = clip.getMicrosecondPosition(); 
         clip.stop(); 
         status = "paused"; 
     } 
     
-    public void resumeAudio() { 
+    public static void resumeAudio() { 
     	clip.close(); 
     	resetAudioStream(); 
     	clip.setMicrosecondPosition(currentFrame); 
-    	this.play(); 
+    	play(); 
     } 
     
-    public void setMediaPath(String filePath) {
-    	this.filePath = filePath;
+    public static void setMediaPath(String path) {
+    	filePath = path;
     }
 }
 
