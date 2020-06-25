@@ -92,7 +92,7 @@ public class Ghost extends Entity {
 	public void updateSprite() {
 		//define a skin do sprite de acordo com a sua estrategia
 		if(sId == StrategyID.Escape) {
-			spritePath = "ScaryWary.png";
+			spritePath = "ScaryRed.png";
 		} else if(sId == StrategyID.EndOfEscape) {
 			spritePath = "Transition" + spritePath;
 		} else {

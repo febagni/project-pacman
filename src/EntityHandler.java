@@ -40,15 +40,19 @@ public class EntityHandler {
 	 */
 	private void setAllStrategies() {
 		for (Ghost ghost: ghosts) {
-			if(ghost.getStrategyID() == StrategyID.Follow) {
-				ghost.setStrategy(new DumbFollowMovement(ghost, player));
-			} else if(ghost.getStrategyID() == StrategyID.Random) {
-				ghost.setStrategy(new RandomMovement());
-			} else if(ghost.getStrategyID() == StrategyID.Mixed) {
-				ghost.setStrategy(new RandomMovement());
-			} else if(ghost.getStrategyID() == StrategyID.Escape) {
-				ghost.setStrategy(new GetawayMovement(ghost, player));
-			}
+			updateGhostStrategy(ghost);
+		}
+	}
+	
+	private void updateGhostStrategy(Ghost ghost) {
+		if(ghost.getStrategyID() == StrategyID.Follow) {
+			ghost.setStrategy(new DumbFollowMovement(ghost, player));
+		} else if(ghost.getStrategyID() == StrategyID.Random) {
+			ghost.setStrategy(new RandomMovement());
+		} else if(ghost.getStrategyID() == StrategyID.Mixed) {
+			ghost.setStrategy(new RandomMovement());
+		} else if(ghost.getStrategyID() == StrategyID.Escape) {
+			ghost.setStrategy(new GetawayMovement(ghost, player));
 		}
 	}
 	
@@ -56,12 +60,20 @@ public class EntityHandler {
 		for(Ghost ghost: ghosts) {
 			ghost.setStrategyID(StrategyID.Escape);
 			ghost.setStrategy(new GetawayMovement(ghost,player));
+			ghost.updateSprite();
 		}
+	}
+	
+	public void setSingleGhostOriginalStrategy(Ghost ghost) {
+		ghost.setOriginalStrategy();
+		ghost.updateSprite();
+		updateGhostStrategy(ghost);
 	}
 	
 	public void setAllGhostsOriginalStrategy() {
 		for(Ghost ghost: ghosts) {
 			ghost.setOriginalStrategy();
+			ghost.updateSprite();
 		}
 		setAllStrategies();
 	}
@@ -132,11 +144,12 @@ public class EntityHandler {
 			xDistance = player.getRealX() - ghost.getRealX();
 			yDistance = player.getRealY() - ghost.getRealY();
 			if(absolute(xDistance) < MapObject.squareSize - 10 && absolute(yDistance) < MapObject.squareSize - 10) //10 � um fator de ajuste visual
-				if(player.playerEatGhost()) {
+				if(player.playerEatGhost() && ((ghost.getStrategyID() == StrategyID.Escape) || (ghost.getStrategyID() == StrategyID.EndOfEscape))) {
 					player.addExtraPoints(100);
 					ghost.setRealX(ghost.getInitX());
 					ghost.setRealY(ghost.getInitY());
 					System.out.println("eu morri :(");
+					setSingleGhostOriginalStrategy(ghost);
 				} else {
 					return true;
 				}

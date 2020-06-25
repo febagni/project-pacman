@@ -19,7 +19,9 @@ public abstract class PacManDecorator extends PacMan {
 	public int getRealX() {return player.getRealX();}
 	public int getRealY() {return player.getRealY();}
 	int totalPoints() {return (player.points+player.extraPoints);}
-	
+	public void setRealX(int x) {player.setRealX(x);}
+	public void setRealY(int y) {player.setRealY(y);}	
+	public void updateLives() {player.lives--;}
 	
 	PacManDecorator(PacMan player) {
 		this.player = player;

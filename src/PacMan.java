@@ -68,7 +68,7 @@ public abstract class PacMan extends Entity {
 			return (points+extraPoints);
 		}
 		
-		boolean isBoosted() {
+		boolean boostedTime() {
 			return boostedTime>0;
 		}
 		

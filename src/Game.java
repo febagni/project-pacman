@@ -194,9 +194,9 @@ public class Game extends Canvas implements Runnable {
 				entityHandler.playerDeathReset();
 				System.out.println("Vidas:" + player.getLives());
 			}
-			if(player.isBoosted() && !player.isAlreadyBoosted()) {
+			if(player.boostedTime() && !player.isAlreadyBoosted()) {
 				this.player = new PacManBoostDecorator(player);
-//				entityHandler.setAllGhostsEscape();
+				entityHandler.setAllGhostsEscape();
 				System.out.println(player.playerEatGhost());
 				entityHandler.setPlayer(player);
 			}
@@ -204,6 +204,7 @@ public class Game extends Canvas implements Runnable {
 //				System.out.println("Chegou aqui");
 				this.player = player.getPlayer();
 				entityHandler.setPlayer(player);
+				entityHandler.setAllGhostsOriginalStrategy();
 			}
 			
 			if(gotAllPoints()) {
