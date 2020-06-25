@@ -79,7 +79,6 @@ public class Controls extends JPanel implements KeyListener{
 				game.nextLevel();
 				setPlayer(game.player);
 				game.paused = false;
-				SoundManager.restart();
 			}
 		}
 		if (key == KeyEvent.VK_R) { //Reset Game
@@ -87,7 +86,6 @@ public class Controls extends JPanel implements KeyListener{
 				game.reset();
 				setPlayer(game.player);
 				game.paused = false;
-				SoundManager.restart();
 			}
 		}
 		if (key == KeyEvent.VK_E) { //Reset Game

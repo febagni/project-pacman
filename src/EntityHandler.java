@@ -28,6 +28,8 @@ public class EntityHandler {
 		setAllStrategies();
 	}
 	
+	void setPlayer(PacMan player) {this.player = player;}
+	
 	/*
 	 * @brief Setter da dificuldade do jogo 
 	 */
@@ -130,7 +132,13 @@ public class EntityHandler {
 			xDistance = player.getRealX() - ghost.getRealX();
 			yDistance = player.getRealY() - ghost.getRealY();
 			if(absolute(xDistance) < MapObject.squareSize - 10 && absolute(yDistance) < MapObject.squareSize - 10) //10 � um fator de ajuste visual
-				return true;
+				if(player.playerEatGhost()) {
+					player.addExtraPoints(100);
+					ghost.setRealX(ghost.getInitX());
+					ghost.setRealY(ghost.getInitY());
+				} else {
+					return true;
+				}
 		}
 		return false;
 	}

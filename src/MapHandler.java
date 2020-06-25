@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class MapHandler {
 	
-	PacMan player; //Objeto que representa o jogador
+	PacManRegular player; //Objeto que representa o jogador
 	GameObject[][] map; //Mapa dos objetos imoveis
 	private int xLength; //Numero de linhas do mapa
 	private int yLength; //Numero de colunas do mapa
@@ -35,7 +35,7 @@ public class MapHandler {
 	}
 	
 	// Setters
-	public void setPlayer(PacMan player) {
+	public void setPlayer(PacManRegular player) {
 		this.player = player;
 	}
 

@@ -20,7 +20,7 @@ public class MapBuilder {
 	private GameObject[][] map;	//Mapa de objetos imoveis do jogo
 	private MapReader mapReader;	//Leitor do mapa
 	private ArrayList<Ghost> ghosts;	//Lista com todos as entidades adversarias do jogo
-	PacMan player = new PacMan();	//Entidade que representa o jogador
+	PacManRegular player = new PacManRegular();	//Entidade que representa o jogador
 	int maxPoints;	//Contador de pontos maximos que o jogador pode obter
 	int strategyIndex = 0;	//Indice das estrategias
 	MapFactory mapFactory = new MapFactory();	//Inicializador da fabrica abstrata do mapa
@@ -40,7 +40,7 @@ public class MapBuilder {
 	}
 	
 	//Getters
-		PacMan getPlayer() {return player;}
+		PacManRegular getPlayer() {return player;}
 		public ArrayList<Ghost> getGhosts() {return ghosts;}
 		int getHeight() {return mapReader.getHeight();}
 		int getWidth() {return mapReader.getWidth();}

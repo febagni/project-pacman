@@ -26,7 +26,6 @@ public class SoundManager {
     	filePath = path;
         // create AudioInputStream object 
         try {
-        	//stop();
 			audioInputStream = AudioSystem.getAudioInputStream(new File(mainFolder + sourceFolder + filePath).getAbsoluteFile());
 			// create clip reference 
 	        clip = AudioSystem.getClip(); 
@@ -64,11 +63,11 @@ public class SoundManager {
     	play(); 
     } 
 
-    // Method to stop the audio 
-    public static void stop() throws Exception { 
+    // Method to stop the audio
+    public static void stop() {  //NOT WORKING
     	currentFrame = 0L; 
     	clip.stop(); 
-    	clip.close(); 
+    	clip.close();
     } 
     
  // Method to reset audio stream 
