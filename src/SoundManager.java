@@ -2,7 +2,8 @@ import java.io.File;
 
 import javax.sound.sampled.AudioInputStream; 
 import javax.sound.sampled.AudioSystem; 
-import javax.sound.sampled.Clip; 
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl; 
 
 public class SoundManager {
 
@@ -31,12 +32,20 @@ public class SoundManager {
 	          
 	        // open audioInputStream to the clip 
 	        clip.open(audioInputStream); 
+	        
+	        changeSound(-30.0f);
+	        
 		} catch (Exception e) {
 			e.printStackTrace();
 		}                    
         clip.loop(Clip.LOOP_CONTINUOUSLY); 
         play();
     } 
+    
+    public static void changeSound(float decibes) {
+    	FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(decibes);
+    }
     
     public static void play() { 
         //start the clip 

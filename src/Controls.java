@@ -65,11 +65,12 @@ public class Controls extends JPanel implements KeyListener{
 		if (key == KeyEvent.VK_P) {
 			if(!game.gotAllPoints()) {
 				game.paused = !game.paused;
-				if(game.paused) {
-					SoundManager.pause();
-				} else {
-					SoundManager.resumeAudio();
-				}
+//				if(game.paused) {
+//					SoundManager.pause();
+//				} else {
+//					SoundManager.resumeAudio();
+//				}
+				SoundManager.changeSound(-40.0f);
 			}
 		}
 		if (key == KeyEvent.VK_N) { //Next Level
