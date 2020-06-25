@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
 		this.mapFileName = mapFileName;
 		state = new Difficulty1(mapFileName);
 		gamePrepare(mapFileName);
-		//setStateVariables();
+		setStateVariables(); //keep it here KKKKK pls Mr. Stark!
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 	}
 	
@@ -69,7 +69,7 @@ public class Game extends Canvas implements Runnable {
 	 */
 	public synchronized void stop() {
 		try {
-			System.exit(-1);
+			//System.exit(-1);
 			thread.join();
 			running = false;
 		} catch (Exception e) {
@@ -183,7 +183,8 @@ public class Game extends Canvas implements Runnable {
 		} else {
 			if(player.getLives() == 0) {
 				System.out.println("Perdeu :(");
-				stop();
+				paused = true;
+				//stop();
 			}
 			mapHandler.tick();
 			entityHandler.tick();
