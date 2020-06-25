@@ -19,6 +19,7 @@ public class SoundManager {
     static final String mainFolder = "audio/";
     static String filePath = "Dif1.aif"; 
     static String sourceFolder = "Classic/";
+    static FloatControl gainControl;
   
     // constructor to initialize streams and clip 
     public static void setSong(String path) { 
@@ -33,7 +34,9 @@ public class SoundManager {
 	        // open audioInputStream to the clip 
 	        clip.open(audioInputStream); 
 	        
-	        changeSound(-30.0f);
+	        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+	        
+	        changeSound(-25.0f);
 	        
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,7 +46,6 @@ public class SoundManager {
     } 
     
     public static void changeSound(float decibes) {
-    	FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(decibes);
     }
     

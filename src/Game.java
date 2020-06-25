@@ -33,6 +33,7 @@ public class Game extends Canvas implements Runnable {
 	private EntityHandler entityHandler; //Handler dos objetos que se movem
 	PacMan player; //Objeto que representa o jogador
 	Window window; //Tela do jogo
+	private String finalScore;
 	
 	public Game(String mapFileName) {
 		this.mapFileName = mapFileName;
@@ -179,7 +180,7 @@ public class Game extends Canvas implements Runnable {
 	 */
 	private void tick() {
 		if(paused) {
-			//rotina de pause
+			//SoundManager.changeSound(-45.0f);
 		} else {
 			if(player.getLives() == 0) {
 				System.out.println("Perdeu :(");
@@ -204,7 +205,8 @@ public class Game extends Canvas implements Runnable {
 					paused = true;
 				}
 				System.out.println("Ganhou!!!");
-				System.out.println("Pontuação: " + Integer.toString(player.totalPoints()));
+				finalScore = Integer.toString((int)(state.getPointMultiplier()*player.totalPoints()));
+				System.out.println("Pontuação: " + finalScore);
 				paused = true;
 			}
 			fixedTick();

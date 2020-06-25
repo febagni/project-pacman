@@ -82,7 +82,7 @@ public class PacMan extends Entity {
 	}
 	
 	int totalPoints() {
-		return points+extraPoints;
+		return (points+extraPoints);
 	}
 	
 	boolean isBoosted() {
