@@ -27,7 +27,7 @@ public abstract class PacMan extends Entity {
 		int getBoostedTime() {return this.boostedTime;}
 		void setBoostedTime(int boostedTime) {this.boostedTime = boostedTime;} 
 		int getDirection() {return this.direction;}
-		
+		abstract PacMan getPlayer();
 		
 		/*
 		 * @brief Faz o update das lives, se o pacman morre

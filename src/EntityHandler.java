@@ -136,6 +136,7 @@ public class EntityHandler {
 					player.addExtraPoints(100);
 					ghost.setRealX(ghost.getInitX());
 					ghost.setRealY(ghost.getInitY());
+					System.out.println("eu morri :(");
 				} else {
 					return true;
 				}

@@ -26,16 +26,6 @@ public class PacManRegular extends PacMan {
 		updateSprite();	//faz o update dos sprites
 	}
 	
-	public PacManRegular(PacMan player) {
-		spritePath = "pacman.png";
-		lastBoostDrop = false;
-		frame = 0;
-		this.direction = player.getDirection();
-		setRealX(player.getRealX());
-		setRealY(player.getRealY());
-		updateSprite();
-	}
-	
 	/*
 	 * @brief Tick do pacman
 	 */
@@ -60,4 +50,7 @@ public class PacManRegular extends PacMan {
 	public boolean isAlreadyBoosted() {
 		return false;
 	}
+	
+	@Override
+	PacMan getPlayer() {return this;}
 }

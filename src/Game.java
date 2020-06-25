@@ -195,13 +195,14 @@ public class Game extends Canvas implements Runnable {
 				System.out.println("Vidas:" + player.getLives());
 			}
 			if(player.isBoosted() && !player.isAlreadyBoosted()) {
-				this.player = new PacManBoosted(player);
+				this.player = new PacManBoostDecorator(player);
+//				entityHandler.setAllGhostsEscape();
 				System.out.println(player.playerEatGhost());
 				entityHandler.setPlayer(player);
 			}
 			if(player.lastBoostDrop) {
-				System.out.println("Chegou aqui");
-				this.player = new PacManRegular(player);
+//				System.out.println("Chegou aqui");
+				this.player = player.getPlayer();
 				entityHandler.setPlayer(player);
 			}
 			
@@ -211,7 +212,7 @@ public class Game extends Canvas implements Runnable {
 				}
 				totalPoints += (int)(state.getPointMultiplier()*player.totalPoints());
 				System.out.println("Ganhou!!!");
-				System.out.println("PontuaÃ§Ã£o: " + Integer.toString(totalPoints));
+				System.out.println("Pontuação: " + Integer.toString(totalPoints));
 				paused = true;
 			}
 			fixedTick();
