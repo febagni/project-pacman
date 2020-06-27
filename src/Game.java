@@ -34,6 +34,7 @@ public class Game extends Canvas implements Runnable {
 	PacMan player; //Objeto que representa o jogador
 	Window window; //Tela do jogo
 	private int totalPoints = 0;
+	private AudioPlayer songPlayer;
 	
 	public Game(String mapFileName) {
 		this.mapFileName = mapFileName;
@@ -53,7 +54,6 @@ public class Game extends Canvas implements Runnable {
 		mapHandler.setCherryPosition(mapBuilder.getCherryPosition());
 		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		maxPoints = mapBuilder.getMaxPoints();	//Pega os pontos maximos que podem ser feitos no jogo
-		SoundManager.setSong(state.getSongPath());
 	}
 
 	/*
@@ -101,6 +101,8 @@ public class Game extends Canvas implements Runnable {
 	void setStateVariables(){
 		player.setLives(state.getLives());
 		player.setMaxBoostedTime(state.getBoostTime());
+		songPlayer = new AudioPlayer(state.getLevelNumber());
+		songPlayer.play();
 	}
 	
 	/*
@@ -195,11 +197,9 @@ public class Game extends Canvas implements Runnable {
 				if(player.getLives()>100) System.out.println("Vidas: INFINITAS");
 				else System.out.println("Vidas:" + player.getLives());
 			}
-			if(player.getBoostedTime() == state.getBoostTime()) {
-				System.out.println("ENTROOOOOOOOOOOOOOOOOOOOOOOOUUUUUUUUUUUUUUUUUUUUU");
-				this.player = new PacManBoostDecorator(player);
+			if(player.getBoostedTime() >= state.getBoostTime() - 1) {
+				if(!player.isAlreadyBoosted()) this.player = new PacManBoostDecorator(player);
 				entityHandler.setAllGhostsEscape();
-				System.out.println(player.playerEatGhost());
 				entityHandler.setPlayer(player);
 			}
 			if(player.getBoostedTime() <= 360) {
@@ -219,7 +219,7 @@ public class Game extends Canvas implements Runnable {
 				}
 				totalPoints += (int)(state.getPointMultiplier()*player.totalPoints());
 				System.out.println("Ganhou!!!");
-				System.out.println("Pontua��o: " + Integer.toString(totalPoints));
+				System.out.println("Pontuacao: " + Integer.toString(totalPoints));
 				paused = true;
 			}
 			fixedTick();
@@ -229,9 +229,8 @@ public class Game extends Canvas implements Runnable {
 	public void reset() {
 		if(gotAllPoints()) totalPoints -= (int)(state.getPointMultiplier()*player.totalPoints());
 		gamePrepare(mapFileName);
+		songPlayer.stop();
 		setStateVariables();
-		SoundManager.stop();
-		SoundManager.setSong(state.getSongPath());
 	}
 	
 	public void nextLevel() {	
@@ -243,9 +242,14 @@ public class Game extends Canvas implements Runnable {
 			System.out.println("voce eh o bichao mesmo ein doido");
 			stop();
 		}
+		songPlayer.stop();
 		setStateVariables();
-		SoundManager.stop();
-		SoundManager.setSong(state.getSongPath());
+	}
+	
+	public void pause() {
+		paused = !paused;
+		if(paused) songPlayer.changeSound(-25.0f);
+		else songPlayer.changeSound(-15.0f);
 	}
 	
 	/*
@@ -258,7 +262,6 @@ public class Game extends Canvas implements Runnable {
 		} else {
 			entityHandler.fixedTick();
 			fixedTickFlag = 0;
-			System.out.println(player.getBoostedTime());
 		}
 	}
 	

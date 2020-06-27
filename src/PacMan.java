@@ -25,7 +25,9 @@ public abstract class PacMan extends Entity {
 		void setInitialPositionY(int y) {this.initialPositionY = y;}
 		void addExtraPoints(int points) {this.extraPoints += points;}
 		int getBoostedTime() {return this.boostedTime;}
-		void setBoostedTime(int boostedTime) {this.boostedTime = boostedTime;} 
+		void setBoostedTime(int boostedTime) {this.boostedTime = boostedTime;}
+		int getBoostedTimeMax() {return this.boostedTimeMax;}
+		void setBoostedTimeMax(int boostedTimeMax) {this.boostedTimeMax = boostedTimeMax;} 
 		int getDirection() {return this.direction;}
 		abstract PacMan getPlayer();
 		
@@ -55,7 +57,7 @@ public abstract class PacMan extends Entity {
 				map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
 				map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
 				map[getX()][getY()].updateSprite();
-				setBoostedTime(boostedTimeMax);	//seta o boosted como verdade
+				setBoostedTime(getBoostedTimeMax());	//seta o boosted como verdade
 			} else if (map[getX()][getY()].getID() == MapID.FloorWithCherry) {	//chao com a cherry
 				map[getX()][getY()].setID(MapID.Floor);	//atualiza para chao normal
 				map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));

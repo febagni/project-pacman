@@ -20,7 +20,7 @@ public class Classic implements Skin {
 	@Override
 	public Skin clone() {
 		SpritesManager.folder = "Classic/";
-		SoundManager.sourceFolder = "Classic/";	
+		AudioPlayer.sourceFolder = "Classic/";	
 		return new Classic();
 	}
 }

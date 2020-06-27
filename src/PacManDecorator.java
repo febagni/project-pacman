@@ -15,6 +15,8 @@ public abstract class PacManDecorator extends PacMan {
 	void addExtraPoints(int points) {player.addExtraPoints(points);}
 	int getBoostedTime() {return player.getBoostedTime();}
 	void setBoostedTime(int boostedTime) {player.setBoostedTime(boostedTime);}
+	int getBoostedTimeMax() {return player.getBoostedTime();}
+	void setBoostedTimeMax(int boostedTimeMax) {player.setBoostedTime(boostedTimeMax);;} 
 	int getDirection() {return player.getDirection();}
 	public int getRealX() {return player.getRealX();}
 	public int getRealY() {return player.getRealY();}
