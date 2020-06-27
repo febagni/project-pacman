@@ -172,9 +172,37 @@ O segundo streamer foi o @guazco e nesse "round" foram implementadas caracter√≠s
 ## 19/06/2020   
 
 O primeiro streamer foi o @febagni, nesse "round" foi adicionado um bot√£o de pausa (tecla 'P') para pausar o jogo, foi encontrado e ajustado um bug relacionado a movimenta√ß√£o do fantasma, quando √© cercado de paredes, al√©m de dar continuidade a implementa√ß√£o das dificuldades. Commit relacionado: bb7a7d075d59f1465c78104d9733a158752638ba   
-O segundo streamer foi o @GabrielKishida, nesse "round" foram implementados os bot√µes de Reset (tecla 'R'), adicionando a fun√ß√£o de resetar o jogo quando pausado ou quando o jogo termina; e de "Next Level" (tecla 'N'), adicionando a fun√ß√£o de ir para a pr√≥xima fase quando o jogo termina. COmmit relacionado: aebee2ba326a27055e910db13542ac274f8e2210   
+O segundo streamer foi o @GabrielKishida, nesse "round" foram implementados os bot√µes de Reset (tecla 'R'), adicionando a fun√ß√£o de resetar o jogo quando pausado ou quando o jogo termina; e de "Next Level" (tecla 'N'), adicionando a fun√ß√£o de ir para a pr√≥xima fase quando o jogo termina. Commit relacionado: aebee2ba326a27055e910db13542ac274f8e2210   
 
 ## 20/06/2020   
 
 O primeiro streamer foi o @AleMarquis, nesse "round" foi adicionado um bot√£o Exit (tecla 'E'), para poder fechar o jogo quando pausado e quando o jogo termina. Tamb√©m foi feito um m√©todo que atualiza algumas caracter√≠sticas de acordo com o State de dificuldade. Commit relacionado: 05898a7a38c82ed8cd7f08a9795d4ae1a411e377   
-O segundo streamer foi o @guazco, nesse "round" foram consertados bugs em rela√ß√£o a cherry, adicionados m√©todos para a probabilidade de aparecimento de cherries de acordo com o state de dificuldade . Al√©m de dar continuidade a implementa√ß√£o das dificuldades. Commit relacionado: b268cd41a1b3674cef515965991ed28ae01c6ee3   
+O segundo streamer foi o @guazco, nesse "round" foram consertados bugs em rela√ß√£o a cherry, adicionados m√©todos para a probabilidade de aparecimento de cherries de acordo com o state de dificuldade . Al√©m de dar continuidade a implementa√ß√£o das dificuldades. Commit relacionado: b268cd41a1b3674cef515965991ed28ae01c6ee3 
+
+## 22/06/2020 
+
+O primeiro streamer foi o @GabrielKishida, nesse "round" foi feito as funÁıes do comportamento do Boost, um mÈtodo para setar todos os fantasmas para escaparem do jogador, um para voltar ‡ estratÈgia original e um para setar o sprite relacionado ao comportamento dos fantasmas. Commit relacionado: 337b679890a0c625e945111baea75a2ae72e23fb
+O segundo streamer foi o @febagni, nesse "round" foi feito um rework no sistema de pontuaÁ„o e um protÛtipo do padr„o decorator para o PacMan. Commit relacionado: ff97db4dfb36e65c845c059c97e8c7ba60f3242e
+
+## 23/06/2020
+
+O primeiro streamer foi o @guazco, nesse "round" foi criado e implementado uma classe para dirigir as funÁıes relacionados aos efeitos sonoros do jogo. Commit relacionado: 0fda0667cdfee80994f7393f618ea7810caf6fb9
+O segundo streamer foi o @AleMarquis, nesse "round" foi criado e organizado pastas para os arquivos de musica, implementamos as m˙sicas dependo da fase e sua dificuldade. Commit relacionado: 53a826257739689570393402c3d52975eee80d47
+## 24/06/2020 
+O primeiro streamer foi o @febagni, nesse "round" foi feito um debug geral no sistema de som, foi adicionado o controle de volume geral e o multiplicador de pontos do game. Commits Relacionados: 5128d55437c686a036b0cf55e42a01c82c27f995, 385e4a534519aaa718e0c08c999e2fe647c9c403, 6411e3bafabdcba11a2a66078f90a96a391b025f
+O segundo streamer foi o @GabrielKishida, nesse "round" reestruturamos parte do cÛdigo para incluir a arquitetura do decorator. Commit relacionado: ccc807ee663c701b9337f0ab8f423d013a2d7383 
+
+## 25/06/2020   
+
+O primeiro streamer foi o @AleMarquis, nesse "round" foi finalizado a arquitetura do padr„o decorator do jogador. Commit relacionado: caa399fdde1d924993180f711f525d4c327b980f
+O segundo streamer foi o @guazco, nesse "round" foi introduzido a mec‚nica do boost ao jogo, ou seja, implementou o padr„o decorator ao jogo. Commit relacionado: ce6127b50dd81f1018a09cb1424e087fda51896e
+
+## 26/06/2020   
+
+O primeiro streamer foi o @febagni, nesse "round" foi adicionado o comportamento do estado de transiÁ„o do final do tempo do boosted, tambÈm comeÁou a debugagem dessa mec‚nica do jogo. Commit Relacionados: 27b2e1b5649149654055955f4240aad400749c58
+O segundo streamer foi o @GabrielKishida, nesse "round" foi finalizado a debugagem da mec‚nica de boost. Commit relacionado: 0415f949e227c3c182103ff3d37e2812bf3dcb52
+
+## 27/06/2020   
+
+O ˙nico streamer foi o @guazco, nesse "round" foi implementado parte dos efeitos sonoros do requisito 8 do projeto. Commit relacionado: 7639bafe114a952dbb61cbf1604002b4a0faa962
+
