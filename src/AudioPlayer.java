@@ -17,7 +17,7 @@ public class AudioPlayer {
      AudioInputStream audioInputStream; 
     
      String mainFolder = "audio/";
-     String filePath = "Dif1.aif"; 
+     String filePath = "dif1.aif"; 
      static String sourceFolder = "Classic/";
      FloatControl gainControl;
      
@@ -35,6 +35,20 @@ public class AudioPlayer {
  			e.printStackTrace();
  		}                    
     }
+    
+    AudioPlayer(String effectPath) {
+    	try {
+    		audioInputStream = AudioSystem.getAudioInputStream(new File(mainFolder + sourceFolder + effectPath).getAbsoluteFile());
+ 	        clip = AudioSystem.getClip();   
+ 	        clip.open(audioInputStream); 
+ 	        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+ 	        changeSound(-15.0f); 
+ 	        play();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
+     
     public void changeSound(float decibes) {
         gainControl.setValue(decibes);
     }

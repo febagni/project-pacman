@@ -20,6 +20,7 @@ public class CovidMarket implements Skin {
 	@Override
 	public Skin clone() {
 		SpritesManager.folder = "CovidMarket/";
+		AudioPlayer.sourceFolder = "CovidMarket/";
 		return new CovidMarket();
 	}
 }

@@ -162,6 +162,8 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 	
+
+	
 	/*
 	 * @brief Funcao que devolve se o jogador ja pegou todos os pontos presentes no mapa
 	 */
