@@ -103,7 +103,7 @@ public abstract class Entity implements GameObject {
 	/*
 	 * @brief Verifica se a entidade está parada
 	 */
-	protected boolean isStoped() {
+	protected boolean isStopped() {
 		return (speedX == 0 && speedY == 0);
 	}
 	

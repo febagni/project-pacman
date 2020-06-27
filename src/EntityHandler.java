@@ -59,8 +59,17 @@ public class EntityHandler {
 	public void setAllGhostsEscape() {
 		for(Ghost ghost: ghosts) {
 			ghost.setStrategyID(StrategyID.Escape);
-			ghost.setStrategy(new GetawayMovement(ghost,player));
+			ghost.setStrategy(new GetawayMovement(ghost, player));
 			ghost.updateSprite();
+		}
+	}
+	
+	public void setEndOfEscape() {
+		for(Ghost ghost: ghosts) {
+			if(ghost.getStrategyID() == StrategyID.Escape) {
+				ghost.setStrategyID(StrategyID.EndOfEscape);
+				ghost.updateSprite();
+			}
 		}
 	}
 	

@@ -61,12 +61,18 @@ public class Ghost extends Entity {
 	 */
 	@Override
 	public void tick() {
-		if((possibleDirections().size()!=2 || isStoped()) && bufferedMovementFlag >= 15) {
+		if((possibleDirections().size()!=2 || isStopped()) && bufferedMovementFlag >= 15) {
 			this.direction = strategy.ghostMovement(possibleDirections());	
 			bufferedMovementFlag = 0;
 		}
-		bufferedMovementFlag ++;
+//		if(sId == StrategyID.Escape || sId == StrategyID.EndOfEscape) {
+//			if(!isStopped()) setSpeed(0, 0);
+//			else updateSpeed();
+//		} else {
+//			updateSpeed();
+//		}
 		updateSpeed();
+		bufferedMovementFlag ++;
 		updateMovement();
 		updateAnimation();
 	}
@@ -92,9 +98,9 @@ public class Ghost extends Entity {
 	public void updateSprite() {
 		//define a skin do sprite de acordo com a sua estrategia
 		if(sId == StrategyID.Escape) {
-			spritePath = "ScaryRed.png";
+			spritePath = "ScaryWary.png";
 		} else if(sId == StrategyID.EndOfEscape) {
-			spritePath = "Transition" + spritePath;
+			spritePath = "Transition" + colorPath;
 		} else {
 			spritePath = colorPath;
 		}

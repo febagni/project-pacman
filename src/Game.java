@@ -192,14 +192,20 @@ public class Game extends Canvas implements Runnable {
 			if(entityHandler.playerTouchedGhost()) {
 				
 				entityHandler.playerDeathReset();
-				System.out.println("Vidas:" + player.getLives());
+				if(player.getLives()>100) System.out.println("Vidas: INFINITAS");
+				else System.out.println("Vidas:" + player.getLives());
 			}
-			if(player.boostedTime() && !player.isAlreadyBoosted()) {
+			if(player.getBoostedTime() == state.getBoostTime()) {
+				System.out.println("ENTROOOOOOOOOOOOOOOOOOOOOOOOUUUUUUUUUUUUUUUUUUUUU");
 				this.player = new PacManBoostDecorator(player);
 				entityHandler.setAllGhostsEscape();
 				System.out.println(player.playerEatGhost());
 				entityHandler.setPlayer(player);
 			}
+			if(player.getBoostedTime() <= 360) {
+				entityHandler.setEndOfEscape();
+			}
+			
 			if(player.lastBoostDrop) {
 //				System.out.println("Chegou aqui");
 				this.player = player.getPlayer();
@@ -213,7 +219,7 @@ public class Game extends Canvas implements Runnable {
 				}
 				totalPoints += (int)(state.getPointMultiplier()*player.totalPoints());
 				System.out.println("Ganhou!!!");
-				System.out.println("Pontuação: " + Integer.toString(totalPoints));
+				System.out.println("Pontuaï¿½ï¿½o: " + Integer.toString(totalPoints));
 				paused = true;
 			}
 			fixedTick();

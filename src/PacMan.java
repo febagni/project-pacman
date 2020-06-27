@@ -55,7 +55,7 @@ public abstract class PacMan extends Entity {
 				map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
 				map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
 				map[getX()][getY()].updateSprite();
-				boostedTime = boostedTimeMax;	//seta o boosted como verdade
+				setBoostedTime(boostedTimeMax);	//seta o boosted como verdade
 			} else if (map[getX()][getY()].getID() == MapID.FloorWithCherry) {	//chao com a cherry
 				map[getX()][getY()].setID(MapID.Floor);	//atualiza para chao normal
 				map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
