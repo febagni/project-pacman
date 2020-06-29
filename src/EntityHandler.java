@@ -43,7 +43,9 @@ public class EntityHandler {
 			updateGhostStrategy(ghost);
 		}
 	}
-	
+	/*
+	 * @brief Updates a ghost strategy based on their StrategyID
+	 */
 	private void updateGhostStrategy(Ghost ghost) {
 		if(ghost.getStrategyID() == StrategyID.Follow) {
 			ghost.setStrategy(new DumbFollowMovement(ghost, player));
@@ -56,6 +58,9 @@ public class EntityHandler {
 		}
 	}
 	
+	/*
+	 * @brief Set All ghosts to escape (used when player eats boost)
+	 */
 	public void setAllGhostsEscape() {
 		for(Ghost ghost: ghosts) {
 			ghost.setStrategyID(StrategyID.Escape);
@@ -64,6 +69,9 @@ public class EntityHandler {
 		}
 	}
 	
+	/*
+	 * @brief Set all ghosts who haven't been eaten to the End of Escape strategy
+	 */
 	public void setEndOfEscape() {
 		for(Ghost ghost: ghosts) {
 			if(ghost.getStrategyID() == StrategyID.Escape) {
@@ -73,12 +81,18 @@ public class EntityHandler {
 		}
 	}
 	
+	/*
+	 * @brief Sets a single ghost to its original strategy
+	 */
 	public void setSingleGhostOriginalStrategy(Ghost ghost) {
 		ghost.setOriginalStrategy();
 		ghost.updateSprite();
 		updateGhostStrategy(ghost);
 	}
 	
+	/*
+	 * @brief Sets all ghosts to their original strategy
+	 */
 	public void setAllGhostsOriginalStrategy() {
 		for(Ghost ghost: ghosts) {
 			ghost.setOriginalStrategy();
@@ -91,7 +105,6 @@ public class EntityHandler {
 	 * @brief Funcao que faz todas as entidades do jogo atualizarem
 	 */
 	public void tick() {
-		//setAllStrategies();
 		for(Ghost ghost : ghosts) {
 			ghost.tick();
 		}
@@ -132,7 +145,10 @@ public class EntityHandler {
 		}
 	}
 	
-	private int randomNumber() { //Gera um numero aleatorio entre 0 e 100
+	/*
+	 * @brief Generates a random number between 0 and 100
+	 */
+	private int randomNumber() { 
 		Random random = new Random();
 		return random.nextInt(100);
 	}
@@ -140,14 +156,12 @@ public class EntityHandler {
 	/*
 	 * @brief Funcao que retorna o module
 	 */
-	public int absolute(int x) {
-		return (x >= 0) ? x:-x;
-	}
+	public int absolute(int x) {return (x >= 0) ? x:-x;}
 	
 	/*
 	 * @brief Funcao que retorna se o jogador encostou no fantasma
 	 */
-	public boolean playerTouchedGhost() {
+	public boolean playerDied() {
 		for(Ghost ghost : ghosts) {
 			int xDistance, yDistance;
 			xDistance = player.getRealX() - ghost.getRealX();
@@ -155,14 +169,21 @@ public class EntityHandler {
 			if(absolute(xDistance) < MapObject.squareSize - 10 && absolute(yDistance) < MapObject.squareSize - 10) //10 � um fator de ajuste visual
 				if(player.playerEatGhost() && ((ghost.getStrategyID() == StrategyID.Escape) || (ghost.getStrategyID() == StrategyID.EndOfEscape))) {
 					player.addExtraPoints(100);
-					ghost.setRealX(ghost.getInitX());
-					ghost.setRealY(ghost.getInitY());
-					setSingleGhostOriginalStrategy(ghost);
+					ghostDeathReset(ghost);
 				} else {
 					return true;
 				}
 		}
 		return false;
+	}
+	
+	/*
+	 * @brief Resets ghost position and strategy (used after pacman eats ghost)
+	 */
+	private void ghostDeathReset(Ghost ghost) {
+		ghost.setRealX(ghost.getInitX());
+		ghost.setRealY(ghost.getInitY());
+		setSingleGhostOriginalStrategy(ghost);
 	}
 	
 	/*

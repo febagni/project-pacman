@@ -21,8 +21,9 @@ public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L; 
 	private Thread thread;
 	private boolean running = false;
+	private boolean muted = false;
 	boolean paused = false;
-	private boolean firstRender = true; //Ve se eh a primeira iteracao
+	boolean restart = false;
 	private int width; //Largura da tela criada
 	private int height; //Altura da tela criada
 	private int maxPoints; //Numero maximo de pontos atingiveis pelo jogador
@@ -40,10 +41,13 @@ public class Game extends Canvas implements Runnable {
 		this.mapFileName = mapFileName;
 		state = new Difficulty1(mapFileName);
 		gamePrepare(mapFileName);
-		setStateVariables(); //keep it here KKKKK pls Mr. Stark!
+		setStateVariables();
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 	}
 	
+	/*
+	 * @brief prepares game (reads map from txt file, sets objects to their initial positions)
+	 */
 	public void gamePrepare(String newMapFile) {
 		MapBuilder mapBuilder = new MapBuilder(newMapFile); //Le o mapa
 		mapHandler = new MapHandler(mapBuilder.getHeight(), mapBuilder.getWidth()); //Constroi o handler com o mapa
@@ -57,7 +61,7 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	/*
-	 * @brief Inicia thread do jogo
+	 * @brief Starts game thread
 	 */
 	public synchronized void start() {
 		thread = new Thread(this);
@@ -66,7 +70,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	/*
-	 * @brief Para a thread do jogo
+	 * @brief Stops game thread
 	 */
 	public synchronized void stop() {
 		try {
@@ -98,10 +102,14 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 	
+	/*
+	 * @brief Sets the game variables that rely on the game state
+	 */
 	void setStateVariables(){
 		player.setLives(state.getLives());
 		player.setMaxBoostedTime(state.getBoostTime());
 		songPlayer = new AudioPlayer(state.getLevelNumber());
+		songPlayer.changeSound(AudioPlayer.initVolume);
 		songPlayer.play();
 	}
 	
@@ -115,11 +123,23 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	/*
-	 * @brief Pattern GameLoop: Loop do jogo que mantem ele atualizado em tempo real
+	 * @brief Toggles mute
+	 */
+	public void mute() {
+		muted = !muted;
+		if(muted) {
+			songPlayer.changeSound(-10000.0f);
+		} else {
+			songPlayer.changeSound(AudioPlayer.initVolume);
+		}
+	}
+	
+	/*
+	 * @brief Pattern GameLoop: Game loop that keeps it updated in real time
 	 */
 	public void run() {
 		long lastTime = System.nanoTime();
-		double amountOfTicks = 120.0; //Frequencia em Hz de ticks
+		double amountOfTicks = 120.0; //Amount of ticks per second
         double ns = 1000000000 / amountOfTicks; 
         double delta = 0;
         long timer = System.currentTimeMillis();
@@ -145,40 +165,33 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	/*
-	 * @brief Funcao que renderiza todos os objetos do jogo
+	 * @brief Renders all game objects
 	 */
 	private void render() {
 		//Use with BufferedImage
-		//if(!paused) {
-		BufferStrategy bufferStrategy = this.getBufferStrategy();
-	    if (bufferStrategy == null) {
-	    	this.createBufferStrategy(3);
-	        return;
-	    }
-	    Graphics graphics = bufferStrategy.getDrawGraphics();
-	    //Primeira iteracao: renderiza o mapa inteiro
-	    if (firstRender) {
-	      	mapHandler.renderMap(graphics);
-	       	firstRender = false;
-	    }      
-	    mapHandler.renderMap(graphics);
-	    entityHandler.render(graphics);
-	    graphics.dispose();
-	    bufferStrategy.show();
-		//}
+		if(!restart) {
+			BufferStrategy bufferStrategy = this.getBufferStrategy();
+			if (bufferStrategy == null) {
+				this.createBufferStrategy(3);
+				return;
+			}
+			Graphics graphics = bufferStrategy.getDrawGraphics();
+			mapHandler.renderMap(graphics);
+			entityHandler.render(graphics);
+			graphics.dispose();
+			bufferStrategy.show();
+		}
 	}
 	
-
-	
 	/*
-	 * @brief Funcao que devolve se o jogador ja pegou todos os pontos presentes no mapa
+	 * @brief Returns whether the player got all obligatory points in the game
 	 */
 	public boolean gotAllPoints() {
 		return player.getPoints() >= maxPoints;
 	}
 	
 	/*
-	 * @brief Faz o update de todos os sprites do jogo
+	 * @brief Updates all game objects skins
 	 */
 	public void setSkin() {
 		mapHandler.updateAllSprites();
@@ -186,12 +199,10 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	/*
-	 * @brief Atualiza os objetos do jogo
+	 * @brief Updates all game objects (positions, directions, etc.)
 	 */
 	private void tick() {
 		if(paused) {
-			//setSkin();
-			//SoundManager.changeSound(-45.0f);
 		} else {
 			if(player.getLives() == 0) {
 				System.out.println("Perdeu :(");
@@ -200,8 +211,7 @@ public class Game extends Canvas implements Runnable {
 			}
 			mapHandler.tick();
 			entityHandler.tick();
-			if(entityHandler.playerTouchedGhost()) {
-				
+			if(entityHandler.playerDied()) {
 				entityHandler.playerDeathReset();
 				if(player.getLives()>100) System.out.println("Vidas: INFINITAS");
 				else System.out.println("Vidas:" + player.getLives());
@@ -216,12 +226,10 @@ public class Game extends Canvas implements Runnable {
 			}
 			
 			if(player.lastBoostDrop) {
-//				System.out.println("Chegou aqui");
 				this.player = player.getPlayer();
 				entityHandler.setPlayer(player);
 				entityHandler.setAllGhostsOriginalStrategy();
 			}
-			
 			if(gotAllPoints()) {
 				if(state.getLevelNumber() == 5) {
 					paused = true;
@@ -235,13 +243,20 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 	
+	/*
+	 * @brief Resets game in the current level
+	 */
 	public void reset() {
+		restart = true;
 		if(gotAllPoints()) totalPoints -= (int)(state.getPointMultiplier()*player.totalPoints());
 		gamePrepare(mapFileName);
 		songPlayer.stop();
 		setStateVariables();
 	}
 	
+	/*
+	 * @brief Prepares the game for the next level
+	 */
 	public void nextLevel() {	
 		gamePrepare(mapFileName);
 		if(state.getLevelNumber() < 5) {
@@ -255,15 +270,19 @@ public class Game extends Canvas implements Runnable {
 		setStateVariables();
 	}
 	
+	/*
+	 * @brief Pauses the game (lowers song volume as well)
+	 */
 	public void pause() {
 		paused = !paused;
-		if(paused) songPlayer.changeSound(-25.0f);
-		else songPlayer.changeSound(-15.0f);
+		if(paused) songPlayer.changeSound(-35.0f);
+		else songPlayer.changeSound(AudioPlayer.initVolume);
+		
 	}
 	
 	/*
-	 * @brief O fixed tick é um tick com intervalo maior
-	 * @brief Os ghosts de estrategia mista usam o fixed tick como referencia para escolher a estrategia 
+	 * @brief fixed tick (works like the tick, but with a smaller frequency)
+	 * @brief Mixed strategy ghosts use it to change their strategies
 	 */
 	private void fixedTick() {
 		if(fixedTickFlag < fixedTickMax) {
@@ -275,7 +294,7 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	/*
-	 * @brief Funcao main
+	 * @brief main function
 	 */
 	public static void main(String[] args) {
 		new Game(args[0]);

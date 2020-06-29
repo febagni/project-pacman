@@ -69,11 +69,15 @@ public class Controls extends JPanel implements KeyListener{
 				game.paused = false;
 			}
 		}
+		if (key == KeyEvent.VK_M) { //Next Level
+			game.mute();
+		}
 		if (key == KeyEvent.VK_R) { //Reset Game
 			if(game.gotAllPoints() || game.paused) {
 				game.reset();
 				setPlayer(game.player);
 				game.paused = false;
+				game.restart = false;
 			}
 		}
 		if (key == KeyEvent.VK_E) { //Reset Game

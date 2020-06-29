@@ -6,6 +6,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl; 
 
 public class AudioPlayer {
+	
+	static final float initVolume = -20.0f;
 
     // to store current position 
      Long currentFrame; 
@@ -19,6 +21,7 @@ public class AudioPlayer {
      String mainFolder = "audio/";
      String filePath = "dif1.aif"; 
      static String sourceFolder = "Classic/";
+     static float volume = initVolume;
      FloatControl gainControl;
      
      AudioPlayer(int level) {
@@ -28,7 +31,7 @@ public class AudioPlayer {
  	        clip = AudioSystem.getClip();   
  	        clip.open(audioInputStream); 
  	        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
- 	        changeSound(-20.0f);
+ 	        changeSound(volume);
  	        clip.loop(Clip.LOOP_CONTINUOUSLY); 
  	        
  		} catch (Exception e) {
@@ -42,15 +45,17 @@ public class AudioPlayer {
  	        clip = AudioSystem.getClip();   
  	        clip.open(audioInputStream); 
  	        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
- 	        changeSound(-20.0f); 
+ 	        changeSound(volume); 
  	        play();
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
     }
+    
      
     public void changeSound(float decibes) {
-        gainControl.setValue(decibes);
+    	volume = decibes;
+        gainControl.setValue(volume);
     }
     
     public void play() { 
