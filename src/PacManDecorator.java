@@ -24,6 +24,7 @@ public abstract class PacManDecorator extends PacMan {
 	public void setRealX(int x) {player.setRealX(x);}
 	public void setRealY(int y) {player.setRealY(y);}	
 	public void updateLives() {player.lives--;}
+	public void updateSprite() {player.updateSprite();}
 	
 	PacManDecorator(PacMan player) {
 		this.player = player;
