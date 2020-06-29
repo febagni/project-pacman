@@ -52,12 +52,13 @@ public abstract class PacMan extends Entity {
 				map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
 				map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
 				map[getX()][getY()].updateSprite();
-				AudioPlayer soundeffect = new AudioPlayer("Untitled.aif");
 				points += 10;	//e soma um para a contagem de pontos 
 			} else if (map[getX()][getY()].getID() == MapID.FloorWithBoost) {	//chao com boost
 				map[getX()][getY()].setID(MapID.Floor);	//atualiza para o chao normal
 				map[getX()][getY()].setSpritePath(SpritesManager.getSpritePath(MapID.Floor));
 				map[getX()][getY()].updateSprite();
+				@SuppressWarnings("unused")
+				AudioPlayer soundeffect = new AudioPlayer("Untitled.aif");
 				setBoostedTime(getBoostedTimeMax());	//seta o boosted como verdade
 			} else if (map[getX()][getY()].getID() == MapID.FloorWithCherry) {	//chao com a cherry
 				map[getX()][getY()].setID(MapID.Floor);	//atualiza para chao normal

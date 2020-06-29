@@ -28,7 +28,7 @@ public class AudioPlayer {
  	        clip = AudioSystem.getClip();   
  	        clip.open(audioInputStream); 
  	        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
- 	        changeSound(-15.0f);
+ 	        changeSound(-20.0f);
  	        clip.loop(Clip.LOOP_CONTINUOUSLY); 
  	        
  		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class AudioPlayer {
  	        clip = AudioSystem.getClip();   
  	        clip.open(audioInputStream); 
  	        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
- 	        changeSound(-15.0f); 
+ 	        changeSound(-20.0f); 
  	        play();
     	} catch (Exception e) {
     		e.printStackTrace();

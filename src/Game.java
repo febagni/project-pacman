@@ -106,6 +106,15 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	/*
+	 * @brief Update the audio for the look-n-feel
+	 */
+	public void updateAudio() {
+		songPlayer.stop();
+		songPlayer = new AudioPlayer(state.getLevelNumber());
+		songPlayer.play();
+	}
+	
+	/*
 	 * @brief Pattern GameLoop: Loop do jogo que mantem ele atualizado em tempo real
 	 */
 	public void run() {
@@ -139,27 +148,24 @@ public class Game extends Canvas implements Runnable {
 	 * @brief Funcao que renderiza todos os objetos do jogo
 	 */
 	private void render() {
-		if(paused) {
-		}
-		else {
-			//Use with BufferedImage
-			BufferStrategy bufferStrategy = this.getBufferStrategy();
-	        if (bufferStrategy == null) {
-	            this.createBufferStrategy(3);
-	            return;
-	        }
-	
-	        Graphics graphics = bufferStrategy.getDrawGraphics();
-	        //Primeira iteracao: renderiza o mapa inteiro
-	        if (firstRender) {
-	        	mapHandler.renderMap(graphics);
-	        	firstRender = false;
-	        }      
-	        mapHandler.renderMap(graphics);
-	        entityHandler.render(graphics);
-	        graphics.dispose();
-	        bufferStrategy.show();
-		}
+		//Use with BufferedImage
+		//if(!paused) {
+		BufferStrategy bufferStrategy = this.getBufferStrategy();
+	    if (bufferStrategy == null) {
+	    	this.createBufferStrategy(3);
+	        return;
+	    }
+	    Graphics graphics = bufferStrategy.getDrawGraphics();
+	    //Primeira iteracao: renderiza o mapa inteiro
+	    if (firstRender) {
+	      	mapHandler.renderMap(graphics);
+	       	firstRender = false;
+	    }      
+	    mapHandler.renderMap(graphics);
+	    entityHandler.render(graphics);
+	    graphics.dispose();
+	    bufferStrategy.show();
+		//}
 	}
 	
 
@@ -184,6 +190,7 @@ public class Game extends Canvas implements Runnable {
 	 */
 	private void tick() {
 		if(paused) {
+			//setSkin();
 			//SoundManager.changeSound(-45.0f);
 		} else {
 			if(player.getLives() == 0) {

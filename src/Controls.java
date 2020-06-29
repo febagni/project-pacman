@@ -43,24 +43,19 @@ public class Controls extends JPanel implements KeyListener{
 			player.direction = key;
 		}
 		if (key == KeyEvent.VK_1) {
-			spriteFactory.create("Classic");
-			game.setSkin();
+			setLookAndFeel("Classic");
 		}
 		if (key == KeyEvent.VK_2) {
-			spriteFactory.create("DeepSpace");
-			game.setSkin();
+			setLookAndFeel("DeepSpace");
 		}
 		if (key == KeyEvent.VK_3) {
-			spriteFactory.create("WildWest");
-			game.setSkin();
+			setLookAndFeel("WildWest");
 		}
 		if (key == KeyEvent.VK_4) {
-			spriteFactory.create("UnderTheSea");
-			game.setSkin();
+			setLookAndFeel("UnderTheSea");
 		}
 		if (key == KeyEvent.VK_5) {
-			spriteFactory.create("CovidMarket");
-			game.setSkin();
+			setLookAndFeel("CovidMarket");
 		}
 		if (key == KeyEvent.VK_P) {
 			if(!game.gotAllPoints()) {
@@ -86,6 +81,15 @@ public class Controls extends JPanel implements KeyListener{
 				System.exit(-1);
 			}
 		}
+	}
+	
+	/*
+	 * @brief Setter de look and feel
+	 */
+	void setLookAndFeel(String lookName) {
+		spriteFactory.create(lookName);
+		game.setSkin();
+		game.updateAudio();
 	}
 	
 	//metodos da interface nao utillizadas 
