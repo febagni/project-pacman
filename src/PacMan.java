@@ -1,13 +1,26 @@
+/*
+ * @file Pacman.java
+ * 
+ * @brief Super Class made for implementing the decorator
+ * 
+ * @author Alexandre Marques Carrer <alexandrecarrer@usp.br>
+ * @author Felipe Bagni <febagni@usp.br> 
+ * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
+ * @author Gustavo Azevedo Correa <guazco@usp.br>
+ * 
+ * @date 06/2020
+ * 
+ */
 import java.awt.event.KeyEvent;
 
 public abstract class PacMan extends Entity {
 	
-	public abstract boolean playerEatGhost();
-	public abstract boolean isAlreadyBoosted();
+	public abstract boolean playerEatGhost(); //Indicates if the player eated a ghost
+	public abstract boolean isAlreadyBoosted(); //Indicates if the player has just gotten a boost
 	
 	protected int boostedTimeMax;	// numero maximos de ticks para o pacman continuar boostado
 	protected int boostedTime;	//ticks restantes para o pacman continuar boostado
-	protected boolean lastBoostDrop;
+	protected boolean lastBoostDrop; //Indicates that the boost is over
 	protected int points;	//contador dos pontos
 	protected int extraPoints;	//pontos extras relacionados a cherries
 	protected int lastDirection = KeyEvent.VK_LEFT; //Variavel que contem a ultima direcao que o Pacman estava olhando
@@ -15,7 +28,9 @@ public abstract class PacMan extends Entity {
 	protected int initialPositionX;	//Posicao x inicial do pacman 
 	protected int initialPositionY;	//Posicao y inicial do pacman
 	
-	//Getters e Setters
+	/*
+	 * @brief Setters e Getters
+	 */
 		void setDirection() {this.direction = KeyEvent.VK_LEFT;}
 		int getPoints() {return points;}
 		int getLives() {return lives;}
@@ -41,6 +56,9 @@ public abstract class PacMan extends Entity {
 			this.lives = lives;
 		}
 		
+		/*
+		 * @brief Method that actualize the time being boosted
+		 */
 		void setMaxBoostedTime(int boostedTimeMax) {this.boostedTimeMax = boostedTimeMax;}
 		
 		/*
@@ -69,11 +87,17 @@ public abstract class PacMan extends Entity {
 				extraPoints += 100;	//soma os pontos extras
 			}
 		}
-		
+
+		/*
+		 * @brief Method that adds the points obtained with the normal points, cherries and ghosts
+		 */
 		int totalPoints() {
 			return (points+extraPoints);
 		}
 		
+		/*
+		 * @brief Method that returns the player's time left boosted
+		 */
 		boolean boostedTime() {
 			return boostedTime>0;
 		}

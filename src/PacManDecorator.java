@@ -1,11 +1,28 @@
+/*
+ * @file PacmanDecorator.java
+ * 
+ * @brief Pacman's Decorator
+ * 
+ * @author Alexandre Marques Carrer <alexandrecarrer@usp.br>
+ * @author Felipe Bagni <febagni@usp.br> 
+ * @author Gabriel Yugo Kishida <gabriel.kishida@usp.br>
+ * @author Gustavo Azevedo Correa <guazco@usp.br>
+ * 
+ * @date 06/2020
+ * 
+ */
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 public abstract class PacManDecorator extends PacMan {
 
-	PacMan player;
+	PacMan player; //The Pacman Object being decorated
 	
-	void setDirection() {this.direction = KeyEvent.VK_LEFT;}
+	void setDirection() {this.direction = KeyEvent.VK_LEFT;} //Sets the starting direction as left
+	
+	/*
+	 * @brief Setters e Getters
+	 */
 	int getPoints() {return player.getPoints();}
 	int getLives() {return player.getLives();}
 	int getInitialPositionX() {return player.getInitialPositionX();}

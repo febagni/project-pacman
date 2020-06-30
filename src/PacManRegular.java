@@ -17,8 +17,8 @@ import java.awt.event.KeyEvent;
 public class PacManRegular extends PacMan {
 
 	public PacManRegular(){
-		spritePath = "pacman.png";
-		lastBoostDrop = false;
+		spritePath = "pacman.png"; //Sets the initial spritePath as the pacman png
+		lastBoostDrop = false; //Sets that the boost is over
 		boostedTime = 0;	//inicializa como falso
 		points = 0;	//inicializa os pontos como zero
 		frame = 0;	//inicializa a frame como zero
