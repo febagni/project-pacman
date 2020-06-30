@@ -72,6 +72,10 @@ public class Controls extends JPanel implements KeyListener{
 		if (key == KeyEvent.VK_M) { //Next Level
 			game.mute();
 		}
+		if (key == KeyEvent.VK_Z) {
+			@SuppressWarnings("unused")
+			AudioPlayer soundeffect = new AudioPlayer("kazzoo.aif");
+		}
 		if (key == KeyEvent.VK_R) { //Reset Game
 			if(game.gotAllPoints() || game.isPaused()) {
 				game.reset();
