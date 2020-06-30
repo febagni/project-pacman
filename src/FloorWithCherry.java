@@ -1,5 +1,3 @@
-import java.awt.Graphics;
-
 /*
  * @file FloorWithCherry.java
  * 
@@ -15,12 +13,8 @@ import java.awt.Graphics;
  */
 
 public class FloorWithCherry extends MapObject{
-
-	private boolean hasCherry;
-	private int cherryChance;
 	
     FloorWithCherry(){
-    	hasCherry = true;
     	spritePath = "PacManFloorWithCherry.png";
     	updateSprite();
     }
