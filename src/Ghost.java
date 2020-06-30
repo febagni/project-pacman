@@ -21,7 +21,7 @@ public class Ghost extends Entity {
 	GhostMovement strategy;	//estrategia do fantasma
 	int bufferedMovementFlag = 0;	//cooldown para a mudanca de direcao do fantasma
 	private StrategyID sId;	//id da estrategia relacionada ao objeto fantasma
-	private String colorPath;
+	private String colorPath; //Original ghost's color
 	
 	public Ghost (int x, int y, StrategyID id) {
 		initX = x;
@@ -39,7 +39,9 @@ public class Ghost extends Entity {
 	}
 	
 	
-	//Getters e Setters
+	/*
+	 * @brief Getters and Setters
+	 */
 	public int getInitX() {return initX;}
 	public int getInitY() {return initY;}
 	public StrategyID getStrategyID() {return sId;}

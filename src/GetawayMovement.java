@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class GetawayMovement extends NonRandomMovement {
 
-	ArrayList<Integer> priorityDirection;
+	ArrayList<Integer> priorityDirection; //Array in which are stored the directions in a order of priority 
 	
 	GetawayMovement(Entity follower, Entity followed) {
 		super(follower, followed);

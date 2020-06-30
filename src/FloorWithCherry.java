@@ -35,10 +35,6 @@ public class FloorWithCherry extends MapObject{
         return floor;
     }
     
-    public void setHasCherry(boolean hasCherry) {
-    	this.hasCherry = hasCherry;
-    }
-   
     //Nao utilizado 
     @Override
     public void tick() {

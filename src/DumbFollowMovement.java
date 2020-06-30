@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class DumbFollowMovement extends NonRandomMovement {
 
-	ArrayList<Integer> priorityDirection;
+	ArrayList<Integer> priorityDirection; //Array in which are stored the directions in a order of priority 
 	
-	DumbFollowMovement(Entity follower, Entity followed) {
+	DumbFollowMovement(Entity follower, Entity followed) { 
 		super(follower, followed);
 	}
 	
@@ -29,11 +29,11 @@ public class DumbFollowMovement extends NonRandomMovement {
 	private void setPreferredDirection() {
 		int deltaX = follower.getRealX() - followed.getRealX();
 		int deltaY = follower.getRealY() - followed.getRealY();
-		if (deltaX*deltaX > deltaY*deltaY) {
-			priorityDirection.add((deltaX > 0)? KeyEvent.VK_UP: KeyEvent.VK_DOWN);
-			priorityDirection.add((deltaY > 0)? KeyEvent.VK_LEFT: KeyEvent.VK_RIGHT);
+		if (deltaX*deltaX > deltaY*deltaY) {                      //If the diference between the positions in x-axis is bigger than the one in the y-axis
+			priorityDirection.add((deltaX > 0)? KeyEvent.VK_UP: KeyEvent.VK_DOWN); 
+			priorityDirection.add((deltaY > 0)? KeyEvent.VK_LEFT: KeyEvent.VK_RIGHT); 
 		}
-		else {
+		else {          
 			priorityDirection.add((deltaY > 0)? KeyEvent.VK_LEFT: KeyEvent.VK_RIGHT);
 			priorityDirection.add((deltaX > 0)? KeyEvent.VK_UP: KeyEvent.VK_DOWN);
 		}

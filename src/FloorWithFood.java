@@ -20,7 +20,7 @@ public class FloorWithFood extends MapObject {
 	}
 	
 	/*
-	 * @brief Implementa√ß√£o do padr√£o prototype: clona o objeto para criar os objetos pela f√°brica abstrata
+	 * @brief ImplementaÁ„o do padr„o prototype: clona o objeto para criar os objetos pela f·brica abstrata
 	 */
 	@Override
 	public GameObject clone() {

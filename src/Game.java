@@ -20,22 +20,22 @@ public class Game extends Canvas implements Runnable {
 	private GameState state;
 	private static final long serialVersionUID = 1L; 
 	private Thread thread;
-	private boolean running = false;
-	private boolean muted = false;
-	private boolean paused = false;
-	private boolean restart = false;
+	private boolean running = false; //Flag that indicates if the game is running
+	private boolean muted = false; //Flag that indicates if the audio is muted
+	private boolean paused = false; //Flag that indicates if the game is paused
+	private boolean restart = false; //Flag that stops the game from rendering the map while it is being restarted
 	private int width; //Largura da tela criada
 	private int height; //Altura da tela criada
 	private int maxPoints; //Numero maximo de pontos atingiveis pelo jogador
 	private int fixedTickFlag = 0; //Numero de miniticks
-	private String mapFileName;
+	private String mapFileName; //Game's map path
 	private static final int fixedTickMax = 60; //Numero de miniticks a serem atingidos a cada fixedTick
 	private MapHandler mapHandler; //Handler dos objetos que nao se movem
 	private EntityHandler entityHandler; //Handler dos objetos que se movem
 	PacMan player; //Objeto que representa o jogador
 	Window window; //Tela do jogo
-	private int totalPoints = 0;
-	private AudioPlayer songPlayer;
+	private int totalPoints = 0; //Pontos totais do jogador
+	private AudioPlayer songPlayer;  //Game's music player
 	
 	public Game(String mapFileName) {
 		this.mapFileName = mapFileName;
@@ -45,10 +45,10 @@ public class Game extends Canvas implements Runnable {
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 	}
 	
-	public void setPause(boolean paused) {this.paused = paused;}
-	public boolean isPaused() {return this.paused;}
-	public void setRestart(boolean restart) {this.restart = restart;}
-	public boolean isRestarting() {return this.restart;}
+	public void setPause(boolean paused) {this.paused = paused;} //Pauses the game
+	public boolean isPaused() {return this.paused;} //Indicates if the game is paused
+	public void setRestart(boolean restart) {this.restart = restart;} //Restarts the game
+	public boolean isRestarting() {return this.restart;} //Indicates that the game is being restarted
 	
 	/*
 	 * @brief prepares game (reads map from txt file, sets objects to their initial positions)
@@ -60,7 +60,6 @@ public class Game extends Canvas implements Runnable {
 		width = mapBuilder.getWidth()*MapObject.squareSize; //Pega as dimensoes da tela
 		height = mapBuilder.getHeight()*MapObject.squareSize;
 		mapHandler.setMap(mapBuilder.build()); //Constroi os objetos do mapa
-		mapHandler.setCherryPosition(mapBuilder.getCherryPosition());
 		entityHandler = new EntityHandler(mapBuilder.getGhosts(), player); //Constroi handler para os objetos que se movem
 		maxPoints = mapBuilder.getMaxPoints();	//Pega os pontos maximos que podem ser feitos no jogo
 	}
@@ -87,6 +86,9 @@ public class Game extends Canvas implements Runnable {
 		}
 	} 
 	
+	/*
+	 * @brief Sets the game difficulty
+	 */
 	private void setState(int difficulty, String mapFileName) {
 		switch(difficulty) {
 			case 1:
@@ -152,7 +154,7 @@ public class Game extends Canvas implements Runnable {
 		int frames = 0;
         while(running) {
             long now = System.nanoTime();
-            delta += (now - lastTime) /ns;
+            delta += (now - lastTime)/ns;
             lastTime = now;
             while (delta >= 1) {
                 tick();
@@ -162,7 +164,6 @@ public class Game extends Canvas implements Runnable {
             frames++;
             if(System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                //System.out.println("FPS " + frames);
                 frames = 0;
             }
        }    
@@ -212,7 +213,6 @@ public class Game extends Canvas implements Runnable {
 			if(player.getLives() == 0) {
 				System.out.println("Perdeu :(");
 				paused = true;
-				//stop();
 			}
 			mapHandler.tick();
 			entityHandler.tick();
@@ -269,7 +269,7 @@ public class Game extends Canvas implements Runnable {
 			setState(state.getLevelNumber() + 1, mapFileName);
 			System.out.println("Nivel:" + state.getLevelNumber());
 		} else {
-			System.out.println("voce eh o bichao mesmo ein doido");
+			System.out.println("Voce é o bichão mesmo ein doido");
 			stop();
 		}
 		songPlayer.stop();
@@ -288,7 +288,6 @@ public class Game extends Canvas implements Runnable {
 	
 	/*
 	 * @brief fixed tick (works like the tick, but with a smaller frequency)
-	 * @brief Mixed strategy ghosts use it to change their strategies
 	 */
 	private void fixedTick() {
 		if(fixedTickFlag < fixedTickMax) {

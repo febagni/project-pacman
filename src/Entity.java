@@ -36,6 +36,7 @@ public abstract class Entity implements GameObject {
 	protected String spritePath; // Caminho dos sprites dos objetos
 	protected int lastDirection = KeyEvent.VK_LEFT; // Ultima dire��o da entidade
 	protected static int step = 2;
+	
 	/*
 	 * @brief Setters e Getters para algumas caracteristicas
 	 */
@@ -82,6 +83,7 @@ public abstract class Entity implements GameObject {
 	protected boolean higherThanCenterOnX() {return realX - getX()*squareSize > 0;}
 	
 	protected boolean lowerThanCenterOnX() {return realX - getX()*squareSize < 0;}
+	
 	/*
 	 * @brief Funcoes booleanas que verificam a posicao relativa do sprite em comparacao com o centro de seu bloco no eixo Y
 	 */

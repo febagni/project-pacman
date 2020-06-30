@@ -24,8 +24,7 @@ public class MapBuilder {
 	int maxPoints;	//Contador de pontos maximos que o jogador pode obter
 	int strategyIndex = 0;	//Indice das estrategias
 	MapFactory mapFactory = new MapFactory();	//Inicializador da fabrica abstrata do mapa
-	ArrayList<StrategyID> ids = new ArrayList<>();
-	ArrayList<Integer[]> cherryPosition = new ArrayList<>();
+	ArrayList<StrategyID> ids = new ArrayList<>(); //Array used to set the ids
 	
 	MapBuilder (String fileName) {
 		ghosts = new ArrayList<Ghost>();
@@ -35,16 +34,17 @@ public class MapBuilder {
 		ids.add(StrategyID.Random);
 		ids.add(StrategyID.Follow);
 		ids.add(StrategyID.Mixed);
-		//ids.add(StrategyID.Escape);
 		maxPoints = 0;
 	}
 	
-	//Getters
-		PacManRegular getPlayer() {return player;}
-		public ArrayList<Ghost> getGhosts() {return ghosts;}
-		int getHeight() {return mapReader.getHeight();}
-		int getWidth() {return mapReader.getWidth();}
-		int getMaxPoints() {return maxPoints;}
+	/*
+	 * @brief Getters
+	 */
+	PacManRegular getPlayer() {return player;}
+	public ArrayList<Ghost> getGhosts() {return ghosts;}
+	int getHeight() {return mapReader.getHeight();}
+	int getWidth() {return mapReader.getWidth();}
+	int getMaxPoints() {return maxPoints;}
 		
 	/*
 	 * @brief Constroi o mapa a partir do leitor, criando uma matriz com os objetos do jogo
@@ -76,19 +76,11 @@ public class MapBuilder {
 				else if (line.charAt(j) == '.') {	//Se for um food, adiciona 10 pontos para a contagem total de pontos
 					maxPoints += 10;
 				}
-				else if (line.charAt(j) == '%') {	//Se for uma cherry, adiciona 100 pontos para a contagem total de pontos
-					Integer[] position = {i,j};
-					cherryPosition.add(position);
-				}
 			}
 			i++;
 		}
 		player.setMap(map); //Atribui ao player o mapa criado
 		return map;	//retorna o mapa
-	}
-	
-	public ArrayList<Integer[]> getCherryPosition() {
-		return cherryPosition;
 	}
 	
 	/*
