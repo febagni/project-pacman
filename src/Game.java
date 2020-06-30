@@ -22,8 +22,8 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 	private boolean muted = false;
-	boolean paused = false;
-	boolean restart = false;
+	private boolean paused = false;
+	private boolean restart = false;
 	private int width; //Largura da tela criada
 	private int height; //Altura da tela criada
 	private int maxPoints; //Numero maximo de pontos atingiveis pelo jogador
@@ -44,6 +44,11 @@ public class Game extends Canvas implements Runnable {
 		setStateVariables();
 		window = new Window(width, height, "Projeto Pacman", this); //Constroi janela do jogos
 	}
+	
+	public void setPause(boolean paused) {this.paused = paused;}
+	public boolean isPaused() {return this.paused;}
+	public void setRestart(boolean restart) {this.restart = restart;}
+	public boolean isRestarting() {return this.restart;}
 	
 	/*
 	 * @brief prepares game (reads map from txt file, sets objects to their initial positions)
@@ -258,6 +263,7 @@ public class Game extends Canvas implements Runnable {
 	 * @brief Prepares the game for the next level
 	 */
 	public void nextLevel() {	
+		restart = true;
 		gamePrepare(mapFileName);
 		if(state.getLevelNumber() < 5) {
 			setState(state.getLevelNumber() + 1, mapFileName);

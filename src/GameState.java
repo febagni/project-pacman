@@ -18,7 +18,6 @@ public abstract class GameState {
 	int getLevelNumber() {return this.levelNumber;}
 	int getMixedFollowRate() {return this.mixedFollowRate;}
 	int getSpeed() {return this.speed;}
-	int getCherryChance() {return this.cherryChance;}
 	int getBoostTime(){return this.boostedTime;}
 	int getLives(){return this.lives;}
 	GameObject[][] getMap(){return this.map;}
