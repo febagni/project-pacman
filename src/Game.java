@@ -208,8 +208,7 @@ public class Game extends Canvas implements Runnable {
 	 * @brief Updates all game objects (positions, directions, etc.)
 	 */
 	private void tick() {
-		if(paused) {
-		} else {
+		if(!paused) {
 			if(player.getLives() == 0) {
 				System.out.println("Perdeu :(");
 				paused = true;
@@ -269,7 +268,7 @@ public class Game extends Canvas implements Runnable {
 			setState(state.getLevelNumber() + 1, mapFileName);
 			System.out.println("Nivel:" + state.getLevelNumber());
 		} else {
-			System.out.println("Voce é o bichão mesmo ein doido");
+			System.out.println("Voce ï¿½ o bichï¿½o mesmo ein doido");
 			stop();
 		}
 		songPlayer.stop();

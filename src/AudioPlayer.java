@@ -19,6 +19,7 @@ import javax.sound.sampled.FloatControl;
 public class AudioPlayer {
 	
 	static final float initVolume = -20.0f;	//Initial volume
+	static final String effectFile = "Effects/";
     Long currentFrame; 						//Current frame of the song
     Clip clip; 								//Clip that plays the song
     String status;   						//status (whether the game is paused or playing)
@@ -51,7 +52,7 @@ public class AudioPlayer {
      */
     AudioPlayer(String effectPath) {
     	try {
-    		audioInputStream = AudioSystem.getAudioInputStream(new File(mainFolder + sourceFolder + effectPath).getAbsoluteFile());
+    		audioInputStream = AudioSystem.getAudioInputStream(new File(mainFolder + effectFile + effectPath).getAbsoluteFile());
  	        clip = AudioSystem.getClip();   
  	        clip.open(audioInputStream); 
  	        gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);

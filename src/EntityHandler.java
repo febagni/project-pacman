@@ -20,7 +20,7 @@ public class EntityHandler {
 	
 	ArrayList<Ghost> ghosts; //Array com todos os fantasmas do jogo
 	PacMan player; //Objeto jogador
-	protected static int mixedFollowRate;	//Dificuldade da perseguição
+	protected static int mixedFollowRate;	//Dificuldade da perseguiï¿½ï¿½o
 	
 	EntityHandler(ArrayList<Ghost> ghosts, PacMan player) {
 		this.ghosts = ghosts;
@@ -181,6 +181,8 @@ public class EntityHandler {
 	 * @brief Resets ghost position and strategy (used after pacman eats ghost)
 	 */
 	private void ghostDeathReset(Ghost ghost) {
+		@SuppressWarnings("unused")
+		AudioPlayer soundeffect = new AudioPlayer("KilledGhost.aif");
 		ghost.setRealX(ghost.getInitX());
 		ghost.setRealY(ghost.getInitY());
 		setSingleGhostOriginalStrategy(ghost);
@@ -190,6 +192,8 @@ public class EntityHandler {
 	 * @brief Faz o reset das posicoes iniciais das entidades quando o player morre
 	 */
 	public void playerDeathReset() {
+		@SuppressWarnings("unused")
+		AudioPlayer soundeffect = new AudioPlayer("Death.aif");
 		player.updateLives();
 		player.setRealX(player.getInitialPositionX());
 		player.setRealY(player.getInitialPositionY());
