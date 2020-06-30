@@ -36,6 +36,8 @@ public class Game extends Canvas implements Runnable {
 	Window window; //Tela do jogo
 	private int totalPoints = 0; //Pontos totais do jogador
 	private AudioPlayer songPlayer;  //Game's music player
+	public AudioPlayer easterEgg;	//Find out playing
+	private boolean easterFlag = false;
 	
 	public Game(String mapFileName) {
 		this.mapFileName = mapFileName;
@@ -136,9 +138,23 @@ public class Game extends Canvas implements Runnable {
 		muted = !muted;
 		if(muted) {
 			songPlayer.changeSound(-10000.0f);
+			if(easterFlag) easterEgg.changeSound(-10000.0f);
 		} else {
 			songPlayer.changeSound(AudioPlayer.initVolume);
+			if(easterFlag) easterEgg.changeSound(AudioPlayer.initVolume);
 		}
+	}
+	
+	/*
+	 * @brief EasterEgg routine
+	 */
+	public void easterEgg() {
+		if (!easterFlag) {
+			easterEgg = new AudioPlayer("kazzoo.aif");
+		} else {
+			easterEgg.stop();
+		}
+		easterFlag = !easterFlag;
 	}
 	
 	/*

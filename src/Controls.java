@@ -73,8 +73,7 @@ public class Controls extends JPanel implements KeyListener{
 			game.mute();
 		}
 		if (key == KeyEvent.VK_Z) {
-			@SuppressWarnings("unused")
-			AudioPlayer soundeffect = new AudioPlayer("kazzoo.aif");
+			game.easterEgg();
 		}
 		if (key == KeyEvent.VK_R) { //Reset Game
 			if(game.gotAllPoints() || game.isPaused()) {
@@ -90,7 +89,7 @@ public class Controls extends JPanel implements KeyListener{
 			}
 		}
 	}
-	
+
 	/*
 	 * @brief Sets the look and feel, updating sprites and audio
 	 */
