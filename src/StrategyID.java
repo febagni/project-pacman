@@ -15,5 +15,6 @@ public enum StrategyID {
 	Follow(),
 	Random(),
 	Mixed(),
-	Escape();
+	Escape(),
+	EndOfEscape();
 }

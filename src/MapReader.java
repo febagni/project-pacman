@@ -106,8 +106,9 @@ public class MapReader {
 		return false;
 	}
 	
-	//Getters
-	
+	/*
+	 * @brief Height and Width's Getters
+	 */
 	int getHeight() { return rawMap.size(); }
 	ArrayList<String> getInput() { return rawMap; }
 	

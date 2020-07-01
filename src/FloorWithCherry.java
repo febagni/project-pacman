@@ -13,7 +13,7 @@
  */
 
 public class FloorWithCherry extends MapObject{
-
+	
     FloorWithCherry(){
     	spritePath = "PacManFloorWithCherry.png";
     	updateSprite();

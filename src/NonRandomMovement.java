@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public abstract class NonRandomMovement implements GhostMovement {
 
-	Entity follower;
-	Entity followed;
+	Entity follower; //The ghost who is following the player
+	Entity followed; //The player being followed
 	
 	NonRandomMovement(Entity follower, Entity followed) {
 		this.follower = follower;

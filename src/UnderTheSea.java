@@ -20,6 +20,7 @@ public class UnderTheSea implements Skin {
 	@Override
 	public Skin clone() {
 		SpritesManager.folder = "UnderTheSea/";
+		AudioPlayer.sourceFolder = "UnderTheSea/";
 		return new UnderTheSea();
 	}
 }

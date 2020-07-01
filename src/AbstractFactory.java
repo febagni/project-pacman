@@ -9,9 +9,9 @@
  * @author Gustavo Azevedo Correa <guazco@usp.br>
  * 
  * @date 06/2020
- * 
  */
 
 public interface AbstractFactory<T> {
+	
 	T create(String type);
 }

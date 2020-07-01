@@ -1,7 +1,7 @@
 # Project PacMan
 
 <center> 
-<img src="https://w7.pngwing.com/pngs/660/760/png-transparent-pac-man-illustration-pac-man-world-3-minecraft-pixel-art-pac-man-angle-text-symmetry.png" width="150" height="150">
+<img src="https://i.imgur.com/fGu2yGQ.png" width="150" height="150">
 </center>
 
 ## Introdução:
@@ -40,7 +40,7 @@ Vou apenas descrever alguns requisitos obrigatórios; fiquem à vontade para col
   
 4) Utilizando o padrão Fábrica Abstrata, implemente a possibilidade do jogo ter diferentes aparências (look-and-feel). Assim, facilmente, o jogador poderá escolher se o espaço do jogo terá uma aparência de supermercado em tempos de covid, velho oeste, espaço sideral ou os corredores do IME, por exemplo. Quando o usuário selecionar uma nova aparência, todos os elementos gráficos do jogo devem se redesenhar imediatamente.  
   
-5) Utilize o padrão State para representar as diferentes fases do jogo. Cada fase deve ser um pouquinho mais difícil que a anterior.  
+5) Utilize o padrão State para representar as diferentes fases do jogo. Cada fase deve ser um pouquinho mais difícil que a anterior.
   
 6) Utilize o padrão Decorator para acrescentar algum comportamento dinâmico em um jogador quando ele pega alguma coisa que lhe dá super-poderes durante alguns segundos (como o Mario do Super Mario Bros quando come o cogumelo e fica grande e ligadão).  
   
@@ -159,5 +159,67 @@ Mais uma vez, o código se encontra na branch *master*.
 
 **Cada um dos arquivos *.java* que compõem o projeto possuem comentários explicando detalhadamente o que foi feito.**
 **Todos as imagens foram produzidas pelos membros da equipe, e pertencem a mesma**
+
+Dentro do [diário de bordo](./DiarioDeBordo.md), pode ser encontrado o que foi feito dentro de cada sessão de "Dojo" realizada, explicando detalhada e progressivamente o trabalho feito.
+
+## Terceira Entrega
+
+A terceira entrega corresponde à Fase 03, ou seja, à entrega final do trabalho. O que representa os requisitos 05, 06, 07 e 08.
+
+Em primeiro lugar, usamos o padrão State para implementar diferentes dificuldades para o jogo, de acordo com a fase:
+
+Dificuldade | Categoria 
+----------|-----------
+01 | Café com Leite 
+02 | Fácil
+03 | Médio
+04 | Difícil
+05 | Boss
+
+Característica | Dificuldade 01 | Dificuldade 02 | Dificuldade 03 | Dificuldade 04 | Dificuldade 05
+----------|-----------|----------|-----------|----------|-----------
+Número de Vidas | Infinitas | 4 | 3 | 2 | 1
+Tempo de Boosted (segundos) | 15 | 15 | 10 | 7,5 | 5
+Multiplicador de Pontos | x0,5 | x1 | x1 | x2 | x3
+Velocidade | 1 | 1 | 1 | 1 | 2
+MixedFollow Rate | 10-90 | 30-70 | 50-50 | 70-30 | 90-10
+
+- Numero de vidas representam a quantidade chances que o jogador tem para terminar a fase.
+- Tempo de Boosted representa o tempo que os fantasmas fogem do Pacman e que ele pode matar os fantasmas (será melhor explicado abaixo).
+- Multiplicador de Pontos representa o número no qual os pontos ganhados naquele estágio serão multiplicados para a pontuação geral.
+- Velocidade representa a velocidade das entidades do jogo e modifica o tamanho dos seus passos.
+- MixedFollow Rate representa a porcentagem de tempo que a estratégia mista como follow ou como random, respectivamente
+
+
+Vale observar que cada dificuldade recebe um fileName do mapa, assim podem ter mapas diferentes de acordo com a dificuldade. Porém, optamos em ter o mesmo mapa para todas. 
+
+Para ir para a próxima fase (dificuldade) do jogo, é necessario ganhar a fase atual e o jogo ficar no hiato após a vitória, deve-se apertar a tecla 'N' de "Next".
+
+Abaixo se encontra uma relação de botões que foram implementados.
+
+Botão | Função | Observação
+----------|-----------|-----------
+'P' | Pausar/Despausar o jogo | É possível pausar o jogo a qualquer momento e a música fica um pouco mais baixa quando pausado, e retorna ao normal ao despausar
+'N' | Ir para o próximo nível após vencer o anterior | Só funciona no hiato após a vitória da fase
+'E' | Sair do jogo | Só funciona quando está pausado
+'R' | Restart da fase | Funciona apenas ao se pausar o jogo ou no hiato após a vitória 
+'M' | Mutar/Desmutar o jogo | Efeito sobre todos os áudios do jogo (música e efeitos especiais)
+'Z' | Aciona/Desaciona algo :3 | Have fun! #descubra
+
+Em segundo lugar, foi implementado o efeito especial quando o pacman come um "boost". Assim, os fantasmas mudam de sprite e estratégia (para a estratégia de Escape - "GetawayMovement"). Usamos o padrão Decorator para implementar a mecânica de boost no pacman, permitindo ele comer os fantasmas. Ao comer um fantasma, ele reaparece na sua posição setada inicialmente no .txt do mapa com a sua estratégia original.   
+
+Vale ressaltar, que o tempo que o boost fica acionado varia com a dificuldade, como mostrado acima. Ao final do tempo de boost, os sprites dos fantasmas começam a piscar (e ficam no ID "EndOfEscape") para indicar o fim do tempo do boost.   
+
+Também, se o pacman já está no modo Boosted e comer um outro "boost", a rotina de "boosted" é reiniciada.   
+
+Já em relação ao requisito 08, as músicas foram desenvolvidas usando o software "GarageBand" pela própria equipe. As músicas, propriamente ditas, mudam progressivamente de acordo com a dificuldade do jogo, ficando mais agitadas conforme os níveis passam. Também, cada look-and-feel tem um tema de instrumentos diferente, mas mantendo o cerne da música pela dificuldade.   
+
+Para o requisito 09, foram adicionados efeitos sonoros para os eventos de comer uma cherry, um boost ou nas interações dos personagens: pacman mata fantasma ou fantasma mata pacman.   
+
+Mais uma vez, o código se encontra na branch *master*.
+
+- **Cada um dos arquivos *.java* que compõem o projeto possuem comentários explicando detalhadamente o que foi feito.**
+- **Todos as imagens foram produzidas pelos membros da equipe, e pertencem a mesma.**
+- **Todos os arquivos de áudio foram produzidos pela equipe, e pertencem a mesma (salvo o EasterEgg).**
 
 Dentro do [diário de bordo](./DiarioDeBordo.md), pode ser encontrado o que foi feito dentro de cada sessão de "Dojo" realizada, explicando detalhada e progressivamente o trabalho feito.

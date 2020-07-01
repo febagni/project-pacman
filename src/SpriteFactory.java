@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 public class SpriteFactory implements AbstractFactory<Skin> {
 
-	HashMap<String,Skin> prototypeMap = new HashMap<>();	//HashMap utilizado pleo padrao prototype
+	HashMap<String,Skin> prototypeMap = new HashMap<>();	//HashMap utilizado pelo padrao prototype
 
     SpriteFactory() {
         prototypeMap.put("Classic", new Classic());

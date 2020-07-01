@@ -15,10 +15,11 @@ import java.awt.Graphics;
 
 public class MapHandler {
 	
-	PacMan player; //Objeto que representa o jogador
+	PacManRegular player; //Objeto que representa o jogador
 	GameObject[][] map; //Mapa dos objetos imoveis
 	private int xLength; //Numero de linhas do mapa
 	private int yLength; //Numero de colunas do mapa
+
 
 	MapHandler(int rows, int columns){
 		this.xLength = rows;
@@ -26,8 +27,10 @@ public class MapHandler {
 		map = new GameObject[rows][columns];
 	}
 	
-	// Setters
-	public void setPlayer(PacMan player) {
+	/*
+	 * @brief Set Player
+	 */
+	public void setPlayer(PacManRegular player) {
 		this.player = player;
 	}
 
@@ -38,7 +41,8 @@ public class MapHandler {
         	}
     	}
     }
-	
+    
+
     /*
 	 * @brief Atualiza os objetos do mapa
 	 */
@@ -49,6 +53,7 @@ public class MapHandler {
     		}
     	}
     }
+    
     
     /*
 	 * @brief Funcao que renderiza todos os objetos do mapa

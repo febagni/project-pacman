@@ -20,6 +20,7 @@ public class DeepSpace implements Skin {
 	@Override
 	public Skin clone() {
 		SpritesManager.folder = "DeepSpace/";
+		AudioPlayer.sourceFolder = "DeepSpace/";
 		return new DeepSpace();
 	}
 

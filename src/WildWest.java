@@ -20,6 +20,7 @@ public class WildWest implements Skin {
 	@Override
 	public Skin clone() {
 		SpritesManager.folder = "WildWest/";
+		AudioPlayer.sourceFolder = "WildWest/";
 		return new WildWest();
 	}
 

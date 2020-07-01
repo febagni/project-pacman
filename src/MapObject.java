@@ -40,7 +40,7 @@ public abstract class MapObject implements GameObject {
 	
 	@Override
 	public int getX() {return x;}
-
+																		
 	@Override
 	public int getY() {return y;}
 	

@@ -29,12 +29,13 @@ public abstract class Entity implements GameObject {
 	protected int direction;	//direcao da entidade
 	protected int frame;	//frame da animacao do sprite da entidade
 	protected BufferedImage sprite;	//sprite da entidade
-	protected final int animationSlowness = 3;	//fator da velocidade da animacao
+	protected final int animationSlowness = 6;	//fator da velocidade da animacao
 	protected int realX, realY;	//coordenadas do sprite da entidade na tela
 	protected int speedX, speedY;	//velocidades nos eixos cartesianos do sprite na tela
 	protected int xLength, yLength;	//tamanho da matriz nos eixos
 	protected String spritePath; // Caminho dos sprites dos objetos
 	protected int lastDirection = KeyEvent.VK_LEFT; // Ultima dire��o da entidade
+	protected static int step = 2;
 	
 	/*
 	 * @brief Setters e Getters para algumas caracteristicas
@@ -43,6 +44,7 @@ public abstract class Entity implements GameObject {
 	public void setRealY(int y) {realY = y;}
 	public int getRealX() {return realX;}
 	public int getRealY() {return realY;}
+	public static void setStep(int newStep) {step = newStep;}
 	public void setSpritePath (String spritePath) {
 		this.spritePath = spritePath;
 	}
@@ -81,6 +83,7 @@ public abstract class Entity implements GameObject {
 	protected boolean higherThanCenterOnX() {return realX - getX()*squareSize > 0;}
 	
 	protected boolean lowerThanCenterOnX() {return realX - getX()*squareSize < 0;}
+	
 	/*
 	 * @brief Funcoes booleanas que verificam a posicao relativa do sprite em comparacao com o centro de seu bloco no eixo Y
 	 */
@@ -102,7 +105,7 @@ public abstract class Entity implements GameObject {
 	/*
 	 * @brief Verifica se a entidade está parada
 	 */
-	protected boolean isStoped() {
+	protected boolean isStopped() {
 		return (speedX == 0 && speedY == 0);
 	}
 	
