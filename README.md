@@ -13,12 +13,12 @@ A documentação do projeto está sendo feita por relatórios em um diário de b
 
 Os integrantes do grupo Object-oriented teens:
 
-Nome     |	NUSP	| Username 
----------- |-----------|-----------
-Alexandre Marques Carrer |11260547|<a href="https://gitlab.com/alemarquis">@AleMarquis</a>
-Felipe Bagni | 11257571| <a href="https://gitlab.com/febagni">@febagni</a>
-Gabriel Yugo Kishida | 11257647 | <a href="https://gitlab.com/gabrielkishida">@GabrielKishida</a>
-Gustavo Azevedo Corrêa | 11257693 | <a href="https://gitlab.com/guazco">@guazco</a>
+Nome     | Username 
+---------- |-----------
+Alexandre Marques Carrer |<a href="https://gitlab.com/alemarquis">@AleMarquis</a>
+Felipe Bagni | <a href="https://gitlab.com/febagni">@febagni</a>
+Gabriel Yugo Kishida | <a href="https://gitlab.com/gabrielkishida">@GabrielKishida</a>
+Gustavo Azevedo Corrêa | <a href="https://gitlab.com/guazco">@guazco</a>
 
 ## Proposta:
 
