@@ -15,10 +15,10 @@ Os integrantes do grupo Object-oriented teens:
 
 Nome     | Username 
 ---------- |-----------
-Alexandre Marques Carrer |<a href="https://gitlab.com/alemarquis">@AleMarquis</a>
-Felipe Bagni | <a href="https://gitlab.com/febagni">@febagni</a>
-Gabriel Yugo Kishida | <a href="https://gitlab.com/gabrielkishida">@GabrielKishida</a>
-Gustavo Azevedo Corrêa | <a href="https://gitlab.com/guazco">@guazco</a>
+Alexandre Marques Carrer |<a href="https://github.com/alemarquis">@AleMarquis</a>
+Felipe Bagni | <a href="https://github.com/febagni">@febagni</a>
+Gabriel Yugo Kishida | <a href="https://github.com/gabrielkishida">@GabrielKishida</a>
+Gustavo Azevedo Corrêa | <a href="https://github.com/guazco">@guazco</a>
 
 ## Proposta:
 
